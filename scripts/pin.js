@@ -7,7 +7,7 @@ const ENV = process.env;
 
 const pinataApiKey = ENV.PINATA_API_KEY ? ENV.PINATA_API_KEY : "";
 const pinataSecretApiKey = ENV.PINATA_SECRET_API_KEY
-  ? PINATA_SECRET_API_KEY
+  ? ENV.PINATA_SECRET_API_KEY
   : "";
 
 const folder = "public";
