@@ -22,4 +22,9 @@ jobs:
         node-version: 14.x
     - run: npm ci
     - run: npm run build --if-present
-    - run: npm run pin --pinata_api_key=${{ secrets.PINATA_API_KEY }} --pinata_secret_key=${{ secrets.PINATA_SECRET_API_KEY }}
+    - name: "IPFS Pin"
+      run: npm run pin
+      env:
+        CI: true
+        PINATA_API_KEY: ${{ secrets.PINATA_API_KEY }}
+        PINATA_SECRET_API_KEY: ${{ secrets.PINATA_SECRET_API_KEY }}
