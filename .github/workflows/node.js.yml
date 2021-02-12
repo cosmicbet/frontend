@@ -26,4 +26,4 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run: npm run build --if-present
-    - run: npm test
+    - run: npm run pin --pinata_api_key=${{ secrets.PINATA_API_KEY }} --pinata_secret_key=${{ secrets.PINATA_SECRET_API_KEY }}
