@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: "cosmic.bet",
-    siteUrl: "https://cosmic.bet"
+    siteUrl: "https://cosmic.bet",
   },
   plugins: [
     {
@@ -38,5 +38,6 @@ module.exports = {
       },
       __key: "pages",
     },
+    "gatsby-plugin-styled-components",
   ],
 };
