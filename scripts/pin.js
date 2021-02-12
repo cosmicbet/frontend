@@ -5,7 +5,7 @@ const FormData = require("form-data");
 const recursive = require("recursive-fs");
 const ENV = process.env;
 
-const pinataApiKey = ENV.PINATA_API_KEY ? PINATA_API_KEY : "";
+const pinataApiKey = ENV.PINATA_API_KEY ? ENV.PINATA_API_KEY : "";
 const pinataSecretApiKey = ENV.PINATA_SECRET_API_KEY
   ? PINATA_SECRET_API_KEY
   : "";
