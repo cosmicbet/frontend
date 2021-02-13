@@ -1,9 +1,21 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import Layout from "../components/layout";
 import BuyForm from "../components/lottery/buyform";
 import Stats from "../components/lottery/stats";
+import { checkExtensionAndBrowser } from "../utils/keplr";
 
 const LotteryPage = () => {
+  // Load Keplr
+  useEffect(() => {
+    if (!checkExtensionAndBrowser()) {
+      console.log("test1", window.getOfflineSigner, window.keplr);
+    } else {
+      console.log("test2");
+    }
+
+    console.log("Load");
+  }, []);
+
   return (
     <Layout>
       <h1>cosmic.bet lottery</h1>
