@@ -3,6 +3,7 @@ module.exports = {
     title: "cosmic.bet",
     siteUrl: "https://cosmic.bet",
   },
+  pathPrefix: "__GATSBY_IPFS_PATH_PREFIX__",
   plugins: [
     {
       resolve: "gatsby-plugin-google-analytics",
@@ -39,5 +40,6 @@ module.exports = {
       __key: "pages",
     },
     "gatsby-plugin-styled-components",
+    "gatsby-plugin-ipfs",
   ],
 };
