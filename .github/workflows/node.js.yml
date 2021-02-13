@@ -1,4 +1,4 @@
-name: Node.js CI
+name: IPFS Build
 
 on:
   push:
@@ -19,6 +19,7 @@ jobs:
         node-version: 14.x
     - run: npm ci
     - run: npm run build --if-present
+
     - name: "IPFS Pin"
       run: npm run pin
       env:

@@ -1,11 +1,14 @@
 {
   "name": "cosmic.bet",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "private": true,
   "description": "cosmic.bet",
-  "author": "dimiandre",
   "keywords": [
-    "gatsby"
+    "cosmos",
+    "betting",
+    "zone",
+    "lottery",
+    "ibc"
   ],
   "scripts": {
     "develop": "gatsby develop",
