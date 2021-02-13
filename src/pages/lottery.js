@@ -2,19 +2,20 @@ import React, { useEffect } from "react";
 import Layout from "../components/layout";
 import BuyForm from "../components/lottery/buyform";
 import Stats from "../components/lottery/stats";
-import { checkExtensionAndBrowser } from "../utils/keplr";
+import { checkExtensionAndBrowser, suggestChain } from "../utils/keplr";
 
 const LotteryPage = () => {
   // Load Keplr
-  useEffect(() => {
+  const buy = async () => {
     if (!checkExtensionAndBrowser()) {
-      console.log("test1", window.getOfflineSigner, window.keplr);
-    } else {
-      console.log("test2");
+      alert("Please install Keplr extensions and use Google Chrome");
+      return;
     }
 
+    // suggest chain
+    await suggestChain();
     console.log("Load");
-  }, []);
+  };
 
   return (
     <Layout>
@@ -38,7 +39,7 @@ const LotteryPage = () => {
 
       <hr />
 
-      <BuyForm />
+      <BuyForm onClick={(e) => buy()} />
     </Layout>
   );
 };

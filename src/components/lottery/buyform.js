@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const BuyForm = () => {
+const BuyForm = ({ onClick }) => {
   const ticketPrice = 10;
   const [ticketNumber, setTicketNumber] = useState(1);
 
@@ -22,7 +22,9 @@ const BuyForm = () => {
         {ticketNumber} <button onClick={(e) => addTicket()}>+</button>{" "}
         <button onClick={(e) => removeTicket()}>-</button> <br />
         <br />
-        <button>Buy for {ticketNumber * ticketPrice} FCHS</button>
+        <button onClick={(e) => onClick(e)}>
+          Buy for {ticketNumber * ticketPrice} FCHS
+        </button>
       </div>
     </div>
   );
