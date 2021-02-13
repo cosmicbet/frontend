@@ -2,7 +2,7 @@
   cosmic.bet | dAPP
 </h1>
 
-![IPFS Build](https://github.com/cosmicbet/frontend/workflows/Node.js%20CI/badge.svg)
+![IPFS Build](https://github.com/cosmicbet/frontend/workflows/IPFS%20Build/badge.svg)
 
 Frontend dApp for cosmic.bet zone games
 
