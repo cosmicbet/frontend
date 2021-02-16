@@ -31,7 +31,6 @@ const LotteryPage = () => {
   return (
     <Layout>
       <Title>Cosmic Casino: Lottery</Title>
-
       <Description>
         Buy a ticket for 10 FCHS, wait for the draw. One lucky winner takes all
         the jackpot!{" "}
@@ -43,15 +42,15 @@ const LotteryPage = () => {
           Learn more
         </a>
       </Description>
-
       <br />
       <hr />
-
       <Stats />
-
       <hr />
-
       <BuyForm onClick={(e) => buy()} />
+      <hr />
+      <h3>Last Draw</h3>
+      <b>Winner:</b> rack1juczud9nep06t0khghvm643hf9usw45rhchlj2 <br />
+      <b>Jackpot:</b> 12348839 FCHS
     </Layout>
   );
 };
