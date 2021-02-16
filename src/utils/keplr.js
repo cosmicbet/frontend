@@ -21,13 +21,13 @@ export const suggestChain = async () => {
     // If the same chain id is already registered, it will resolve and not require the user interactions.
     await window.keplr.experimentalSuggestChain({
       // Chain-id of the Cosmos SDK chain.
-      chainId: "cosmicbet",
+      chainId: "cosmic-devnet-2",
       // The name of the chain to be displayed to the user.
-      chainName: "Cosmic Bet",
+      chainName: "Cosmic Casino",
       // RPC endpoint of the chain.
-      rpc: "https://node.cosmic.bet/rpc",
+      rpc: "https://rpc.cosmic.bet",
       // REST endpoint of the chain.
-      rest: "https://node.cosmic.bet/rest",
+      rest: "https://lcd.cosmic.bet",
       // Staking coin information
       stakeCurrency: {
         // Coin denomination to be displayed to the user.
@@ -73,7 +73,7 @@ export const suggestChain = async () => {
           // Coin denomination to be displayed to the user.
           coinDenom: "FCHS",
           // Actual denom (i.e. uatom, uscrt) used by the blockchain.
-          coinMinimalDenom: "fiches",
+          coinMinimalDenom: "ufchs",
           // # of decimal points to convert minimal denomination to user-facing denomination.
           coinDecimals: 6,
           // (Optional) Keplr can show the fiat value of the coin if a coingecko id is provided.
@@ -87,7 +87,7 @@ export const suggestChain = async () => {
           // Coin denomination to be displayed to the user.
           coinDenom: "FCHS",
           // Actual denom (i.e. uatom, uscrt) used by the blockchain.
-          coinMinimalDenom: "fiches",
+          coinMinimalDenom: "ufchs",
           // # of decimal points to convert minimal denomination to user-facing denomination.
           coinDecimals: 6,
           // (Optional) Keplr can show the fiat value of the coin if a coingecko id is provided.
