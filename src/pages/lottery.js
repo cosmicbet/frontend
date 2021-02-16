@@ -48,9 +48,29 @@ const LotteryPage = () => {
       <hr />
       <BuyForm onClick={(e) => buy()} />
       <hr />
-      <h3>Last Draw</h3>
-      <b>Winner:</b> rack1juczud9nep06t0khghvm643hf9usw45rhchlj2 <br />
-      <b>Jackpot:</b> 12348839 FCHS
+      <h3>Latest Draws</h3>
+      <table border="1">
+        <tr>
+          <td>Winner</td>
+          <td>Jackpot</td>
+          <td>End time</td>
+        </tr>
+        <tr>
+          <td>rack1juczud9nep06t0khghvm643hf9usw45rhchlj2</td>
+          <td>12348839 FCHS</td>
+          <td>2020-02-16 05:00:00</td>
+        </tr>
+        <tr>
+          <td>rack1juczud9nep06t0khghvm643hf9usw45rhchlj2</td>
+          <td>12348839 FCHS</td>
+          <td>2020-02-16 05:00:00</td>
+        </tr>
+        <tr>
+          <td>rack1juczud9nep06t0khghvm643hf9usw45rhchlj2</td>
+          <td>12348839 FCHS</td>
+          <td>2020-02-16 05:00:00</td>
+        </tr>
+      </table>
     </Layout>
   );
 };
