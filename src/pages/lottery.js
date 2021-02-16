@@ -1,14 +1,25 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Layout from "../components/layout";
 import BuyForm from "../components/lottery/buyform";
 import Stats from "../components/lottery/stats";
 import { checkExtensionAndBrowser, suggestChain } from "../utils/keplr";
+import styled from "styled-components";
+
+const Title = styled.h1`
+  text-align: center;
+`;
+
+const Description = styled.p`
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+`;
 
 const LotteryPage = () => {
   // Load Keplr
   const buy = async () => {
     if (!checkExtensionAndBrowser()) {
-      alert("Please install Keplr extensions and use Google Chrome");
+      alert("Please install Keplr extension and use Google Chrome");
       return;
     }
 
@@ -19,9 +30,9 @@ const LotteryPage = () => {
 
   return (
     <Layout>
-      <h1>cosmic.bet lottery</h1>
+      <Title>Cosmic Casino: Lottery</Title>
 
-      <p>
+      <Description>
         Buy a ticket for 10 FCHS, wait for the draw. One lucky winner takes all
         the jackpot!{" "}
         <a
@@ -31,8 +42,9 @@ const LotteryPage = () => {
         >
           Learn more
         </a>
-      </p>
+      </Description>
 
+      <br />
       <hr />
 
       <Stats />
