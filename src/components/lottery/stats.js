@@ -7,6 +7,7 @@ const Stats = () => {
 
   return (
     <p>
+      Your Balance: 100 FCHS <br />
       Next extraction in: <Countdown date={nextExtraction} /> <br />
       Total tickets sold: {ticketSold}
     </p>
