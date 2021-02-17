@@ -33,7 +33,7 @@ export const suggestChain = async () => {
         // Coin denomination to be displayed to the user.
         coinDenom: "FCHS",
         // Actual denom (i.e. uatom, uscrt) used by the blockchain.
-        coinMinimalDenom: "fiches",
+        coinMinimalDenom: "ufchs",
         // # of decimal points to convert minimal denomination to user-facing denomination.
         coinDecimals: 6,
         // (Optional) Keplr can show the fiat value of the coin if a coingecko id is provided.
@@ -110,6 +110,7 @@ export const suggestChain = async () => {
         average: 0.025,
         high: 0.04,
       },
+      features: ["stargate"],
     });
   } catch {
     alert("Failed to suggest the chain");
