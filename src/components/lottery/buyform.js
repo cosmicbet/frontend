@@ -1,16 +1,25 @@
 import React, { useState } from "react";
 
-const BuyForm = ({ onClick }) => {
+const BuyFormComponent = ({ onClick, currentBalance }) => {
   const ticketPrice = 10;
   const [ticketNumber, setTicketNumber] = useState(1);
+  const [error, setError] = useState("");
 
   const addTicket = () => {
+    setError('')
     // TODO: Check balance
-    setTicketNumber(ticketNumber + 1);
+    setTicketNumber((ticket) => {
+      if (currentBalance <= ticket * ticketPrice) {
+        setError('You have not FCHS')
+        return ticket;
+      }
+      return ++ticket;
+    });
   };
 
   const removeTicket = () => {
-    if (ticketNumber >= 1) {
+    setError('')
+    if (ticketNumber) {
       setTicketNumber(ticketNumber - 1);
     }
   };
@@ -19,10 +28,11 @@ const BuyForm = ({ onClick }) => {
     <div>
       <h4>How many tickets would you like to buy?</h4>
       <div>
-        {ticketNumber} <button onClick={(e) => addTicket()}>+</button>{" "}
-        <button onClick={(e) => removeTicket()}>-</button> <br />
+        {ticketNumber} <button onClick={addTicket}>+</button>{" "}
+        <button onClick={removeTicket}>-</button> <br />
         <br />
-        <button onClick={(e) => onClick(e)}>
+        <div>{error}</div>
+        <button onClick={onClick}>
           Buy for {ticketNumber * ticketPrice} FCHS
         </button>
       </div>
@@ -30,4 +40,4 @@ const BuyForm = ({ onClick }) => {
   );
 };
 
-export default BuyForm;
+export default BuyFormComponent;
