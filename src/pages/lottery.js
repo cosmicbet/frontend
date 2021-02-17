@@ -1,9 +1,8 @@
 import React from "react";
-import Layout from "../components/layout";
-import BuyForm from "../components/lottery/buyform";
-import Stats from "../components/lottery/stats";
-import { checkExtensionAndBrowser, suggestChain } from "../utils/keplr";
 import styled from "styled-components";
+import MainLayout from "../layouts/main";
+import LotteryComponent from "../components/lottery";
+import { checkExtensionAndBrowser, suggestChain } from "../utils/keplr";
 
 const Title = styled.h1`
   text-align: center;
@@ -22,14 +21,17 @@ const LotteryPage = () => {
       alert("Please install Keplr extension and use Google Chrome");
       return;
     }
-
-    // suggest chain
-    await suggestChain();
-    console.log("Load");
+    try {
+      // suggest chain
+      await suggestChain();
+      console.log("Load");
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
-    <Layout>
+    <MainLayout>
       <Title>Cosmic Casino: Lottery</Title>
       <Description>
         Buy a ticket for 10 FCHS, wait for the draw. One lucky winner takes all
@@ -44,34 +46,36 @@ const LotteryPage = () => {
       </Description>
       <br />
       <hr />
-      <Stats />
-      <hr />
-      <BuyForm onClick={(e) => buy()} />
+      <LotteryComponent onBuyClickHandler={buy} />
       <hr />
       <h3>Latest Draws</h3>
       <table border="1">
-        <tr>
-          <td>Winner</td>
-          <td>Jackpot</td>
-          <td>End time</td>
-        </tr>
-        <tr>
-          <td>rack1juczud9nep06t0khghvm643hf9usw45rhchlj2</td>
-          <td>12348839 FCHS</td>
-          <td>2020-02-16 05:00:00</td>
-        </tr>
-        <tr>
-          <td>rack1juczud9nep06t0khghvm643hf9usw45rhchlj2</td>
-          <td>12348839 FCHS</td>
-          <td>2020-02-16 05:00:00</td>
-        </tr>
-        <tr>
-          <td>rack1juczud9nep06t0khghvm643hf9usw45rhchlj2</td>
-          <td>12348839 FCHS</td>
-          <td>2020-02-16 05:00:00</td>
-        </tr>
+        <thead>
+          <tr>
+            <td>Winner</td>
+            <td>Jackpot</td>
+            <td>End time</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>rack1juczud9nep06t0khghvm643hf9usw45rhchlj2</td>
+            <td>12348839 FCHS</td>
+            <td>2020-02-16 05:00:00</td>
+          </tr>
+          <tr>
+            <td>rack1juczud9nep06t0khghvm643hf9usw45rhchlj2</td>
+            <td>12348839 FCHS</td>
+            <td>2020-02-16 05:00:00</td>
+          </tr>
+          <tr>
+            <td>rack1juczud9nep06t0khghvm643hf9usw45rhchlj2</td>
+            <td>12348839 FCHS</td>
+            <td>2020-02-16 05:00:00</td>
+          </tr>
+        </tbody>
       </table>
-    </Layout>
+    </MainLayout>
   );
 };
 

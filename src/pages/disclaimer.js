@@ -1,6 +1,6 @@
 import React from "react";
-import Layout from "../components/layout";
 import styled from "styled-components";
+import MainLayout from "../layouts/main";
 
 const Title = styled.h1`
   text-align: center;
@@ -14,9 +14,8 @@ const Content = styled.p`
 
 const DisclaimerPage = () => {
   return (
-    <Layout>
+    <MainLayout>
       <Title>Cosmic Casino: Disclaimer</Title>
-
       <Content>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam bibendum
         nec odio eget semper. Aenean non elit sed nunc eleifend gravida. Integer
@@ -53,7 +52,7 @@ const DisclaimerPage = () => {
         sit amet, consectetur adipiscing elit. Morbi vel volutpat velit. Etiam
         turpis lorem, placerat a augue interdum, sodales porttitor quam. Nullam
       </Content>
-    </Layout>
+    </MainLayout>
   );
 };
 

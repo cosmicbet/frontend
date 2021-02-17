@@ -1,8 +1,9 @@
-import { Link } from "gatsby";
 import React from "react";
-import Layout from "../components/layout";
+import { Link } from "gatsby";
 import styled from "styled-components";
+import MainLayout from "../layouts/main";
 
+//TODO move styles to separate file
 const Logo = styled.h1`
   text-align: center;
 `;
@@ -37,14 +38,13 @@ const GameCard = styled.div`
 
 const IndexPage = () => {
   return (
-    <Layout>
+    <MainLayout>
       <Logo>Cosmic Casino</Logo>
       <Description>
         The first Cosmos Zone Blockchain that aims at providing a fair and
         transparent place where users are able to gamble whatever tokens they
         possess.
       </Description>
-
       <h3>Explore our games</h3>
       <GamesContainer>
         <GameCard>
@@ -58,7 +58,7 @@ const IndexPage = () => {
           <Link to="/lottery">Try now</Link>
         </GameCard>
       </GamesContainer>
-    </Layout>
+    </MainLayout>
   );
 };
 
