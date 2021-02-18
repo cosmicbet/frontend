@@ -2,6 +2,11 @@ module.exports = {
   siteMetadata: {
     title: "cosmic.bet",
     siteUrl: "https://cosmic.bet",
+    contacts: {
+      github: "github",
+      telegram: "telegram",
+      discord: "discord",
+    },
   },
   pathPrefix: "__GATSBY_IPFS_PATH_PREFIX__",
   plugins: [
