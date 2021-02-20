@@ -1,3 +1,13 @@
+import { Registry } from "@cosmjs/proto-signing";
+const { SigningStargateClient } = require("@cosmjs/stargate");
+
+export const chainConfig = {
+  id: "cosmic-devnet-2",
+  name: "Cosmic Casino",
+  rpc: "http://68.183.9.198:26657",
+  lcd: "https://cosmicbet.dimi.sh",
+};
+
 export const checkExtensionAndBrowser = () => {
   if (typeof window !== `undefined`) {
     if (
@@ -21,13 +31,13 @@ export const suggestChain = async () => {
     // If the same chain id is already registered, it will resolve and not require the user interactions.
     await window.keplr.experimentalSuggestChain({
       // Chain-id of the Cosmos SDK chain.
-      chainId: "cosmic-devnet-2",
+      chainId: chainConfig.id,
       // The name of the chain to be displayed to the user.
-      chainName: "Cosmic Casino",
+      chainName: chainConfig.name,
       // RPC endpoint of the chain.
-      rpc: "https://rpc.cosmic.bet",
+      rpc: chainConfig.rpc,
       // REST endpoint of the chain.
-      rest: "https://lcd.cosmic.bet",
+      rest: chainConfig.lcd,
       // Staking coin information
       stakeCurrency: {
         // Coin denomination to be displayed to the user.
@@ -115,4 +125,23 @@ export const suggestChain = async () => {
   } catch {
     alert("Failed to suggest the chain");
   }
+};
+
+export const getSigner = async () => {
+  await window.keplr.enable(chainConfig.id);
+  const offlineSigner = window.getOfflineSigner(chainConfig.id);
+  const accounts = await offlineSigner.getAccounts(); // only one account currently supported by keplr
+
+  // Initialize the cosmic casino api with the offline signer that is injected by Keplr extension.
+  const registry = new Registry();
+  registry.register("/custom.MsgCustom", MsgSend);
+  const options = { registry: registry };
+
+  const cosmJS = await SigningStargateClient.connectWithSigner(
+    chainConfig.rpc,
+    offlineSigner,
+    options
+  );
+
+  return [accounts, cosmJS];
 };
