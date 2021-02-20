@@ -2,11 +2,12 @@ import { Registry } from "@cosmjs/proto-signing";
 import { MsgBuyTickets } from "../codec/cosmicbet/wta/v1beta1/msgs";
 const { SigningStargateClient } = require("@cosmjs/stargate");
 
+// TODO: Move inside .env files
 export const chainConfig = {
   id: "cosmic-devnet-2",
   name: "Cosmic Casino",
-  rpc: "http://68.183.9.198:26657",
-  lcd: "https://cosmicbet.dimi.sh",
+  rpc: "https://rpc.cosmic.bet",
+  lcd: "https://lcd.cosmic.bet",
 };
 
 export const checkExtensionAndBrowser = () => {
