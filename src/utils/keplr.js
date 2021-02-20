@@ -1,4 +1,5 @@
 import { Registry } from "@cosmjs/proto-signing";
+import { MsgBuyTickets } from "../codec/cosmicbet/wta/v1beta1/msgs";
 const { SigningStargateClient } = require("@cosmjs/stargate");
 
 export const chainConfig = {
@@ -134,7 +135,7 @@ export const getSigner = async () => {
 
   // Initialize the cosmic casino api with the offline signer that is injected by Keplr extension.
   const registry = new Registry();
-  registry.register("/custom.MsgCustom", MsgSend);
+  registry.register("/cosmicbet.wta.v1beta1.MsgBuyTickets", MsgBuyTickets);
   const options = { registry: registry };
 
   const cosmJS = await SigningStargateClient.connectWithSigner(
