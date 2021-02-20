@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import MainLayout from "../layouts/main";
 import LotteryComponent from "../components/lottery";
 import { checkExtensionAndBrowser, suggestChain } from "../utils/keplr";
+import { buyTickets } from "../utils/lottery";
 
 const Title = styled.h1`
   text-align: center;
@@ -16,7 +17,7 @@ const Description = styled.p`
 
 const LotteryPage = () => {
   // Load Keplr
-  const buy = async () => {
+  const buy = async (ticketNumber) => {
     if (!checkExtensionAndBrowser()) {
       alert("Please install Keplr extension and use Google Chrome");
       return;
@@ -24,7 +25,14 @@ const LotteryPage = () => {
     try {
       // suggest chain
       await suggestChain();
-      console.log("Load");
+
+      const result = await buyTickets(ticketNumber);
+
+      if (result.transactionHash !== undefined) {
+        alert("OK! Tx hash: " + result.transactionHash);
+      } else {
+        alert("Error :(");
+      }
     } catch (e) {
       console.error(e);
     }

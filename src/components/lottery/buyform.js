@@ -6,11 +6,11 @@ const BuyFormComponent = ({ onClick, currentBalance }) => {
   const [error, setError] = useState("");
 
   const addTicket = () => {
-    setError('')
+    setError("");
     // TODO: Check balance
     setTicketNumber((ticket) => {
       if (currentBalance <= ticket * ticketPrice) {
-        setError('You have not FCHS')
+        setError("You have not FCHS");
         return ticket;
       }
       return ++ticket;
@@ -18,7 +18,7 @@ const BuyFormComponent = ({ onClick, currentBalance }) => {
   };
 
   const removeTicket = () => {
-    setError('')
+    setError("");
     if (ticketNumber) {
       setTicketNumber(ticketNumber - 1);
     }
@@ -32,7 +32,7 @@ const BuyFormComponent = ({ onClick, currentBalance }) => {
         <button onClick={removeTicket}>-</button> <br />
         <br />
         <div>{error}</div>
-        <button onClick={onClick}>
+        <button onClick={() => onClick(ticketNumber)}>
           Buy for {ticketNumber * ticketPrice} FCHS
         </button>
       </div>

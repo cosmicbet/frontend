@@ -23,5 +23,5 @@ export const buyTickets = async (quantity) => {
   };
 
   const msg = buildMsgBuyTicket(quantity, accounts[0].address);
-  await signer.signAndBroadcast(accounts[0].address, [msg], fee);
+  return await signer.signAndBroadcast(accounts[0].address, [msg], fee);
 };
