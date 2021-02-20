@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import MainLayout from "../layouts/main";
 import BlockGamesComponent from "../components/blockGames";
-import FooterComponent from "../components/footer";
 import { games } from "../constants/games";
 
 //TODO move styles to separate file
@@ -26,7 +25,6 @@ const IndexPage = () => {
       </Description>
       <h3>Explore our games</h3>
       <BlockGamesComponent items={games} />
-      <FooterComponent />
     </MainLayout>
   );
 };

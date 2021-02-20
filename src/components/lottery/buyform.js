@@ -10,7 +10,7 @@ const BuyFormComponent = ({ onClick, currentBalance }) => {
     // TODO: Check balance
     setTicketNumber((ticket) => {
       if (currentBalance <= ticket * ticketPrice) {
-        setError("You have not FCHS");
+        setError("Your balance too low");
         return ticket;
       }
       return ++ticket;
