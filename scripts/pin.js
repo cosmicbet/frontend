@@ -31,6 +31,7 @@ recursive.readdirr(folder, function (err, dirs, files) {
   return axios
     .post(url, data, {
       maxContentLength: "Infinity",
+      maxBodyLength: "Infinity",
       headers: {
         "Content-Type": `multipart/form-data; boundary=${data._boundary}`,
         pinata_api_key: pinataApiKey,
