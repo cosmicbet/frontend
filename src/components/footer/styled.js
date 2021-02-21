@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
 export const Footer = styled.div`
-  margin-top: 200px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 `;
 
 export const Disclaimer = styled.p`
