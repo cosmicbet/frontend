@@ -1,9 +1,7 @@
 import { createGlobalStyle } from "styled-components";
+import { normalize } from "polished";
 
 const GlobalStyle = createGlobalStyle`
-  body {
-    font-family: sans-serif;
-    min-height: 80%;
-  }
+  ${normalize()}
 `;
 export default GlobalStyle;
