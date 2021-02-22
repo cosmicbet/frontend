@@ -61,7 +61,7 @@ export const Params = {
   decode(input: _m0.Reader | Uint8Array, length?: number): Params {
     const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = globalThis.Object.create(baseParams) as Params;
+    const message = { ...baseParams } as Params;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -89,7 +89,7 @@ export const Params = {
   },
 
   fromJSON(object: any): Params {
-    const message = globalThis.Object.create(baseParams) as Params;
+    const message = { ...baseParams } as Params;
     if (
       object.prizePercentage !== undefined &&
       object.prizePercentage !== null
@@ -122,6 +122,25 @@ export const Params = {
       message.ticketPrice = undefined;
     }
     return message;
+  },
+
+  toJSON(message: Params): unknown {
+    const obj: any = {};
+    message.prizePercentage !== undefined &&
+      (obj.prizePercentage = message.prizePercentage);
+    message.communityPoolPercentage !== undefined &&
+      (obj.communityPoolPercentage = message.communityPoolPercentage);
+    message.burnPercentage !== undefined &&
+      (obj.burnPercentage = message.burnPercentage);
+    message.drawDuration !== undefined &&
+      (obj.drawDuration = message.drawDuration
+        ? Duration.toJSON(message.drawDuration)
+        : undefined);
+    message.ticketPrice !== undefined &&
+      (obj.ticketPrice = message.ticketPrice
+        ? Coin.toJSON(message.ticketPrice)
+        : undefined);
+    return obj;
   },
 
   fromPartial(object: DeepPartial<Params>): Params {
@@ -159,36 +178,7 @@ export const Params = {
     }
     return message;
   },
-
-  toJSON(message: Params): unknown {
-    const obj: any = {};
-    message.prizePercentage !== undefined &&
-      (obj.prizePercentage = message.prizePercentage);
-    message.communityPoolPercentage !== undefined &&
-      (obj.communityPoolPercentage = message.communityPoolPercentage);
-    message.burnPercentage !== undefined &&
-      (obj.burnPercentage = message.burnPercentage);
-    message.drawDuration !== undefined &&
-      (obj.drawDuration = message.drawDuration
-        ? Duration.toJSON(message.drawDuration)
-        : undefined);
-    message.ticketPrice !== undefined &&
-      (obj.ticketPrice = message.ticketPrice
-        ? Coin.toJSON(message.ticketPrice)
-        : undefined);
-    return obj;
-  },
 };
-
-declare var self: any | undefined;
-declare var window: any | undefined;
-var globalThis: any = (() => {
-  if (typeof globalThis !== "undefined") return globalThis;
-  if (typeof self !== "undefined") return self;
-  if (typeof window !== "undefined") return window;
-  if (typeof global !== "undefined") return global;
-  throw "Unable to locate global object";
-})();
 
 type Builtin =
   | Date

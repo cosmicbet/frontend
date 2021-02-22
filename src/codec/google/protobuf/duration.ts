@@ -101,7 +101,7 @@ export const Duration = {
   decode(input: _m0.Reader | Uint8Array, length?: number): Duration {
     const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = globalThis.Object.create(baseDuration) as Duration;
+    const message = { ...baseDuration } as Duration;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -120,7 +120,7 @@ export const Duration = {
   },
 
   fromJSON(object: any): Duration {
-    const message = globalThis.Object.create(baseDuration) as Duration;
+    const message = { ...baseDuration } as Duration;
     if (object.seconds !== undefined && object.seconds !== null) {
       message.seconds = Long.fromString(object.seconds);
     } else {
@@ -132,6 +132,14 @@ export const Duration = {
       message.nanos = 0;
     }
     return message;
+  },
+
+  toJSON(message: Duration): unknown {
+    const obj: any = {};
+    message.seconds !== undefined &&
+      (obj.seconds = (message.seconds || Long.ZERO).toString());
+    message.nanos !== undefined && (obj.nanos = message.nanos);
+    return obj;
   },
 
   fromPartial(object: DeepPartial<Duration>): Duration {
@@ -148,25 +156,7 @@ export const Duration = {
     }
     return message;
   },
-
-  toJSON(message: Duration): unknown {
-    const obj: any = {};
-    message.seconds !== undefined &&
-      (obj.seconds = (message.seconds || Long.ZERO).toString());
-    message.nanos !== undefined && (obj.nanos = message.nanos);
-    return obj;
-  },
 };
-
-declare var self: any | undefined;
-declare var window: any | undefined;
-var globalThis: any = (() => {
-  if (typeof globalThis !== "undefined") return globalThis;
-  if (typeof self !== "undefined") return self;
-  if (typeof window !== "undefined") return window;
-  if (typeof global !== "undefined") return global;
-  throw "Unable to locate global object";
-})();
 
 type Builtin =
   | Date

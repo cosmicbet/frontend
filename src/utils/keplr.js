@@ -4,7 +4,7 @@ const { SigningStargateClient } = require("@cosmjs/stargate");
 
 // TODO: Move inside .env files
 export const chainConfig = {
-  id: "cosmic-devnet-2",
+  id: "cosmic-devnet-3",
   name: "Cosmic Casino",
   rpc: "https://rpc.cosmic.bet",
   lcd: "https://lcd.cosmic.bet",

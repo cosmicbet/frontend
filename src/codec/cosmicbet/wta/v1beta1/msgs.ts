@@ -35,9 +35,7 @@ export const MsgBuyTickets = {
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgBuyTickets {
     const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = globalThis.Object.create(
-      baseMsgBuyTickets
-    ) as MsgBuyTickets;
+    const message = { ...baseMsgBuyTickets } as MsgBuyTickets;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -56,9 +54,7 @@ export const MsgBuyTickets = {
   },
 
   fromJSON(object: any): MsgBuyTickets {
-    const message = globalThis.Object.create(
-      baseMsgBuyTickets
-    ) as MsgBuyTickets;
+    const message = { ...baseMsgBuyTickets } as MsgBuyTickets;
     if (object.quantity !== undefined && object.quantity !== null) {
       message.quantity = Number(object.quantity);
     } else {
@@ -70,6 +66,13 @@ export const MsgBuyTickets = {
       message.buyer = "";
     }
     return message;
+  },
+
+  toJSON(message: MsgBuyTickets): unknown {
+    const obj: any = {};
+    message.quantity !== undefined && (obj.quantity = message.quantity);
+    message.buyer !== undefined && (obj.buyer = message.buyer);
+    return obj;
   },
 
   fromPartial(object: DeepPartial<MsgBuyTickets>): MsgBuyTickets {
@@ -85,13 +88,6 @@ export const MsgBuyTickets = {
       message.buyer = "";
     }
     return message;
-  },
-
-  toJSON(message: MsgBuyTickets): unknown {
-    const obj: any = {};
-    message.quantity !== undefined && (obj.quantity = message.quantity);
-    message.buyer !== undefined && (obj.buyer = message.buyer);
-    return obj;
   },
 };
 
@@ -111,9 +107,7 @@ export const MsgBuyTicketsResponse = {
   ): MsgBuyTicketsResponse {
     const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = globalThis.Object.create(
-      baseMsgBuyTicketsResponse
-    ) as MsgBuyTicketsResponse;
+    const message = { ...baseMsgBuyTicketsResponse } as MsgBuyTicketsResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -126,13 +120,6 @@ export const MsgBuyTicketsResponse = {
   },
 
   fromJSON(_: any): MsgBuyTicketsResponse {
-    const message = globalThis.Object.create(
-      baseMsgBuyTicketsResponse
-    ) as MsgBuyTicketsResponse;
-    return message;
-  },
-
-  fromPartial(_: DeepPartial<MsgBuyTicketsResponse>): MsgBuyTicketsResponse {
     const message = { ...baseMsgBuyTicketsResponse } as MsgBuyTicketsResponse;
     return message;
   },
@@ -140,6 +127,11 @@ export const MsgBuyTicketsResponse = {
   toJSON(_: MsgBuyTicketsResponse): unknown {
     const obj: any = {};
     return obj;
+  },
+
+  fromPartial(_: DeepPartial<MsgBuyTicketsResponse>): MsgBuyTicketsResponse {
+    const message = { ...baseMsgBuyTicketsResponse } as MsgBuyTicketsResponse;
+    return message;
   },
 };
 
@@ -174,16 +166,6 @@ interface Rpc {
     data: Uint8Array
   ): Promise<Uint8Array>;
 }
-
-declare var self: any | undefined;
-declare var window: any | undefined;
-var globalThis: any = (() => {
-  if (typeof globalThis !== "undefined") return globalThis;
-  if (typeof self !== "undefined") return self;
-  if (typeof window !== "undefined") return window;
-  if (typeof global !== "undefined") return global;
-  throw "Unable to locate global object";
-})();
 
 type Builtin =
   | Date
