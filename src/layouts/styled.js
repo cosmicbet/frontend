@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { rem } from "polished";
 
 export const App = styled.div`
   display: flex;
@@ -12,4 +13,5 @@ export const App = styled.div`
 
 export const Main = styled.main`
   flex: 1 0 auto;
+  padding-bottom: ${rem(120)};
 `;

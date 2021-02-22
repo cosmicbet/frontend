@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: ${(props) => props.theme.font.base};
     color: ${(props) => props.theme.colors.odd};
     background-color: ${(props) => props.theme.colors.primary};
-    background: linear-gradient(0, #190729, #000000);
+    background: linear-gradient(0, #4D329C, #19154C);
     direction: ltr;
     overscroll-behavior: none;
     -moz-osx-font-smoothing: grayscale;
