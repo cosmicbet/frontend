@@ -19,6 +19,8 @@ const FooterComponent = () => {
           accept this risk before betting. Never bet with money you cannot
           afford to lose. <Link to="/disclaimer">Read More</Link>{" "}
         </S.Disclaimer>
+        Background vector created by{" "}
+        <a href="https://www.freepik.com/upklyak">upklyak</a>
       </Grid>
     </S.Footer>
   );

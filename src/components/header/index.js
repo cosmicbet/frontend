@@ -11,7 +11,7 @@ const HeaderComponent = () => {
         <Row between="xs" middle="xs">
           <Col>
             {/* TODO: need a real logo */}
-            <S.Logo>CØSINO</S.Logo>
+            <S.Logo>CASINØ</S.Logo>
           </Col>
           <Col>
             <S.Nav>

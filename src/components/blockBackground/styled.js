@@ -1,23 +1,36 @@
 import styled, { keyframes } from "styled-components";
+import bg from "../../images/bg.jpg";
 
 const animStar = keyframes`
   0%	{transform: translateY(0px)}
-  100%		{transform: translateY(-2000px)}
+  100% {transform: translateY(-2000px)}
 `;
 
 const animBg = keyframes`
   0%	{opacity: 0.0}
-  100%			{opacity: 1.0}
+  100% {opacity: 1.0}
 `;
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
   z-index: -1;
   overflow: hidden;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.25;
+    z-index: -1;
+    background: url(${bg}) no-repeat center top / cover;
+  }
 `;
 
 export const Gradient = styled.div`
@@ -34,6 +47,8 @@ export const Stars = styled.div`
   width: 1px;
   height: 1px;
   background: transparent;
+  position: relative;
+  z-index: 2;
   animation: ${animStar} 480s linear infinite;
   box-shadow: 1822px 729px #555, 121px 953px #555, 95px 1765px #555,
     1661px 137px #555, 1336px 1889px #555, 1017px 232px #555, 403px 227px #555,
@@ -945,6 +960,8 @@ export const Stars = styled.div`
 export const StarsSecond = styled.div`
   width: 2px;
   height: 2px;
+  position: relative;
+  z-index: 3;
   background: transparent;
   box-shadow: 1886px 1833px #555, 148px 1018px #555, 1543px 412px #555,
     922px 542px #555, 587px 974px #555, 1877px 1352px #555, 1264px 1561px #555,

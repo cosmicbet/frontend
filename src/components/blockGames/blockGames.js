@@ -12,6 +12,8 @@ const BlockGamesComponent = ({ items }) => {
             key={index}
             title={item.title}
             description={item.description}
+            type={item.type}
+            image={item.image}
           >
             <Link to={item.path}>{item.linkText}</Link>
           </GameCardComponent>

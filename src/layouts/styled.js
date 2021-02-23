@@ -15,3 +15,7 @@ export const Main = styled.main`
   flex: 1 0 auto;
   padding-bottom: ${rem(120)};
 `;
+
+export const Section = styled.section`
+  margin-bottom: ${rem(40)};
+`;

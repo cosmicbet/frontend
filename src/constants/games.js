@@ -1,14 +1,19 @@
+import lottery from "../images/good-luck.jpg";
+import lottery2 from "../images/download.png";
+
 export const games = [
   {
-    title: "Airdrop",
-    description: "Are you an ATOM or TERRA Hodler? Claim your airdrop now!",
-    path: "/airdrop",
-    linkText: "Claim",
-  },
-  {
-    title: "Lottery",
+    title: "ToTheMoon Lottery",
     description: "Winner takes all style lottery",
     path: "/lottery",
     linkText: "Try now",
+    image: lottery,
+  },
+  {
+    title: "Neptune Lottery",
+    description: "Winner takes all style lottery",
+    path: "/lottery",
+    linkText: "Try now",
+    image: lottery2,
   },
 ];
