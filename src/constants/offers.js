@@ -5,5 +5,6 @@ export const offers = [
     path: "/airdrop",
     linkText: "Claim",
     type: "accent",
+    col: 6,
   },
 ];

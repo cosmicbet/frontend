@@ -16,7 +16,6 @@ export default function MainLayout({ children }) {
       <S.App id="app">
         <HeaderComponent />
         <S.Main>{children}</S.Main>
-
         <FooterComponent />
       </S.App>
     );

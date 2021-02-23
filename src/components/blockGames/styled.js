@@ -2,22 +2,18 @@ import styled, { css } from "styled-components";
 import { rgba, rem } from "polished";
 
 export const Container = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: -10px;
+  margin: 0;
 `;
 
 export const Card = styled.div`
-  padding: ${rem(10)};
-  margin: 0 ${rem(10)};
-  max-width: 240px;
-  border-radius: 5px;
+  padding: ${rem(15)};
+  margin: 0 0 ${rem(40)};
+  border-radius: ${rem(5)};
   display: flex;
   flex-direction: column;
   position: relative;
   overflow: hidden;
   background-color: #212121;
-  color: ${(props) => props.theme.colors.secondary};
 
   &::after,
   &::before {
@@ -38,35 +34,40 @@ export const Card = styled.div`
     }
   }
 
-  a {
-    color: white;
-    margin-top: auto;
-  }
-
   ${(props) =>
     props.$type === "accent" &&
     css`
       border: 0;
       color: white;
       background-color: transparent;
-      max-width: 530px;
 
       &:before,
       &:after {
-        background: linear-gradient(235deg, #772aff, #eaa065, #2196f3);
+        background: linear-gradient(235deg, #772aff, #1d5b9d, #2196f3);
       }
     `}
 `;
 
-export const Inner = styled.div``;
+export const Inner = styled.div`
+  p {
+    opacity: 0.8;
+  }
+`;
 
 export const Image = styled.div`
   height: ${rem(160)};
-  margin-bottom: ${rem(10)};
+  margin-bottom: ${rem(20)};
+  border-radius: ${rem(3)};
+  overflow: hidden;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    pointer-events: none;
   }
+`;
+
+export const Content = styled.div`
+  margin-top: ${rem(20)};
 `;

@@ -12,6 +12,7 @@ const FooterComponent = () => {
   return (
     <S.Footer>
       <Grid>
+        <hr />
         Cosmic Casino | <a href={github}>GitHub</a> |{" "}
         <a href={telegram}>Telegram</a> | <a href={discord}>Discord</a>
         <S.Disclaimer>

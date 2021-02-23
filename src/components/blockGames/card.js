@@ -12,7 +12,8 @@ const GameCardComponent = ({ children, title, description, type, image }) => {
       <S.Inner>
         <h4>{title}</h4>
         <p>{description}</p>
-        {children}
+
+        <S.Content>{children}</S.Content>
       </S.Inner>
     </S.Card>
   );

@@ -7,7 +7,6 @@ export const Logo = styled.h1`
   font-size: 8vw;
   line-height: 1;
   margin-bottom: ${rem(40)};
-
   background: linear-gradient(to bottom, #f1f1f1 0%, #eaa065 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

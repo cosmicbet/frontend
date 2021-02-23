@@ -26,8 +26,8 @@ export default {
     base: 16,
     h1: 54,
     h2: 38,
-    h3: 28,
-    h4: 20,
+    h3: 22,
+    h4: 18,
     h5: 16,
   },
   fontWeight: {
