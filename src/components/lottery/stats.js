@@ -5,8 +5,6 @@ import { formatPrize, setupLotteryQueryService } from "../../utils/lottery";
 import { Container, Row } from "./styled";
 
 const StatsComponent = ({ balance }) => {
-  let LotteryService = null;
-
   const [ticketsSold, setTicketsSold] = useState(0);
   const [participants, setParticipants] = useState(0);
   const [prize, setPrize] = useState([]);
@@ -14,11 +12,6 @@ const StatsComponent = ({ balance }) => {
 
   // Load stats on page load
   useEffect(() => {
-    async function initService() {
-      LotteryService = await setupLotteryQueryService();
-    }
-
-    initService();
     updateStats();
   }, []);
 
@@ -28,6 +21,7 @@ const StatsComponent = ({ balance }) => {
   }, 60000);
 
   const updateStats = async () => {
+    const LotteryService = await setupLotteryQueryService();
     const response = await LotteryService.NextDraw();
     const draw = response.draw;
 
