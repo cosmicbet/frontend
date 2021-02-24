@@ -14,6 +14,11 @@ const StatsComponent = ({ balance }) => {
 
   // Load stats on page load
   useEffect(() => {
+    async function initService() {
+      LotteryService = await setupLotteryQueryService();
+    }
+
+    initService();
     updateStats();
   }, []);
 
@@ -23,7 +28,6 @@ const StatsComponent = ({ balance }) => {
   }, 60000);
 
   const updateStats = async () => {
-    LotteryService = await setupLotteryQueryService();
     const response = await LotteryService.NextDraw();
     const draw = response.draw;
 
