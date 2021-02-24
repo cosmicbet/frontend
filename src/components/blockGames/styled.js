@@ -30,7 +30,7 @@ export const Card = styled.div`
   &:hover {
     &:before,
     &:after {
-      transform: scale(1.5) rotate(-10deg);
+      transform: scale(1.5) rotate(-3deg);
     }
   }
 
@@ -43,7 +43,7 @@ export const Card = styled.div`
 
       &:before,
       &:after {
-        background: linear-gradient(235deg, #772aff, #1d5b9d, #2196f3);
+        background: linear-gradient(145deg, #772aff, #714393, #2196f3);
       }
     `}
 `;
