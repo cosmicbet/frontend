@@ -73,9 +73,7 @@ export const QueryTicketsRequest = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryTicketsRequest {
     const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = globalThis.Object.create(
-      baseQueryTicketsRequest
-    ) as QueryTicketsRequest;
+    const message = { ...baseQueryTicketsRequest } as QueryTicketsRequest;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -91,21 +89,9 @@ export const QueryTicketsRequest = {
   },
 
   fromJSON(object: any): QueryTicketsRequest {
-    const message = globalThis.Object.create(
-      baseQueryTicketsRequest
-    ) as QueryTicketsRequest;
-    if (object.pagination !== undefined && object.pagination !== null) {
-      message.pagination = PageRequest.fromJSON(object.pagination);
-    } else {
-      message.pagination = undefined;
-    }
-    return message;
-  },
-
-  fromPartial(object: DeepPartial<QueryTicketsRequest>): QueryTicketsRequest {
     const message = { ...baseQueryTicketsRequest } as QueryTicketsRequest;
     if (object.pagination !== undefined && object.pagination !== null) {
-      message.pagination = PageRequest.fromPartial(object.pagination);
+      message.pagination = PageRequest.fromJSON(object.pagination);
     } else {
       message.pagination = undefined;
     }
@@ -119,6 +105,16 @@ export const QueryTicketsRequest = {
         ? PageRequest.toJSON(message.pagination)
         : undefined);
     return obj;
+  },
+
+  fromPartial(object: DeepPartial<QueryTicketsRequest>): QueryTicketsRequest {
+    const message = { ...baseQueryTicketsRequest } as QueryTicketsRequest;
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromPartial(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
   },
 };
 
@@ -147,9 +143,7 @@ export const QueryTicketsResponse = {
   ): QueryTicketsResponse {
     const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = globalThis.Object.create(
-      baseQueryTicketsResponse
-    ) as QueryTicketsResponse;
+    const message = { ...baseQueryTicketsResponse } as QueryTicketsResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -168,9 +162,7 @@ export const QueryTicketsResponse = {
   },
 
   fromJSON(object: any): QueryTicketsResponse {
-    const message = globalThis.Object.create(
-      baseQueryTicketsResponse
-    ) as QueryTicketsResponse;
+    const message = { ...baseQueryTicketsResponse } as QueryTicketsResponse;
     if (object.tickets !== undefined && object.tickets !== null) {
       message.tickets = Tickets.fromJSON(object.tickets);
     } else {
@@ -178,21 +170,6 @@ export const QueryTicketsResponse = {
     }
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromJSON(object.pagination);
-    } else {
-      message.pagination = undefined;
-    }
-    return message;
-  },
-
-  fromPartial(object: DeepPartial<QueryTicketsResponse>): QueryTicketsResponse {
-    const message = { ...baseQueryTicketsResponse } as QueryTicketsResponse;
-    if (object.tickets !== undefined && object.tickets !== null) {
-      message.tickets = Tickets.fromPartial(object.tickets);
-    } else {
-      message.tickets = undefined;
-    }
-    if (object.pagination !== undefined && object.pagination !== null) {
-      message.pagination = PageResponse.fromPartial(object.pagination);
     } else {
       message.pagination = undefined;
     }
@@ -210,6 +187,21 @@ export const QueryTicketsResponse = {
         ? PageResponse.toJSON(message.pagination)
         : undefined);
     return obj;
+  },
+
+  fromPartial(object: DeepPartial<QueryTicketsResponse>): QueryTicketsResponse {
+    const message = { ...baseQueryTicketsResponse } as QueryTicketsResponse;
+    if (object.tickets !== undefined && object.tickets !== null) {
+      message.tickets = Tickets.fromPartial(object.tickets);
+    } else {
+      message.tickets = undefined;
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromPartial(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
   },
 };
 
@@ -229,9 +221,7 @@ export const QueryNextDrawRequest = {
   ): QueryNextDrawRequest {
     const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = globalThis.Object.create(
-      baseQueryNextDrawRequest
-    ) as QueryNextDrawRequest;
+    const message = { ...baseQueryNextDrawRequest } as QueryNextDrawRequest;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -244,13 +234,6 @@ export const QueryNextDrawRequest = {
   },
 
   fromJSON(_: any): QueryNextDrawRequest {
-    const message = globalThis.Object.create(
-      baseQueryNextDrawRequest
-    ) as QueryNextDrawRequest;
-    return message;
-  },
-
-  fromPartial(_: DeepPartial<QueryNextDrawRequest>): QueryNextDrawRequest {
     const message = { ...baseQueryNextDrawRequest } as QueryNextDrawRequest;
     return message;
   },
@@ -258,6 +241,11 @@ export const QueryNextDrawRequest = {
   toJSON(_: QueryNextDrawRequest): unknown {
     const obj: any = {};
     return obj;
+  },
+
+  fromPartial(_: DeepPartial<QueryNextDrawRequest>): QueryNextDrawRequest {
+    const message = { ...baseQueryNextDrawRequest } as QueryNextDrawRequest;
+    return message;
   },
 };
 
@@ -280,9 +268,7 @@ export const QueryNextDrawResponse = {
   ): QueryNextDrawResponse {
     const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = globalThis.Object.create(
-      baseQueryNextDrawResponse
-    ) as QueryNextDrawResponse;
+    const message = { ...baseQueryNextDrawResponse } as QueryNextDrawResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -298,15 +284,20 @@ export const QueryNextDrawResponse = {
   },
 
   fromJSON(object: any): QueryNextDrawResponse {
-    const message = globalThis.Object.create(
-      baseQueryNextDrawResponse
-    ) as QueryNextDrawResponse;
+    const message = { ...baseQueryNextDrawResponse } as QueryNextDrawResponse;
     if (object.draw !== undefined && object.draw !== null) {
       message.draw = Draw.fromJSON(object.draw);
     } else {
       message.draw = undefined;
     }
     return message;
+  },
+
+  toJSON(message: QueryNextDrawResponse): unknown {
+    const obj: any = {};
+    message.draw !== undefined &&
+      (obj.draw = message.draw ? Draw.toJSON(message.draw) : undefined);
+    return obj;
   },
 
   fromPartial(
@@ -319,13 +310,6 @@ export const QueryNextDrawResponse = {
       message.draw = undefined;
     }
     return message;
-  },
-
-  toJSON(message: QueryNextDrawResponse): unknown {
-    const obj: any = {};
-    message.draw !== undefined &&
-      (obj.draw = message.draw ? Draw.toJSON(message.draw) : undefined);
-    return obj;
   },
 };
 
@@ -348,9 +332,7 @@ export const QueryPastDrawsRequest = {
   ): QueryPastDrawsRequest {
     const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = globalThis.Object.create(
-      baseQueryPastDrawsRequest
-    ) as QueryPastDrawsRequest;
+    const message = { ...baseQueryPastDrawsRequest } as QueryPastDrawsRequest;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -366,23 +348,9 @@ export const QueryPastDrawsRequest = {
   },
 
   fromJSON(object: any): QueryPastDrawsRequest {
-    const message = globalThis.Object.create(
-      baseQueryPastDrawsRequest
-    ) as QueryPastDrawsRequest;
-    if (object.pagination !== undefined && object.pagination !== null) {
-      message.pagination = PageRequest.fromJSON(object.pagination);
-    } else {
-      message.pagination = undefined;
-    }
-    return message;
-  },
-
-  fromPartial(
-    object: DeepPartial<QueryPastDrawsRequest>
-  ): QueryPastDrawsRequest {
     const message = { ...baseQueryPastDrawsRequest } as QueryPastDrawsRequest;
     if (object.pagination !== undefined && object.pagination !== null) {
-      message.pagination = PageRequest.fromPartial(object.pagination);
+      message.pagination = PageRequest.fromJSON(object.pagination);
     } else {
       message.pagination = undefined;
     }
@@ -396,6 +364,18 @@ export const QueryPastDrawsRequest = {
         ? PageRequest.toJSON(message.pagination)
         : undefined);
     return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<QueryPastDrawsRequest>
+  ): QueryPastDrawsRequest {
+    const message = { ...baseQueryPastDrawsRequest } as QueryPastDrawsRequest;
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromPartial(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
   },
 };
 
@@ -427,9 +407,7 @@ export const QueryPastDrawsResponse = {
   ): QueryPastDrawsResponse {
     const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = globalThis.Object.create(
-      baseQueryPastDrawsResponse
-    ) as QueryPastDrawsResponse;
+    const message = { ...baseQueryPastDrawsResponse } as QueryPastDrawsResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -448,9 +426,7 @@ export const QueryPastDrawsResponse = {
   },
 
   fromJSON(object: any): QueryPastDrawsResponse {
-    const message = globalThis.Object.create(
-      baseQueryPastDrawsResponse
-    ) as QueryPastDrawsResponse;
+    const message = { ...baseQueryPastDrawsResponse } as QueryPastDrawsResponse;
     if (object.draws !== undefined && object.draws !== null) {
       message.draws = HistoricalDrawsData.fromJSON(object.draws);
     } else {
@@ -458,23 +434,6 @@ export const QueryPastDrawsResponse = {
     }
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromJSON(object.pagination);
-    } else {
-      message.pagination = undefined;
-    }
-    return message;
-  },
-
-  fromPartial(
-    object: DeepPartial<QueryPastDrawsResponse>
-  ): QueryPastDrawsResponse {
-    const message = { ...baseQueryPastDrawsResponse } as QueryPastDrawsResponse;
-    if (object.draws !== undefined && object.draws !== null) {
-      message.draws = HistoricalDrawsData.fromPartial(object.draws);
-    } else {
-      message.draws = undefined;
-    }
-    if (object.pagination !== undefined && object.pagination !== null) {
-      message.pagination = PageResponse.fromPartial(object.pagination);
     } else {
       message.pagination = undefined;
     }
@@ -493,6 +452,23 @@ export const QueryPastDrawsResponse = {
         : undefined);
     return obj;
   },
+
+  fromPartial(
+    object: DeepPartial<QueryPastDrawsResponse>
+  ): QueryPastDrawsResponse {
+    const message = { ...baseQueryPastDrawsResponse } as QueryPastDrawsResponse;
+    if (object.draws !== undefined && object.draws !== null) {
+      message.draws = HistoricalDrawsData.fromPartial(object.draws);
+    } else {
+      message.draws = undefined;
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromPartial(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
+  },
 };
 
 const baseQueryParamsRequest: object = {};
@@ -508,9 +484,7 @@ export const QueryParamsRequest = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryParamsRequest {
     const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = globalThis.Object.create(
-      baseQueryParamsRequest
-    ) as QueryParamsRequest;
+    const message = { ...baseQueryParamsRequest } as QueryParamsRequest;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -523,13 +497,6 @@ export const QueryParamsRequest = {
   },
 
   fromJSON(_: any): QueryParamsRequest {
-    const message = globalThis.Object.create(
-      baseQueryParamsRequest
-    ) as QueryParamsRequest;
-    return message;
-  },
-
-  fromPartial(_: DeepPartial<QueryParamsRequest>): QueryParamsRequest {
     const message = { ...baseQueryParamsRequest } as QueryParamsRequest;
     return message;
   },
@@ -537,6 +504,11 @@ export const QueryParamsRequest = {
   toJSON(_: QueryParamsRequest): unknown {
     const obj: any = {};
     return obj;
+  },
+
+  fromPartial(_: DeepPartial<QueryParamsRequest>): QueryParamsRequest {
+    const message = { ...baseQueryParamsRequest } as QueryParamsRequest;
+    return message;
   },
 };
 
@@ -556,9 +528,7 @@ export const QueryParamsResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryParamsResponse {
     const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = globalThis.Object.create(
-      baseQueryParamsResponse
-    ) as QueryParamsResponse;
+    const message = { ...baseQueryParamsResponse } as QueryParamsResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -574,21 +544,9 @@ export const QueryParamsResponse = {
   },
 
   fromJSON(object: any): QueryParamsResponse {
-    const message = globalThis.Object.create(
-      baseQueryParamsResponse
-    ) as QueryParamsResponse;
-    if (object.params !== undefined && object.params !== null) {
-      message.params = Params.fromJSON(object.params);
-    } else {
-      message.params = undefined;
-    }
-    return message;
-  },
-
-  fromPartial(object: DeepPartial<QueryParamsResponse>): QueryParamsResponse {
     const message = { ...baseQueryParamsResponse } as QueryParamsResponse;
     if (object.params !== undefined && object.params !== null) {
-      message.params = Params.fromPartial(object.params);
+      message.params = Params.fromJSON(object.params);
     } else {
       message.params = undefined;
     }
@@ -600,6 +558,16 @@ export const QueryParamsResponse = {
     message.params !== undefined &&
       (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     return obj;
+  },
+
+  fromPartial(object: DeepPartial<QueryParamsResponse>): QueryParamsResponse {
+    const message = { ...baseQueryParamsResponse } as QueryParamsResponse;
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromPartial(object.params);
+    } else {
+      message.params = undefined;
+    }
+    return message;
   },
 };
 
@@ -676,16 +644,6 @@ interface Rpc {
     data: Uint8Array
   ): Promise<Uint8Array>;
 }
-
-declare var self: any | undefined;
-declare var window: any | undefined;
-var globalThis: any = (() => {
-  if (typeof globalThis !== "undefined") return globalThis;
-  if (typeof self !== "undefined") return self;
-  if (typeof window !== "undefined") return window;
-  if (typeof global !== "undefined") return global;
-  throw "Unable to locate global object";
-})();
 
 type Builtin =
   | Date

@@ -43,7 +43,7 @@ export const GenesisState = {
   decode(input: _m0.Reader | Uint8Array, length?: number): GenesisState {
     const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = globalThis.Object.create(baseGenesisState) as GenesisState;
+    const message = { ...baseGenesisState } as GenesisState;
     message.tickets = [];
     message.pastDraws = [];
     while (reader.pos < end) {
@@ -72,7 +72,7 @@ export const GenesisState = {
   },
 
   fromJSON(object: any): GenesisState {
-    const message = globalThis.Object.create(baseGenesisState) as GenesisState;
+    const message = { ...baseGenesisState } as GenesisState;
     message.tickets = [];
     message.pastDraws = [];
     if (object.draw !== undefined && object.draw !== null) {
@@ -92,33 +92,6 @@ export const GenesisState = {
     }
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromJSON(object.params);
-    } else {
-      message.params = undefined;
-    }
-    return message;
-  },
-
-  fromPartial(object: DeepPartial<GenesisState>): GenesisState {
-    const message = { ...baseGenesisState } as GenesisState;
-    message.tickets = [];
-    message.pastDraws = [];
-    if (object.draw !== undefined && object.draw !== null) {
-      message.draw = Draw.fromPartial(object.draw);
-    } else {
-      message.draw = undefined;
-    }
-    if (object.tickets !== undefined && object.tickets !== null) {
-      for (const e of object.tickets) {
-        message.tickets.push(Ticket.fromPartial(e));
-      }
-    }
-    if (object.pastDraws !== undefined && object.pastDraws !== null) {
-      for (const e of object.pastDraws) {
-        message.pastDraws.push(HistoricalDrawData.fromPartial(e));
-      }
-    }
-    if (object.params !== undefined && object.params !== null) {
-      message.params = Params.fromPartial(object.params);
     } else {
       message.params = undefined;
     }
@@ -147,17 +120,34 @@ export const GenesisState = {
       (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     return obj;
   },
-};
 
-declare var self: any | undefined;
-declare var window: any | undefined;
-var globalThis: any = (() => {
-  if (typeof globalThis !== "undefined") return globalThis;
-  if (typeof self !== "undefined") return self;
-  if (typeof window !== "undefined") return window;
-  if (typeof global !== "undefined") return global;
-  throw "Unable to locate global object";
-})();
+  fromPartial(object: DeepPartial<GenesisState>): GenesisState {
+    const message = { ...baseGenesisState } as GenesisState;
+    message.tickets = [];
+    message.pastDraws = [];
+    if (object.draw !== undefined && object.draw !== null) {
+      message.draw = Draw.fromPartial(object.draw);
+    } else {
+      message.draw = undefined;
+    }
+    if (object.tickets !== undefined && object.tickets !== null) {
+      for (const e of object.tickets) {
+        message.tickets.push(Ticket.fromPartial(e));
+      }
+    }
+    if (object.pastDraws !== undefined && object.pastDraws !== null) {
+      for (const e of object.pastDraws) {
+        message.pastDraws.push(HistoricalDrawData.fromPartial(e));
+      }
+    }
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromPartial(object.params);
+    } else {
+      message.params = undefined;
+    }
+    return message;
+  },
+};
 
 type Builtin =
   | Date

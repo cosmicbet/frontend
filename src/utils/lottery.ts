@@ -1,6 +1,22 @@
+import { createRpc, QueryClient } from "@cosmjs/stargate";
 import { MsgBuyTickets } from "../codec/cosmicbet/wta/v1beta1/msgs";
-import { getSigner } from "./keplr";
+import { QueryClientImpl as LotteryQuery } from "../codec/cosmicbet/wta/v1beta1/query";
+import { chainConfig, getSigner } from "./keplr";
+import { adaptor34, Client as TendermintClient } from "@cosmjs/tendermint-rpc";
+import { Coin } from "@cosmjs/stargate/build/codec/cosmos/base/v1beta1/coin";
+import { parseCoins } from "@cosmjs/launchpad";
 
+/* Query Client */
+export const setupLotteryQueryService = async () => {
+  const tm = await TendermintClient.connect(chainConfig.rpc, adaptor34);
+
+  const client = QueryClient.withExtensions(tm);
+  const rpc = createRpc(client);
+
+  return new LotteryQuery(rpc);
+};
+
+/* Buy Transaction */
 export const buildMsgBuyTicket = (quantity, buyer) => {
   const msg: MsgBuyTickets = {
     quantity: quantity,
@@ -24,4 +40,19 @@ export const buyTickets = async (quantity) => {
 
   const msg = buildMsgBuyTicket(quantity, accounts[0].address);
   return await signer.signAndBroadcast(accounts[0].address, [msg], fee);
+};
+
+/* Utils */
+export const formatPrize = (prize: [Coin]) => {
+  if (prize.length < 1) {
+    return "0";
+  }
+
+  return prize.map((e) => {
+    return (
+      (parseInt(e.amount) / Math.pow(10, chainConfig.coinDecimals)).toFixed(4) +
+      " " +
+      chainConfig.coinDenom
+    );
+  });
 };

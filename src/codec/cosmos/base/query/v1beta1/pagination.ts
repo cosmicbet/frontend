@@ -91,7 +91,7 @@ export const PageRequest = {
   decode(input: _m0.Reader | Uint8Array, length?: number): PageRequest {
     const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = globalThis.Object.create(basePageRequest) as PageRequest;
+    const message = { ...basePageRequest } as PageRequest;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -116,7 +116,7 @@ export const PageRequest = {
   },
 
   fromJSON(object: any): PageRequest {
-    const message = globalThis.Object.create(basePageRequest) as PageRequest;
+    const message = { ...basePageRequest } as PageRequest;
     if (object.key !== undefined && object.key !== null) {
       message.key = bytesFromBase64(object.key);
     }
@@ -136,6 +136,20 @@ export const PageRequest = {
       message.countTotal = false;
     }
     return message;
+  },
+
+  toJSON(message: PageRequest): unknown {
+    const obj: any = {};
+    message.key !== undefined &&
+      (obj.key = base64FromBytes(
+        message.key !== undefined ? message.key : new Uint8Array()
+      ));
+    message.offset !== undefined &&
+      (obj.offset = (message.offset || Long.UZERO).toString());
+    message.limit !== undefined &&
+      (obj.limit = (message.limit || Long.UZERO).toString());
+    message.countTotal !== undefined && (obj.countTotal = message.countTotal);
+    return obj;
   },
 
   fromPartial(object: DeepPartial<PageRequest>): PageRequest {
@@ -162,20 +176,6 @@ export const PageRequest = {
     }
     return message;
   },
-
-  toJSON(message: PageRequest): unknown {
-    const obj: any = {};
-    message.key !== undefined &&
-      (obj.key = base64FromBytes(
-        message.key !== undefined ? message.key : new Uint8Array()
-      ));
-    message.offset !== undefined &&
-      (obj.offset = (message.offset || Long.UZERO).toString());
-    message.limit !== undefined &&
-      (obj.limit = (message.limit || Long.UZERO).toString());
-    message.countTotal !== undefined && (obj.countTotal = message.countTotal);
-    return obj;
-  },
 };
 
 const basePageResponse: object = { total: Long.UZERO };
@@ -197,7 +197,7 @@ export const PageResponse = {
   decode(input: _m0.Reader | Uint8Array, length?: number): PageResponse {
     const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = globalThis.Object.create(basePageResponse) as PageResponse;
+    const message = { ...basePageResponse } as PageResponse;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -216,27 +216,12 @@ export const PageResponse = {
   },
 
   fromJSON(object: any): PageResponse {
-    const message = globalThis.Object.create(basePageResponse) as PageResponse;
+    const message = { ...basePageResponse } as PageResponse;
     if (object.nextKey !== undefined && object.nextKey !== null) {
       message.nextKey = bytesFromBase64(object.nextKey);
     }
     if (object.total !== undefined && object.total !== null) {
       message.total = Long.fromString(object.total);
-    } else {
-      message.total = Long.UZERO;
-    }
-    return message;
-  },
-
-  fromPartial(object: DeepPartial<PageResponse>): PageResponse {
-    const message = { ...basePageResponse } as PageResponse;
-    if (object.nextKey !== undefined && object.nextKey !== null) {
-      message.nextKey = object.nextKey;
-    } else {
-      message.nextKey = new Uint8Array();
-    }
-    if (object.total !== undefined && object.total !== null) {
-      message.total = object.total as Long;
     } else {
       message.total = Long.UZERO;
     }
@@ -252,6 +237,21 @@ export const PageResponse = {
     message.total !== undefined &&
       (obj.total = (message.total || Long.UZERO).toString());
     return obj;
+  },
+
+  fromPartial(object: DeepPartial<PageResponse>): PageResponse {
+    const message = { ...basePageResponse } as PageResponse;
+    if (object.nextKey !== undefined && object.nextKey !== null) {
+      message.nextKey = object.nextKey;
+    } else {
+      message.nextKey = new Uint8Array();
+    }
+    if (object.total !== undefined && object.total !== null) {
+      message.total = object.total as Long;
+    } else {
+      message.total = Long.UZERO;
+    }
+    return message;
   },
 };
 

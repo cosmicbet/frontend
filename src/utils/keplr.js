@@ -4,10 +4,12 @@ const { SigningStargateClient } = require("@cosmjs/stargate");
 
 // TODO: Move inside .env files
 export const chainConfig = {
-  id: "cosmic-devnet-2",
+  id: "cosmic-devnet-3",
   name: "Cosmic Casino",
   rpc: "https://rpc.cosmic.bet",
   lcd: "https://lcd.cosmic.bet",
+  coinDecimals: 6,
+  coinDenom: "FCHS",
 };
 
 export const checkExtensionAndBrowser = () => {
@@ -43,7 +45,7 @@ export const suggestChain = async () => {
       // Staking coin information
       stakeCurrency: {
         // Coin denomination to be displayed to the user.
-        coinDenom: "FCHS",
+        coinDenom: chainConfig.coinDenom,
         // Actual denom (i.e. uatom, uscrt) used by the blockchain.
         coinMinimalDenom: "ufchs",
         // # of decimal points to convert minimal denomination to user-facing denomination.
@@ -87,7 +89,7 @@ export const suggestChain = async () => {
           // Actual denom (i.e. uatom, uscrt) used by the blockchain.
           coinMinimalDenom: "ufchs",
           // # of decimal points to convert minimal denomination to user-facing denomination.
-          coinDecimals: 6,
+          coinDecimals: chainConfig.coinDecimals,
           // (Optional) Keplr can show the fiat value of the coin if a coingecko id is provided.
           // You can get id from https://api.coingecko.com/api/v3/coins/list if it is listed.
           // coinGeckoId: ""

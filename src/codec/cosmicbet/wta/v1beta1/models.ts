@@ -62,7 +62,7 @@ export const Ticket = {
   decode(input: _m0.Reader | Uint8Array, length?: number): Ticket {
     const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = globalThis.Object.create(baseTicket) as Ticket;
+    const message = { ...baseTicket } as Ticket;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -86,7 +86,7 @@ export const Ticket = {
   },
 
   fromJSON(object: any): Ticket {
-    const message = globalThis.Object.create(baseTicket) as Ticket;
+    const message = { ...baseTicket } as Ticket;
     if (object.id !== undefined && object.id !== null) {
       message.id = String(object.id);
     } else {
@@ -103,6 +103,18 @@ export const Ticket = {
       message.timestamp = undefined;
     }
     return message;
+  },
+
+  toJSON(message: Ticket): unknown {
+    const obj: any = {};
+    message.id !== undefined && (obj.id = message.id);
+    message.owner !== undefined && (obj.owner = message.owner);
+    message.timestamp !== undefined &&
+      (obj.timestamp =
+        message.timestamp !== undefined
+          ? message.timestamp.toISOString()
+          : null);
+    return obj;
   },
 
   fromPartial(object: DeepPartial<Ticket>): Ticket {
@@ -124,18 +136,6 @@ export const Ticket = {
     }
     return message;
   },
-
-  toJSON(message: Ticket): unknown {
-    const obj: any = {};
-    message.id !== undefined && (obj.id = message.id);
-    message.owner !== undefined && (obj.owner = message.owner);
-    message.timestamp !== undefined &&
-      (obj.timestamp =
-        message.timestamp !== undefined
-          ? message.timestamp.toISOString()
-          : null);
-    return obj;
-  },
 };
 
 const baseTickets: object = {};
@@ -154,7 +154,7 @@ export const Tickets = {
   decode(input: _m0.Reader | Uint8Array, length?: number): Tickets {
     const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = globalThis.Object.create(baseTickets) as Tickets;
+    const message = { ...baseTickets } as Tickets;
     message.tickets = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
@@ -171,22 +171,11 @@ export const Tickets = {
   },
 
   fromJSON(object: any): Tickets {
-    const message = globalThis.Object.create(baseTickets) as Tickets;
-    message.tickets = [];
-    if (object.tickets !== undefined && object.tickets !== null) {
-      for (const e of object.tickets) {
-        message.tickets.push(Ticket.fromJSON(e));
-      }
-    }
-    return message;
-  },
-
-  fromPartial(object: DeepPartial<Tickets>): Tickets {
     const message = { ...baseTickets } as Tickets;
     message.tickets = [];
     if (object.tickets !== undefined && object.tickets !== null) {
       for (const e of object.tickets) {
-        message.tickets.push(Ticket.fromPartial(e));
+        message.tickets.push(Ticket.fromJSON(e));
       }
     }
     return message;
@@ -202,6 +191,17 @@ export const Tickets = {
       obj.tickets = [];
     }
     return obj;
+  },
+
+  fromPartial(object: DeepPartial<Tickets>): Tickets {
+    const message = { ...baseTickets } as Tickets;
+    message.tickets = [];
+    if (object.tickets !== undefined && object.tickets !== null) {
+      for (const e of object.tickets) {
+        message.tickets.push(Ticket.fromPartial(e));
+      }
+    }
+    return message;
   },
 };
 
@@ -230,7 +230,7 @@ export const Draw = {
   decode(input: _m0.Reader | Uint8Array, length?: number): Draw {
     const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = globalThis.Object.create(baseDraw) as Draw;
+    const message = { ...baseDraw } as Draw;
     message.prize = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
@@ -258,7 +258,7 @@ export const Draw = {
   },
 
   fromJSON(object: any): Draw {
-    const message = globalThis.Object.create(baseDraw) as Draw;
+    const message = { ...baseDraw } as Draw;
     message.prize = [];
     if (object.participants !== undefined && object.participants !== null) {
       message.participants = Number(object.participants);
@@ -281,6 +281,23 @@ export const Draw = {
       message.endTime = undefined;
     }
     return message;
+  },
+
+  toJSON(message: Draw): unknown {
+    const obj: any = {};
+    message.participants !== undefined &&
+      (obj.participants = message.participants);
+    message.ticketsSold !== undefined &&
+      (obj.ticketsSold = message.ticketsSold);
+    if (message.prize) {
+      obj.prize = message.prize.map((e) => (e ? Coin.toJSON(e) : undefined));
+    } else {
+      obj.prize = [];
+    }
+    message.endTime !== undefined &&
+      (obj.endTime =
+        message.endTime !== undefined ? message.endTime.toISOString() : null);
+    return obj;
   },
 
   fromPartial(object: DeepPartial<Draw>): Draw {
@@ -308,23 +325,6 @@ export const Draw = {
     }
     return message;
   },
-
-  toJSON(message: Draw): unknown {
-    const obj: any = {};
-    message.participants !== undefined &&
-      (obj.participants = message.participants);
-    message.ticketsSold !== undefined &&
-      (obj.ticketsSold = message.ticketsSold);
-    if (message.prize) {
-      obj.prize = message.prize.map((e) => (e ? Coin.toJSON(e) : undefined));
-    } else {
-      obj.prize = [];
-    }
-    message.endTime !== undefined &&
-      (obj.endTime =
-        message.endTime !== undefined ? message.endTime.toISOString() : null);
-    return obj;
-  },
 };
 
 const baseHistoricalDrawData: object = {};
@@ -346,9 +346,7 @@ export const HistoricalDrawData = {
   decode(input: _m0.Reader | Uint8Array, length?: number): HistoricalDrawData {
     const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = globalThis.Object.create(
-      baseHistoricalDrawData
-    ) as HistoricalDrawData;
+    const message = { ...baseHistoricalDrawData } as HistoricalDrawData;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -367,9 +365,7 @@ export const HistoricalDrawData = {
   },
 
   fromJSON(object: any): HistoricalDrawData {
-    const message = globalThis.Object.create(
-      baseHistoricalDrawData
-    ) as HistoricalDrawData;
+    const message = { ...baseHistoricalDrawData } as HistoricalDrawData;
     if (object.draw !== undefined && object.draw !== null) {
       message.draw = Draw.fromJSON(object.draw);
     } else {
@@ -377,21 +373,6 @@ export const HistoricalDrawData = {
     }
     if (object.winningTicket !== undefined && object.winningTicket !== null) {
       message.winningTicket = Ticket.fromJSON(object.winningTicket);
-    } else {
-      message.winningTicket = undefined;
-    }
-    return message;
-  },
-
-  fromPartial(object: DeepPartial<HistoricalDrawData>): HistoricalDrawData {
-    const message = { ...baseHistoricalDrawData } as HistoricalDrawData;
-    if (object.draw !== undefined && object.draw !== null) {
-      message.draw = Draw.fromPartial(object.draw);
-    } else {
-      message.draw = undefined;
-    }
-    if (object.winningTicket !== undefined && object.winningTicket !== null) {
-      message.winningTicket = Ticket.fromPartial(object.winningTicket);
     } else {
       message.winningTicket = undefined;
     }
@@ -407,6 +388,21 @@ export const HistoricalDrawData = {
         ? Ticket.toJSON(message.winningTicket)
         : undefined);
     return obj;
+  },
+
+  fromPartial(object: DeepPartial<HistoricalDrawData>): HistoricalDrawData {
+    const message = { ...baseHistoricalDrawData } as HistoricalDrawData;
+    if (object.draw !== undefined && object.draw !== null) {
+      message.draw = Draw.fromPartial(object.draw);
+    } else {
+      message.draw = undefined;
+    }
+    if (object.winningTicket !== undefined && object.winningTicket !== null) {
+      message.winningTicket = Ticket.fromPartial(object.winningTicket);
+    } else {
+      message.winningTicket = undefined;
+    }
+    return message;
   },
 };
 
@@ -426,9 +422,7 @@ export const HistoricalDrawsData = {
   decode(input: _m0.Reader | Uint8Array, length?: number): HistoricalDrawsData {
     const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = globalThis.Object.create(
-      baseHistoricalDrawsData
-    ) as HistoricalDrawsData;
+    const message = { ...baseHistoricalDrawsData } as HistoricalDrawsData;
     message.draws = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
@@ -447,24 +441,11 @@ export const HistoricalDrawsData = {
   },
 
   fromJSON(object: any): HistoricalDrawsData {
-    const message = globalThis.Object.create(
-      baseHistoricalDrawsData
-    ) as HistoricalDrawsData;
-    message.draws = [];
-    if (object.draws !== undefined && object.draws !== null) {
-      for (const e of object.draws) {
-        message.draws.push(HistoricalDrawData.fromJSON(e));
-      }
-    }
-    return message;
-  },
-
-  fromPartial(object: DeepPartial<HistoricalDrawsData>): HistoricalDrawsData {
     const message = { ...baseHistoricalDrawsData } as HistoricalDrawsData;
     message.draws = [];
     if (object.draws !== undefined && object.draws !== null) {
       for (const e of object.draws) {
-        message.draws.push(HistoricalDrawData.fromPartial(e));
+        message.draws.push(HistoricalDrawData.fromJSON(e));
       }
     }
     return message;
@@ -481,17 +462,18 @@ export const HistoricalDrawsData = {
     }
     return obj;
   },
-};
 
-declare var self: any | undefined;
-declare var window: any | undefined;
-var globalThis: any = (() => {
-  if (typeof globalThis !== "undefined") return globalThis;
-  if (typeof self !== "undefined") return self;
-  if (typeof window !== "undefined") return window;
-  if (typeof global !== "undefined") return global;
-  throw "Unable to locate global object";
-})();
+  fromPartial(object: DeepPartial<HistoricalDrawsData>): HistoricalDrawsData {
+    const message = { ...baseHistoricalDrawsData } as HistoricalDrawsData;
+    message.draws = [];
+    if (object.draws !== undefined && object.draws !== null) {
+      for (const e of object.draws) {
+        message.draws.push(HistoricalDrawData.fromPartial(e));
+      }
+    }
+    return message;
+  },
+};
 
 type Builtin =
   | Date

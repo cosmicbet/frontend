@@ -123,7 +123,7 @@ export const Timestamp = {
   decode(input: _m0.Reader | Uint8Array, length?: number): Timestamp {
     const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = globalThis.Object.create(baseTimestamp) as Timestamp;
+    const message = { ...baseTimestamp } as Timestamp;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -142,7 +142,7 @@ export const Timestamp = {
   },
 
   fromJSON(object: any): Timestamp {
-    const message = globalThis.Object.create(baseTimestamp) as Timestamp;
+    const message = { ...baseTimestamp } as Timestamp;
     if (object.seconds !== undefined && object.seconds !== null) {
       message.seconds = Long.fromString(object.seconds);
     } else {
@@ -154,6 +154,14 @@ export const Timestamp = {
       message.nanos = 0;
     }
     return message;
+  },
+
+  toJSON(message: Timestamp): unknown {
+    const obj: any = {};
+    message.seconds !== undefined &&
+      (obj.seconds = (message.seconds || Long.ZERO).toString());
+    message.nanos !== undefined && (obj.nanos = message.nanos);
+    return obj;
   },
 
   fromPartial(object: DeepPartial<Timestamp>): Timestamp {
@@ -170,25 +178,7 @@ export const Timestamp = {
     }
     return message;
   },
-
-  toJSON(message: Timestamp): unknown {
-    const obj: any = {};
-    message.seconds !== undefined &&
-      (obj.seconds = (message.seconds || Long.ZERO).toString());
-    message.nanos !== undefined && (obj.nanos = message.nanos);
-    return obj;
-  },
 };
-
-declare var self: any | undefined;
-declare var window: any | undefined;
-var globalThis: any = (() => {
-  if (typeof globalThis !== "undefined") return globalThis;
-  if (typeof self !== "undefined") return self;
-  if (typeof window !== "undefined") return window;
-  if (typeof global !== "undefined") return global;
-  throw "Unable to locate global object";
-})();
 
 type Builtin =
   | Date

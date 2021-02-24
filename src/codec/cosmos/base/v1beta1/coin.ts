@@ -52,7 +52,7 @@ export const Coin = {
   decode(input: _m0.Reader | Uint8Array, length?: number): Coin {
     const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = globalThis.Object.create(baseCoin) as Coin;
+    const message = { ...baseCoin } as Coin;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -71,7 +71,7 @@ export const Coin = {
   },
 
   fromJSON(object: any): Coin {
-    const message = globalThis.Object.create(baseCoin) as Coin;
+    const message = { ...baseCoin } as Coin;
     if (object.denom !== undefined && object.denom !== null) {
       message.denom = String(object.denom);
     } else {
@@ -83,6 +83,13 @@ export const Coin = {
       message.amount = "";
     }
     return message;
+  },
+
+  toJSON(message: Coin): unknown {
+    const obj: any = {};
+    message.denom !== undefined && (obj.denom = message.denom);
+    message.amount !== undefined && (obj.amount = message.amount);
+    return obj;
   },
 
   fromPartial(object: DeepPartial<Coin>): Coin {
@@ -98,13 +105,6 @@ export const Coin = {
       message.amount = "";
     }
     return message;
-  },
-
-  toJSON(message: Coin): unknown {
-    const obj: any = {};
-    message.denom !== undefined && (obj.denom = message.denom);
-    message.amount !== undefined && (obj.amount = message.amount);
-    return obj;
   },
 };
 
@@ -127,7 +127,7 @@ export const DecCoin = {
   decode(input: _m0.Reader | Uint8Array, length?: number): DecCoin {
     const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = globalThis.Object.create(baseDecCoin) as DecCoin;
+    const message = { ...baseDecCoin } as DecCoin;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -146,7 +146,7 @@ export const DecCoin = {
   },
 
   fromJSON(object: any): DecCoin {
-    const message = globalThis.Object.create(baseDecCoin) as DecCoin;
+    const message = { ...baseDecCoin } as DecCoin;
     if (object.denom !== undefined && object.denom !== null) {
       message.denom = String(object.denom);
     } else {
@@ -158,6 +158,13 @@ export const DecCoin = {
       message.amount = "";
     }
     return message;
+  },
+
+  toJSON(message: DecCoin): unknown {
+    const obj: any = {};
+    message.denom !== undefined && (obj.denom = message.denom);
+    message.amount !== undefined && (obj.amount = message.amount);
+    return obj;
   },
 
   fromPartial(object: DeepPartial<DecCoin>): DecCoin {
@@ -173,13 +180,6 @@ export const DecCoin = {
       message.amount = "";
     }
     return message;
-  },
-
-  toJSON(message: DecCoin): unknown {
-    const obj: any = {};
-    message.denom !== undefined && (obj.denom = message.denom);
-    message.amount !== undefined && (obj.amount = message.amount);
-    return obj;
   },
 };
 
@@ -199,7 +199,7 @@ export const IntProto = {
   decode(input: _m0.Reader | Uint8Array, length?: number): IntProto {
     const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = globalThis.Object.create(baseIntProto) as IntProto;
+    const message = { ...baseIntProto } as IntProto;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -215,19 +215,9 @@ export const IntProto = {
   },
 
   fromJSON(object: any): IntProto {
-    const message = globalThis.Object.create(baseIntProto) as IntProto;
-    if (object.int !== undefined && object.int !== null) {
-      message.int = String(object.int);
-    } else {
-      message.int = "";
-    }
-    return message;
-  },
-
-  fromPartial(object: DeepPartial<IntProto>): IntProto {
     const message = { ...baseIntProto } as IntProto;
     if (object.int !== undefined && object.int !== null) {
-      message.int = object.int;
+      message.int = String(object.int);
     } else {
       message.int = "";
     }
@@ -238,6 +228,16 @@ export const IntProto = {
     const obj: any = {};
     message.int !== undefined && (obj.int = message.int);
     return obj;
+  },
+
+  fromPartial(object: DeepPartial<IntProto>): IntProto {
+    const message = { ...baseIntProto } as IntProto;
+    if (object.int !== undefined && object.int !== null) {
+      message.int = object.int;
+    } else {
+      message.int = "";
+    }
+    return message;
   },
 };
 
@@ -257,7 +257,7 @@ export const DecProto = {
   decode(input: _m0.Reader | Uint8Array, length?: number): DecProto {
     const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = globalThis.Object.create(baseDecProto) as DecProto;
+    const message = { ...baseDecProto } as DecProto;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -273,19 +273,9 @@ export const DecProto = {
   },
 
   fromJSON(object: any): DecProto {
-    const message = globalThis.Object.create(baseDecProto) as DecProto;
-    if (object.dec !== undefined && object.dec !== null) {
-      message.dec = String(object.dec);
-    } else {
-      message.dec = "";
-    }
-    return message;
-  },
-
-  fromPartial(object: DeepPartial<DecProto>): DecProto {
     const message = { ...baseDecProto } as DecProto;
     if (object.dec !== undefined && object.dec !== null) {
-      message.dec = object.dec;
+      message.dec = String(object.dec);
     } else {
       message.dec = "";
     }
@@ -297,17 +287,17 @@ export const DecProto = {
     message.dec !== undefined && (obj.dec = message.dec);
     return obj;
   },
-};
 
-declare var self: any | undefined;
-declare var window: any | undefined;
-var globalThis: any = (() => {
-  if (typeof globalThis !== "undefined") return globalThis;
-  if (typeof self !== "undefined") return self;
-  if (typeof window !== "undefined") return window;
-  if (typeof global !== "undefined") return global;
-  throw "Unable to locate global object";
-})();
+  fromPartial(object: DeepPartial<DecProto>): DecProto {
+    const message = { ...baseDecProto } as DecProto;
+    if (object.dec !== undefined && object.dec !== null) {
+      message.dec = object.dec;
+    } else {
+      message.dec = "";
+    }
+    return message;
+  },
+};
 
 type Builtin =
   | Date
