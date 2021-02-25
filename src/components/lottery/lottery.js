@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import StatsComponent from "./stats";
 import BuyFormComponent from "./buyform";
+import { Divider } from "../../layouts/styled";
 
 const LotteryComponent = ({ onBuyClickHandler }) => {
   //TODO get balance
@@ -8,7 +9,7 @@ const LotteryComponent = ({ onBuyClickHandler }) => {
   return (
     <>
       <StatsComponent balance={balance} />
-      <hr />
+      <Divider />
       <BuyFormComponent currentBalance={balance} onClick={onBuyClickHandler} />
     </>
   );

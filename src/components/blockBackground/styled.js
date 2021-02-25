@@ -1,14 +1,8 @@
 import styled, { keyframes } from "styled-components";
-import bg from "../../images/bg.jpg";
 
 const animStar = keyframes`
   0%	{transform: translateY(0px)}
   100% {transform: translateY(-2000px)}
-`;
-
-const animBg = keyframes`
-  0%	{opacity: 0.0}
-  100% {opacity: 1.0}
 `;
 
 export const Wrapper = styled.div`
@@ -29,18 +23,8 @@ export const Wrapper = styled.div`
     height: 100%;
     opacity: 0.25;
     z-index: -1;
-    background: url(${bg}) no-repeat center top / cover;
+    background: url(${(props) => props.image}) no-repeat center top / cover;
   }
-`;
-
-export const Gradient = styled.div`
-  width: 100%;
-  position: absolute;
-  top: 0;
-  height: 100%;
-  animation: ${animBg} 3s;
-  opacity: 1;
-  background: linear-gradient(0, #190729, #000000);
 `;
 
 export const Stars = styled.div`

@@ -10,13 +10,12 @@ import { games } from "../constants/games";
 import { offers } from "../constants/offers";
 
 import * as S from "../layouts/styled";
-
-//TODO move styles to separate file
+import MainBackground from "../images/bg.jpg";
 
 const IndexPage = () => {
   return (
     <MainLayout>
-      <BlockBackground />
+      <BlockBackground backgroundImage={MainBackground} />
       <Grid>
         <S.Section>
           <BlockHeroComponent />

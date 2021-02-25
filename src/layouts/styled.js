@@ -1,5 +1,5 @@
 import styled, { keyframes, css } from "styled-components";
-import { rem } from "polished";
+import { rem, rgba } from "polished";
 
 const neonBlock = keyframes`
   0% {
@@ -22,7 +22,7 @@ export const App = styled.div`
 
 export const Main = styled.main`
   flex: 1 0 auto;
-  padding-bottom: ${rem(120)};
+  padding-bottom: ${rem(100)};
 `;
 
 export const Section = styled.section`
@@ -70,4 +70,10 @@ export const Button = styled.button`
         opacity: 0.7;
       }
     `}
+`;
+
+export const Divider = styled.hr`
+  border: 0;
+  margin: ${rem(20)} 0;
+  border-top: 1px solid ${rgba("#fff", 0.1)};
 `;
