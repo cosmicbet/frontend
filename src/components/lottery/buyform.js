@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Amount } from "./styled";
+import { Button } from "../../layouts/styled";
 
 const BuyFormComponent = ({ onClick, currentBalance }) => {
   const ticketPrice = 10;
@@ -28,13 +30,23 @@ const BuyFormComponent = ({ onClick, currentBalance }) => {
     <div>
       <h4>How many tickets would you like to buy?</h4>
       <div>
-        {ticketNumber} <button onClick={addTicket}>+</button>{" "}
-        <button onClick={removeTicket}>-</button> <br />
+        <Button onClick={removeTicket} $icon>
+          -
+        </Button>
+        <Amount>{ticketNumber}</Amount>
+        <Button onClick={addTicket} $icon>
+          +
+        </Button>
+        <br />
         <br />
         <div>{error}</div>
-        <button onClick={() => onClick(ticketNumber)}>
+        <Button
+          onClick={() => onClick(ticketNumber)}
+          $color="gradient"
+          disabled={!ticketNumber}
+        >
           Buy for {ticketNumber * ticketPrice} FCHS
-        </button>
+        </Button>
       </div>
     </div>
   );

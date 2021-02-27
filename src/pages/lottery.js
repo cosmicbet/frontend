@@ -1,12 +1,16 @@
 import React from "react";
 import { Grid } from "react-styled-flexboxgrid";
 import styled from "styled-components";
-import MainLayout from "../layouts/main";
-import LotteryComponent from "../components/lottery";
+
 import { checkExtensionAndBrowser, suggestChain } from "../utils/keplr";
 import { buyTickets } from "../utils/lottery";
-import { Divider } from "../layouts/styled";
+
+import LotteryComponent from "../components/lottery";
 import TableComponent from "../components/table";
+import BlockBackground from "../components/blockBackground";
+
+import MainLayout from "../layouts/main";
+import { Divider } from "../layouts/styled";
 
 const Title = styled.h1`
   text-align: center;
@@ -67,6 +71,7 @@ const LotteryPage = () => {
 
   return (
     <MainLayout>
+      <BlockBackground />
       <Grid>
         <Title>Cosmic Casino: Lottery</Title>
         <Description>

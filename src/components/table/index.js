@@ -1,4 +1,5 @@
 import React from "react";
+import { Table } from "./styled";
 
 const TableComponent = ({ columns, data }) => {
   const objectValuesToArr = (obj) =>
@@ -14,16 +15,16 @@ const TableComponent = ({ columns, data }) => {
   );
 
   return (
-    <table border="1">
+    <Table>
       <thead>
         <tr>
           {objectValuesToArr(columns).map((item, index) => (
-            <td key={index}>{item}</td>
+            <th key={index}>{item}</th>
           ))}
         </tr>
       </thead>
       <tbody>{data.map((item, index) => renderRow(item, index))}</tbody>
-    </table>
+    </Table>
   );
 };
 

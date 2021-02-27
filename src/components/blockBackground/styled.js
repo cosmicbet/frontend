@@ -23,7 +23,7 @@ export const Wrapper = styled.div`
     height: 100%;
     opacity: 0.25;
     z-index: -1;
-    background: url(${(props) => props.image}) no-repeat center top / cover;
+    background: #772aff url(${(props) => props.image}) no-repeat center top / cover;
   }
 `;
 
