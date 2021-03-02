@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import { normalize, rem } from "polished";
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyles = createGlobalStyle`
   ${normalize()};
 
   body {
@@ -68,4 +68,4 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export default GlobalStyle;
+export default GlobalStyles;

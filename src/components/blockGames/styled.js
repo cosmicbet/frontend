@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { rgba, rem } from "polished";
+import { rem } from "polished";
 
 export const Container = styled.div`
   margin: 0;

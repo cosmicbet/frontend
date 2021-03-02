@@ -13,9 +13,8 @@ const BlockGamesComponent = ({ items }) => {
       <Row>
         {items.map((item, index) => {
           return (
-            <Col xs={12} md={item.col || 3}>
+            <Col xs={12} md={item.col || 3} key={index}>
               <GameCardComponent
-                key={index}
                 title={item.title}
                 description={item.description}
                 type={item.type}

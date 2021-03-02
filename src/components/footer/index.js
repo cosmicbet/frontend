@@ -4,6 +4,7 @@ import { Grid } from "react-styled-flexboxgrid";
 
 import * as S from "./styled";
 import { MetadataContext } from "../../contexts";
+import { Divider } from "../../layouts/styled";
 
 const FooterComponent = () => {
   const {
@@ -12,7 +13,7 @@ const FooterComponent = () => {
   return (
     <S.Footer>
       <Grid>
-        <hr />
+        <Divider />
         Cosmic Casino | <a href={github}>GitHub</a> |{" "}
         <a href={telegram}>Telegram</a> | <a href={discord}>Discord</a>
         <S.Disclaimer>

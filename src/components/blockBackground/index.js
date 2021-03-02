@@ -2,9 +2,9 @@ import React from "react";
 
 import * as S from "./styled";
 
-const BlockBackgroundComponent = () => {
+const BlockBackgroundComponent = ({ backgroundImage }) => {
   return (
-    <S.Wrapper>
+    <S.Wrapper image={backgroundImage}>
       <S.Stars />
       <S.StarsSecond />
     </S.Wrapper>

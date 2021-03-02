@@ -5,6 +5,9 @@ const useSourceSiteMetadata = () => {
     query SiteMetaData {
       site {
         siteMetadata {
+          title
+          siteUrl
+          githubLedger
           contacts {
             github
             telegram

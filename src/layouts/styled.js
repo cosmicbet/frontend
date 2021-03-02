@@ -1,5 +1,5 @@
 import styled, { keyframes, css } from "styled-components";
-import { rem } from "polished";
+import { rem, rgba } from "polished";
 
 const neonBlock = keyframes`
   0% {
@@ -22,7 +22,7 @@ export const App = styled.div`
 
 export const Main = styled.main`
   flex: 1 0 auto;
-  padding-bottom: ${rem(120)};
+  padding-bottom: ${rem(100)};
 `;
 
 export const Section = styled.section`
@@ -34,9 +34,10 @@ export const Button = styled.button`
   position: relative;
   z-index: 2;
   border-radius: 30px;
-  padding: ${rem(8)} ${rem(24)};
+  line-height: 1;
+  padding: ${rem(12)} ${rem(24)};
   font-family: ${(props) => props.theme.font.base};
-  font-size: ${(props) => props.theme.fontSize.h4};
+  font-size: ${(props) => rem(props.theme.fontSize.h4)};
   font-weight: ${(props) => props.theme.fontWeight.bold};
   background-color: ${(props) => props.theme.colors.secondary};
   text-transform: uppercase;
@@ -44,6 +45,11 @@ export const Button = styled.button`
   will-change: transform;
   color: #212121;
   text-align: center;
+  border: 0;
+  cursor: pointer;
+  appearance: none;
+  outline: none !important;
+  transition: all ${(props) => props.theme.transition.base};
 
   &:hover {
     transform: scale(1.05);
@@ -56,6 +62,7 @@ export const Button = styled.button`
     props.$color === "gradient" &&
     css`
       background-color: transparent;
+      color: #fff;
 
       &:after {
         content: "";
@@ -70,4 +77,17 @@ export const Button = styled.button`
         opacity: 0.7;
       }
     `}
+
+  ${(props) =>
+    props.$icon &&
+    css`
+      padding: ${rem(12)};
+      min-width: ${rem(42)};
+    `}
+`;
+
+export const Divider = styled.hr`
+  border: 0;
+  margin: ${rem(20)} 0;
+  border-top: 1px solid ${rgba("#fff", 0.1)};
 `;

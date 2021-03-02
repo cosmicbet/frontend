@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { rgba, rem } from "polished";
+import { rem } from "polished";
 
 export const Footer = styled.div`
   position: absolute;
@@ -7,12 +7,6 @@ export const Footer = styled.div`
   left: 0;
   width: 100%;
   padding: ${rem(20)} 0;
-
-  hr {
-    border: 0;
-    margin: 0 0 ${rem(20)};
-    border-top: 1px solid ${rgba("#fff", 0.1)};
-  }
 
   a {
     font-weight: ${(props) => props.theme.fontWeight.medium};
