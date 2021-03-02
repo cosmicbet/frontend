@@ -2,6 +2,7 @@ module.exports = {
   siteMetadata: {
     title: "cosmic.bet",
     siteUrl: "https://cosmic.bet",
+    githubLedger: "https://github.com/cosmicbet/ledger",
     contacts: {
       github: "github",
       telegram: "telegram",

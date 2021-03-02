@@ -1,45 +1,21 @@
-import React, { useEffect, useState } from "react";
-// import Countdown from "react-countdown";
-import { useInterval } from "../../utils/hooks";
-import { formatPrize, setupLotteryQueryService } from "../../utils/lottery";
-import { Container, Row } from "./styled";
+import React from "react";
+import * as S from "./styled";
 
-const StatsComponent = ({ balance }) => {
-  const [ticketsSold, setTicketsSold] = useState(0);
-  const [participants, setParticipants] = useState(0);
-  const [prize, setPrize] = useState([]);
-  const [nextExtraction, setNextExtraction] = useState(new Date());
-
-  // Load stats on page load
-  useEffect(() => {
-    updateStats();
-  }, []);
-
-  // Update stats every minute
-  useInterval(() => {
-    updateStats();
-  }, 60000);
-
-  const updateStats = async () => {
-    const LotteryService = await setupLotteryQueryService();
-    const response = await LotteryService.NextDraw();
-    const draw = response.draw;
-
-    setTicketsSold(draw.ticketsSold);
-    setParticipants(draw.participants);
-
-    setNextExtraction(draw.endTime);
-    setPrize(draw.prize);
-  };
-
+const StatsComponent = ({
+  balance,
+  nextExtraction,
+  ticketsSold,
+  participants,
+  prize,
+}) => {
   return (
-    <Container>
-      <Row>Your Balance: {balance} FCHS</Row>
-      <Row>Next extraction: {nextExtraction.toLocaleString()}</Row>
-      <Row>Total tickets sold: {ticketsSold}</Row>
-      <Row>Participants: {participants}</Row>
-      <Row>Prize: {formatPrize(prize)}</Row>
-    </Container>
+    <S.Container>
+      <S.Row>Your Balance: {balance} FCHS</S.Row>
+      <S.Row>Next extraction: {nextExtraction.toLocaleString()}</S.Row>
+      <S.Row>Total tickets sold: {ticketsSold}</S.Row>
+      <S.Row>Participants: {participants}</S.Row>
+      <S.Row>Prize: {prize}</S.Row>
+    </S.Container>
   );
 };
 

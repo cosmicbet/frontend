@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Amount } from "./styled";
+import * as S from "./styled";
 import { Button } from "../../layouts/styled";
 
 const BuyFormComponent = ({ onClick, currentBalance }) => {
@@ -27,28 +27,26 @@ const BuyFormComponent = ({ onClick, currentBalance }) => {
   };
 
   return (
-    <div>
-      <h4>How many tickets would you like to buy?</h4>
-      <div>
+    <S.Container>
+      <h3>How many tickets would you like to buy?</h3>
+      <S.AmountContainer>
         <Button onClick={removeTicket} $icon>
           -
         </Button>
-        <Amount>{ticketNumber}</Amount>
+        <S.Amount>{ticketNumber}</S.Amount>
         <Button onClick={addTicket} $icon>
           +
         </Button>
-        <br />
-        <br />
-        <div>{error}</div>
-        <Button
-          onClick={() => onClick(ticketNumber)}
-          $color="gradient"
-          disabled={!ticketNumber}
-        >
-          Buy for {ticketNumber * ticketPrice} FCHS
-        </Button>
-      </div>
-    </div>
+        {error && <S.ErrorText>{error}</S.ErrorText>}
+      </S.AmountContainer>
+      <Button
+        onClick={() => onClick(ticketNumber)}
+        $color="gradient"
+        disabled={!ticketNumber}
+      >
+        Buy for {ticketNumber * ticketPrice} FCHS
+      </Button>
+    </S.Container>
   );
 };
 

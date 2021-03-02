@@ -1,9 +1,9 @@
 import React from "react";
 import { Grid } from "react-styled-flexboxgrid";
-import styled from "styled-components";
 
 import { checkExtensionAndBrowser, suggestChain } from "../utils/keplr";
 import { buyTickets } from "../utils/lottery";
+import { useSourceSiteMetadata } from "../hooks";
 
 import LotteryComponent from "../components/lottery";
 import TableComponent from "../components/table";
@@ -11,16 +11,6 @@ import BlockBackground from "../components/blockBackground";
 
 import MainLayout from "../layouts/main";
 import { Divider } from "../layouts/styled";
-
-const Title = styled.h1`
-  text-align: center;
-`;
-
-const Description = styled.p`
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: center;
-`;
 
 const tableHeaders = {
   winner: "Winner",
@@ -47,6 +37,8 @@ const dummyColumnData = [
 ];
 
 const LotteryPage = () => {
+  const { githubLedger } = useSourceSiteMetadata();
+
   // Load Keplr
   const buy = async (ticketNumber) => {
     if (!checkExtensionAndBrowser()) {
@@ -73,20 +65,10 @@ const LotteryPage = () => {
     <MainLayout>
       <BlockBackground />
       <Grid>
-        <Title>Cosmic Casino: Lottery</Title>
-        <Description>
-          Buy a ticket for 10 FCHS, wait for the draw. One lucky winner takes
-          all the jackpot!{" "}
-          <a
-            href="https://github.com/cosmicbet/ledger"
-            rel="noreferrer"
-            target="_blank"
-          >
-            Learn more
-          </a>
-        </Description>
-        <Divider />
-        <LotteryComponent onBuyClickHandler={buy} />
+        <LotteryComponent
+          onBuyClickHandler={buy}
+          githubLedgerHref={githubLedger}
+        />
         <Divider />
         <h3>Latest Draws</h3>
         <TableComponent columns={tableHeaders} data={dummyColumnData} />
