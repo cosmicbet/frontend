@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Grid } from "react-styled-flexboxgrid";
 
 import { checkExtensionAndBrowser, suggestChain } from "../utils/keplr";
-import { buyTickets } from "../utils/lottery";
+import {
+  buyTickets,
+  formatPrize,
+  setupLotteryQueryService,
+} from "../utils/lottery";
 import { useSourceSiteMetadata } from "../hooks";
 
 import LotteryComponent from "../components/lottery";
@@ -18,26 +22,42 @@ const tableHeaders = {
   endTime: "End time",
 };
 
-const dummyColumnData = [
-  {
-    winner: "rack1juczud9nep06t0khghvm643hf9usw45rhchlj2",
-    jackpot: "12348839 FCHS",
-    endTime: "2020-02-16 05:00:00",
-  },
-  {
-    winner: "rack1juczud9nep06t0khghvm643hf9usw45rhchlj3",
-    jackpot: "12348840 FCHS",
-    endTime: "2020-02-16 06:00:00",
-  },
-  {
-    winner: "rack1juczud9nep06t0khghvm643hf9usw45rhchlj4",
-    jackpot: "12348841 FCHS",
-    endTime: "2020-02-16 07:00:00",
-  },
-];
+const NOT_AVAILABLE = "N/A";
 
 const LotteryPage = () => {
   const { githubLedger } = useSourceSiteMetadata();
+  const [pastDraws, setPastDraws] = useState([]);
+
+  useEffect(() => {
+    const fetchBlockchainData = async () => {
+      try {
+        const LotteryService = await setupLotteryQueryService();
+        //TODO refactor
+        const response = await LotteryService.PastDraws({
+          offset: 1,
+          limit: 100,
+          countTotal: true,
+        });
+
+        const {
+          draws: { draws },
+        } = response;
+
+        const data = draws.map((item) => {
+          return {
+            winner: item?.winningTicket?.owner || NOT_AVAILABLE,
+            jackpot: formatPrize(item?.draw?.prize),
+            endTime: item?.draw?.endTime || NOT_AVAILABLE,
+          };
+        });
+
+        setPastDraws(data);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    fetchBlockchainData();
+  }, []);
 
   // Load Keplr
   const buy = async (ticketNumber) => {
@@ -71,7 +91,7 @@ const LotteryPage = () => {
         />
         <Divider />
         <h3>Latest Draws</h3>
-        <TableComponent columns={tableHeaders} data={dummyColumnData} />
+        <TableComponent columns={tableHeaders} data={pastDraws} />
       </Grid>
     </MainLayout>
   );
