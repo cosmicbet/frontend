@@ -25,7 +25,6 @@ const LotteryComponent = ({ onBuyClickHandler, githubLedgerHref }) => {
 
     setTicketsSold(draw.ticketsSold);
     setParticipants(draw.participants);
-
     setNextExtraction(draw.endTime);
     setPrize(draw.prize);
   };
@@ -35,10 +34,10 @@ const LotteryComponent = ({ onBuyClickHandler, githubLedgerHref }) => {
     updateStats();
   }, []);
 
-  // Update stats every minute
+  // Update stats every 10 sec
   useInterval(() => {
     updateStats();
-  }, 60000);
+  }, 10000);
 
   return (
     <>
