@@ -39,19 +39,16 @@ const LotteryPage = () => {
           countTotal: true,
         });
 
-        const {
-          draws: { draws },
-        } = response;
-
-        const data = draws.map((item) => {
-          return {
-            winner: item?.winningTicket?.owner || NOT_AVAILABLE,
-            jackpot: formatPrize(item?.draw?.prize),
-            endTime: item?.draw?.endTime || NOT_AVAILABLE,
-          };
-        });
-
-        setPastDraws(data);
+        if (response.draws.length > 0) {
+          const data = response.draws.map((item) => {
+            return {
+              winner: item?.winningTicket?.owner || NOT_AVAILABLE,
+              jackpot: formatPrize(item?.draw?.prize),
+              endTime: item?.draw?.endTime.toLocaleString() || NOT_AVAILABLE,
+            };
+          });
+          setPastDraws(data);
+        }
       } catch (e) {
         console.error(e);
       }
