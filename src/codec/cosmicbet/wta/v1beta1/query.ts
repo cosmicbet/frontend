@@ -4,11 +4,15 @@ import {
   PageResponse,
 } from "../../../cosmos/base/query/v1beta1/pagination";
 import {
-  Tickets,
   Draw,
-  HistoricalDrawsData,
+  Ticket,
+  HistoricalDrawData,
 } from "../../../cosmicbet/wta/v1beta1/models";
-import { Params } from "../../../cosmicbet/wta/v1beta1/params";
+import {
+  DistributionParams,
+  DrawParams,
+  TicketParams,
+} from "../../../cosmicbet/wta/v1beta1/params";
 import _m0 from "protobufjs/minimal";
 import Long from "long";
 
@@ -22,7 +26,7 @@ export interface QueryTicketsRequest {
 
 /** QueryTicketsResponse is the response type for the Query/Tickets RPC method */
 export interface QueryTicketsResponse {
-  tickets?: Tickets;
+  tickets: Ticket[];
   pagination?: PageResponse;
 }
 
@@ -45,7 +49,7 @@ export interface QueryPastDrawsRequest {
  * method
  */
 export interface QueryPastDrawsResponse {
-  draws?: HistoricalDrawsData;
+  draws: HistoricalDrawData[];
   pagination?: PageResponse;
 }
 
@@ -54,7 +58,12 @@ export interface QueryParamsRequest {}
 
 /** QueryParamsResponse is the response type for the Query/Params RPC method */
 export interface QueryParamsResponse {
-  params?: Params;
+  /** Represents the parameters related to the prize distribution */
+  distributionParams?: DistributionParams;
+  /** Represents the parameters related to each draw */
+  drawParams?: DrawParams;
+  /** Represents the parameters related to each ticket */
+  ticketParams?: TicketParams;
 }
 
 const baseQueryTicketsRequest: object = {};
@@ -125,8 +134,8 @@ export const QueryTicketsResponse = {
     message: QueryTicketsResponse,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
-    if (message.tickets !== undefined) {
-      Tickets.encode(message.tickets, writer.uint32(10).fork()).ldelim();
+    for (const v of message.tickets) {
+      Ticket.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     if (message.pagination !== undefined) {
       PageResponse.encode(
@@ -144,11 +153,12 @@ export const QueryTicketsResponse = {
     const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...baseQueryTicketsResponse } as QueryTicketsResponse;
+    message.tickets = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.tickets = Tickets.decode(reader, reader.uint32());
+          message.tickets.push(Ticket.decode(reader, reader.uint32()));
           break;
         case 2:
           message.pagination = PageResponse.decode(reader, reader.uint32());
@@ -163,10 +173,11 @@ export const QueryTicketsResponse = {
 
   fromJSON(object: any): QueryTicketsResponse {
     const message = { ...baseQueryTicketsResponse } as QueryTicketsResponse;
+    message.tickets = [];
     if (object.tickets !== undefined && object.tickets !== null) {
-      message.tickets = Tickets.fromJSON(object.tickets);
-    } else {
-      message.tickets = undefined;
+      for (const e of object.tickets) {
+        message.tickets.push(Ticket.fromJSON(e));
+      }
     }
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromJSON(object.pagination);
@@ -178,10 +189,13 @@ export const QueryTicketsResponse = {
 
   toJSON(message: QueryTicketsResponse): unknown {
     const obj: any = {};
-    message.tickets !== undefined &&
-      (obj.tickets = message.tickets
-        ? Tickets.toJSON(message.tickets)
-        : undefined);
+    if (message.tickets) {
+      obj.tickets = message.tickets.map((e) =>
+        e ? Ticket.toJSON(e) : undefined
+      );
+    } else {
+      obj.tickets = [];
+    }
     message.pagination !== undefined &&
       (obj.pagination = message.pagination
         ? PageResponse.toJSON(message.pagination)
@@ -191,10 +205,11 @@ export const QueryTicketsResponse = {
 
   fromPartial(object: DeepPartial<QueryTicketsResponse>): QueryTicketsResponse {
     const message = { ...baseQueryTicketsResponse } as QueryTicketsResponse;
+    message.tickets = [];
     if (object.tickets !== undefined && object.tickets !== null) {
-      message.tickets = Tickets.fromPartial(object.tickets);
-    } else {
-      message.tickets = undefined;
+      for (const e of object.tickets) {
+        message.tickets.push(Ticket.fromPartial(e));
+      }
     }
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromPartial(object.pagination);
@@ -386,11 +401,8 @@ export const QueryPastDrawsResponse = {
     message: QueryPastDrawsResponse,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
-    if (message.draws !== undefined) {
-      HistoricalDrawsData.encode(
-        message.draws,
-        writer.uint32(10).fork()
-      ).ldelim();
+    for (const v of message.draws) {
+      HistoricalDrawData.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     if (message.pagination !== undefined) {
       PageResponse.encode(
@@ -408,11 +420,14 @@ export const QueryPastDrawsResponse = {
     const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...baseQueryPastDrawsResponse } as QueryPastDrawsResponse;
+    message.draws = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.draws = HistoricalDrawsData.decode(reader, reader.uint32());
+          message.draws.push(
+            HistoricalDrawData.decode(reader, reader.uint32())
+          );
           break;
         case 2:
           message.pagination = PageResponse.decode(reader, reader.uint32());
@@ -427,10 +442,11 @@ export const QueryPastDrawsResponse = {
 
   fromJSON(object: any): QueryPastDrawsResponse {
     const message = { ...baseQueryPastDrawsResponse } as QueryPastDrawsResponse;
+    message.draws = [];
     if (object.draws !== undefined && object.draws !== null) {
-      message.draws = HistoricalDrawsData.fromJSON(object.draws);
-    } else {
-      message.draws = undefined;
+      for (const e of object.draws) {
+        message.draws.push(HistoricalDrawData.fromJSON(e));
+      }
     }
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromJSON(object.pagination);
@@ -442,10 +458,13 @@ export const QueryPastDrawsResponse = {
 
   toJSON(message: QueryPastDrawsResponse): unknown {
     const obj: any = {};
-    message.draws !== undefined &&
-      (obj.draws = message.draws
-        ? HistoricalDrawsData.toJSON(message.draws)
-        : undefined);
+    if (message.draws) {
+      obj.draws = message.draws.map((e) =>
+        e ? HistoricalDrawData.toJSON(e) : undefined
+      );
+    } else {
+      obj.draws = [];
+    }
     message.pagination !== undefined &&
       (obj.pagination = message.pagination
         ? PageResponse.toJSON(message.pagination)
@@ -457,10 +476,11 @@ export const QueryPastDrawsResponse = {
     object: DeepPartial<QueryPastDrawsResponse>
   ): QueryPastDrawsResponse {
     const message = { ...baseQueryPastDrawsResponse } as QueryPastDrawsResponse;
+    message.draws = [];
     if (object.draws !== undefined && object.draws !== null) {
-      message.draws = HistoricalDrawsData.fromPartial(object.draws);
-    } else {
-      message.draws = undefined;
+      for (const e of object.draws) {
+        message.draws.push(HistoricalDrawData.fromPartial(e));
+      }
     }
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromPartial(object.pagination);
@@ -519,8 +539,20 @@ export const QueryParamsResponse = {
     message: QueryParamsResponse,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
-    if (message.params !== undefined) {
-      Params.encode(message.params, writer.uint32(10).fork()).ldelim();
+    if (message.distributionParams !== undefined) {
+      DistributionParams.encode(
+        message.distributionParams,
+        writer.uint32(10).fork()
+      ).ldelim();
+    }
+    if (message.drawParams !== undefined) {
+      DrawParams.encode(message.drawParams, writer.uint32(18).fork()).ldelim();
+    }
+    if (message.ticketParams !== undefined) {
+      TicketParams.encode(
+        message.ticketParams,
+        writer.uint32(26).fork()
+      ).ldelim();
     }
     return writer;
   },
@@ -533,7 +565,16 @@ export const QueryParamsResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.params = Params.decode(reader, reader.uint32());
+          message.distributionParams = DistributionParams.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+        case 2:
+          message.drawParams = DrawParams.decode(reader, reader.uint32());
+          break;
+        case 3:
+          message.ticketParams = TicketParams.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -545,27 +586,67 @@ export const QueryParamsResponse = {
 
   fromJSON(object: any): QueryParamsResponse {
     const message = { ...baseQueryParamsResponse } as QueryParamsResponse;
-    if (object.params !== undefined && object.params !== null) {
-      message.params = Params.fromJSON(object.params);
+    if (
+      object.distributionParams !== undefined &&
+      object.distributionParams !== null
+    ) {
+      message.distributionParams = DistributionParams.fromJSON(
+        object.distributionParams
+      );
     } else {
-      message.params = undefined;
+      message.distributionParams = undefined;
+    }
+    if (object.drawParams !== undefined && object.drawParams !== null) {
+      message.drawParams = DrawParams.fromJSON(object.drawParams);
+    } else {
+      message.drawParams = undefined;
+    }
+    if (object.ticketParams !== undefined && object.ticketParams !== null) {
+      message.ticketParams = TicketParams.fromJSON(object.ticketParams);
+    } else {
+      message.ticketParams = undefined;
     }
     return message;
   },
 
   toJSON(message: QueryParamsResponse): unknown {
     const obj: any = {};
-    message.params !== undefined &&
-      (obj.params = message.params ? Params.toJSON(message.params) : undefined);
+    message.distributionParams !== undefined &&
+      (obj.distributionParams = message.distributionParams
+        ? DistributionParams.toJSON(message.distributionParams)
+        : undefined);
+    message.drawParams !== undefined &&
+      (obj.drawParams = message.drawParams
+        ? DrawParams.toJSON(message.drawParams)
+        : undefined);
+    message.ticketParams !== undefined &&
+      (obj.ticketParams = message.ticketParams
+        ? TicketParams.toJSON(message.ticketParams)
+        : undefined);
     return obj;
   },
 
   fromPartial(object: DeepPartial<QueryParamsResponse>): QueryParamsResponse {
     const message = { ...baseQueryParamsResponse } as QueryParamsResponse;
-    if (object.params !== undefined && object.params !== null) {
-      message.params = Params.fromPartial(object.params);
+    if (
+      object.distributionParams !== undefined &&
+      object.distributionParams !== null
+    ) {
+      message.distributionParams = DistributionParams.fromPartial(
+        object.distributionParams
+      );
     } else {
-      message.params = undefined;
+      message.distributionParams = undefined;
+    }
+    if (object.drawParams !== undefined && object.drawParams !== null) {
+      message.drawParams = DrawParams.fromPartial(object.drawParams);
+    } else {
+      message.drawParams = undefined;
+    }
+    if (object.ticketParams !== undefined && object.ticketParams !== null) {
+      message.ticketParams = TicketParams.fromPartial(object.ticketParams);
+    } else {
+      message.ticketParams = undefined;
     }
     return message;
   },

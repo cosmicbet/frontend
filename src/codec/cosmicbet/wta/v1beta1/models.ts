@@ -13,11 +13,6 @@ export interface Ticket {
   timestamp?: Date;
 }
 
-/** Tickets represents a slice of ticket objects */
-export interface Tickets {
-  tickets: Ticket[];
-}
-
 /** Draw contains the data of the next planned draw */
 export interface Draw {
   participants: number;
@@ -30,11 +25,6 @@ export interface Draw {
 export interface HistoricalDrawData {
   draw?: Draw;
   winningTicket?: Ticket;
-}
-
-/** HistoricalDrawsData represents a slice of past draws data */
-export interface HistoricalDrawsData {
-  draws: HistoricalDrawData[];
 }
 
 const baseTicket: object = { id: "", owner: "" };
@@ -133,73 +123,6 @@ export const Ticket = {
       message.timestamp = object.timestamp;
     } else {
       message.timestamp = undefined;
-    }
-    return message;
-  },
-};
-
-const baseTickets: object = {};
-
-export const Tickets = {
-  encode(
-    message: Tickets,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
-    for (const v of message.tickets) {
-      Ticket.encode(v!, writer.uint32(10).fork()).ldelim();
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Tickets {
-    const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseTickets } as Tickets;
-    message.tickets = [];
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.tickets.push(Ticket.decode(reader, reader.uint32()));
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-
-  fromJSON(object: any): Tickets {
-    const message = { ...baseTickets } as Tickets;
-    message.tickets = [];
-    if (object.tickets !== undefined && object.tickets !== null) {
-      for (const e of object.tickets) {
-        message.tickets.push(Ticket.fromJSON(e));
-      }
-    }
-    return message;
-  },
-
-  toJSON(message: Tickets): unknown {
-    const obj: any = {};
-    if (message.tickets) {
-      obj.tickets = message.tickets.map((e) =>
-        e ? Ticket.toJSON(e) : undefined
-      );
-    } else {
-      obj.tickets = [];
-    }
-    return obj;
-  },
-
-  fromPartial(object: DeepPartial<Tickets>): Tickets {
-    const message = { ...baseTickets } as Tickets;
-    message.tickets = [];
-    if (object.tickets !== undefined && object.tickets !== null) {
-      for (const e of object.tickets) {
-        message.tickets.push(Ticket.fromPartial(e));
-      }
     }
     return message;
   },
@@ -401,75 +324,6 @@ export const HistoricalDrawData = {
       message.winningTicket = Ticket.fromPartial(object.winningTicket);
     } else {
       message.winningTicket = undefined;
-    }
-    return message;
-  },
-};
-
-const baseHistoricalDrawsData: object = {};
-
-export const HistoricalDrawsData = {
-  encode(
-    message: HistoricalDrawsData,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
-    for (const v of message.draws) {
-      HistoricalDrawData.encode(v!, writer.uint32(10).fork()).ldelim();
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): HistoricalDrawsData {
-    const reader = input instanceof Uint8Array ? new _m0.Reader(input) : input;
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseHistoricalDrawsData } as HistoricalDrawsData;
-    message.draws = [];
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.draws.push(
-            HistoricalDrawData.decode(reader, reader.uint32())
-          );
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-
-  fromJSON(object: any): HistoricalDrawsData {
-    const message = { ...baseHistoricalDrawsData } as HistoricalDrawsData;
-    message.draws = [];
-    if (object.draws !== undefined && object.draws !== null) {
-      for (const e of object.draws) {
-        message.draws.push(HistoricalDrawData.fromJSON(e));
-      }
-    }
-    return message;
-  },
-
-  toJSON(message: HistoricalDrawsData): unknown {
-    const obj: any = {};
-    if (message.draws) {
-      obj.draws = message.draws.map((e) =>
-        e ? HistoricalDrawData.toJSON(e) : undefined
-      );
-    } else {
-      obj.draws = [];
-    }
-    return obj;
-  },
-
-  fromPartial(object: DeepPartial<HistoricalDrawsData>): HistoricalDrawsData {
-    const message = { ...baseHistoricalDrawsData } as HistoricalDrawsData;
-    message.draws = [];
-    if (object.draws !== undefined && object.draws !== null) {
-      for (const e of object.draws) {
-        message.draws.push(HistoricalDrawData.fromPartial(e));
-      }
     }
     return message;
   },

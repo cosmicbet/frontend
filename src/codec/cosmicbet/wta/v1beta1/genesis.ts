@@ -1,21 +1,33 @@
 /* eslint-disable */
 import {
-  Draw,
+  DistributionParams,
+  DrawParams,
+  TicketParams,
+} from "../../../cosmicbet/wta/v1beta1/params";
+import { Timestamp } from "../../../google/protobuf/timestamp";
+import Long from "long";
+import {
   Ticket,
   HistoricalDrawData,
 } from "../../../cosmicbet/wta/v1beta1/models";
-import { Params } from "../../../cosmicbet/wta/v1beta1/params";
-import Long from "long";
 import _m0 from "protobufjs/minimal";
 
 export const protobufPackage = "cosmicbet.wta.v1beta1";
 
 /** GenesisState contains the data of the genesis state for the wda module */
 export interface GenesisState {
-  draw?: Draw;
+  /** Defines the end time of the next draw */
+  drawEndTime?: Date;
+  /** Defines all the tickets present at genesis time */
   tickets: Ticket[];
+  /** Defines the past draws present at genesis time */
   pastDraws: HistoricalDrawData[];
-  params?: Params;
+  /** Represents the parameters related to the prize distribution */
+  distributionParams?: DistributionParams;
+  /** Represents the parameters related to each draw */
+  drawParams?: DrawParams;
+  /** Represents the parameters related to each ticket */
+  ticketParams?: TicketParams;
 }
 
 const baseGenesisState: object = {};
@@ -25,8 +37,11 @@ export const GenesisState = {
     message: GenesisState,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
-    if (message.draw !== undefined) {
-      Draw.encode(message.draw, writer.uint32(10).fork()).ldelim();
+    if (message.drawEndTime !== undefined) {
+      Timestamp.encode(
+        toTimestamp(message.drawEndTime),
+        writer.uint32(10).fork()
+      ).ldelim();
     }
     for (const v of message.tickets) {
       Ticket.encode(v!, writer.uint32(18).fork()).ldelim();
@@ -34,8 +49,20 @@ export const GenesisState = {
     for (const v of message.pastDraws) {
       HistoricalDrawData.encode(v!, writer.uint32(26).fork()).ldelim();
     }
-    if (message.params !== undefined) {
-      Params.encode(message.params, writer.uint32(34).fork()).ldelim();
+    if (message.distributionParams !== undefined) {
+      DistributionParams.encode(
+        message.distributionParams,
+        writer.uint32(34).fork()
+      ).ldelim();
+    }
+    if (message.drawParams !== undefined) {
+      DrawParams.encode(message.drawParams, writer.uint32(42).fork()).ldelim();
+    }
+    if (message.ticketParams !== undefined) {
+      TicketParams.encode(
+        message.ticketParams,
+        writer.uint32(50).fork()
+      ).ldelim();
     }
     return writer;
   },
@@ -50,7 +77,9 @@ export const GenesisState = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.draw = Draw.decode(reader, reader.uint32());
+          message.drawEndTime = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         case 2:
           message.tickets.push(Ticket.decode(reader, reader.uint32()));
@@ -61,7 +90,16 @@ export const GenesisState = {
           );
           break;
         case 4:
-          message.params = Params.decode(reader, reader.uint32());
+          message.distributionParams = DistributionParams.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+        case 5:
+          message.drawParams = DrawParams.decode(reader, reader.uint32());
+          break;
+        case 6:
+          message.ticketParams = TicketParams.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -75,10 +113,10 @@ export const GenesisState = {
     const message = { ...baseGenesisState } as GenesisState;
     message.tickets = [];
     message.pastDraws = [];
-    if (object.draw !== undefined && object.draw !== null) {
-      message.draw = Draw.fromJSON(object.draw);
+    if (object.drawEndTime !== undefined && object.drawEndTime !== null) {
+      message.drawEndTime = fromJsonTimestamp(object.drawEndTime);
     } else {
-      message.draw = undefined;
+      message.drawEndTime = undefined;
     }
     if (object.tickets !== undefined && object.tickets !== null) {
       for (const e of object.tickets) {
@@ -90,18 +128,36 @@ export const GenesisState = {
         message.pastDraws.push(HistoricalDrawData.fromJSON(e));
       }
     }
-    if (object.params !== undefined && object.params !== null) {
-      message.params = Params.fromJSON(object.params);
+    if (
+      object.distributionParams !== undefined &&
+      object.distributionParams !== null
+    ) {
+      message.distributionParams = DistributionParams.fromJSON(
+        object.distributionParams
+      );
     } else {
-      message.params = undefined;
+      message.distributionParams = undefined;
+    }
+    if (object.drawParams !== undefined && object.drawParams !== null) {
+      message.drawParams = DrawParams.fromJSON(object.drawParams);
+    } else {
+      message.drawParams = undefined;
+    }
+    if (object.ticketParams !== undefined && object.ticketParams !== null) {
+      message.ticketParams = TicketParams.fromJSON(object.ticketParams);
+    } else {
+      message.ticketParams = undefined;
     }
     return message;
   },
 
   toJSON(message: GenesisState): unknown {
     const obj: any = {};
-    message.draw !== undefined &&
-      (obj.draw = message.draw ? Draw.toJSON(message.draw) : undefined);
+    message.drawEndTime !== undefined &&
+      (obj.drawEndTime =
+        message.drawEndTime !== undefined
+          ? message.drawEndTime.toISOString()
+          : null);
     if (message.tickets) {
       obj.tickets = message.tickets.map((e) =>
         e ? Ticket.toJSON(e) : undefined
@@ -116,8 +172,18 @@ export const GenesisState = {
     } else {
       obj.pastDraws = [];
     }
-    message.params !== undefined &&
-      (obj.params = message.params ? Params.toJSON(message.params) : undefined);
+    message.distributionParams !== undefined &&
+      (obj.distributionParams = message.distributionParams
+        ? DistributionParams.toJSON(message.distributionParams)
+        : undefined);
+    message.drawParams !== undefined &&
+      (obj.drawParams = message.drawParams
+        ? DrawParams.toJSON(message.drawParams)
+        : undefined);
+    message.ticketParams !== undefined &&
+      (obj.ticketParams = message.ticketParams
+        ? TicketParams.toJSON(message.ticketParams)
+        : undefined);
     return obj;
   },
 
@@ -125,10 +191,10 @@ export const GenesisState = {
     const message = { ...baseGenesisState } as GenesisState;
     message.tickets = [];
     message.pastDraws = [];
-    if (object.draw !== undefined && object.draw !== null) {
-      message.draw = Draw.fromPartial(object.draw);
+    if (object.drawEndTime !== undefined && object.drawEndTime !== null) {
+      message.drawEndTime = object.drawEndTime;
     } else {
-      message.draw = undefined;
+      message.drawEndTime = undefined;
     }
     if (object.tickets !== undefined && object.tickets !== null) {
       for (const e of object.tickets) {
@@ -140,10 +206,25 @@ export const GenesisState = {
         message.pastDraws.push(HistoricalDrawData.fromPartial(e));
       }
     }
-    if (object.params !== undefined && object.params !== null) {
-      message.params = Params.fromPartial(object.params);
+    if (
+      object.distributionParams !== undefined &&
+      object.distributionParams !== null
+    ) {
+      message.distributionParams = DistributionParams.fromPartial(
+        object.distributionParams
+      );
     } else {
-      message.params = undefined;
+      message.distributionParams = undefined;
+    }
+    if (object.drawParams !== undefined && object.drawParams !== null) {
+      message.drawParams = DrawParams.fromPartial(object.drawParams);
+    } else {
+      message.drawParams = undefined;
+    }
+    if (object.ticketParams !== undefined && object.ticketParams !== null) {
+      message.ticketParams = TicketParams.fromPartial(object.ticketParams);
+    } else {
+      message.ticketParams = undefined;
     }
     return message;
   },
@@ -166,3 +247,34 @@ export type DeepPartial<T> = T extends Builtin
   : T extends {}
   ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
+
+function toTimestamp(date: Date): Timestamp {
+  const seconds = numberToLong(date.getTime() / 1_000);
+  const nanos = (date.getTime() % 1_000) * 1_000_000;
+  return { seconds, nanos };
+}
+
+function fromTimestamp(t: Timestamp): Date {
+  let millis = t.seconds.toNumber() * 1_000;
+  millis += t.nanos / 1_000_000;
+  return new Date(millis);
+}
+
+function fromJsonTimestamp(o: any): Date {
+  if (o instanceof Date) {
+    return o;
+  } else if (typeof o === "string") {
+    return new Date(o);
+  } else {
+    return fromTimestamp(Timestamp.fromJSON(o));
+  }
+}
+
+function numberToLong(number: number) {
+  return Long.fromNumber(number);
+}
+
+if (_m0.util.Long !== Long) {
+  _m0.util.Long = Long as any;
+  _m0.configure();
+}
