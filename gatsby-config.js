@@ -4,9 +4,9 @@ module.exports = {
     siteUrl: "https://cosmic.bet",
     githubLedger: "https://github.com/cosmicbet/ledger",
     contacts: {
-      github: "github",
-      telegram: "telegram",
-      discord: "discord",
+      github: "https://github.com/cosmicbet",
+      telegram: "https://t.me/itastakers",
+      discord: "https://discord.gg/aUh8Vkwy4u",
     },
   },
   pathPrefix: "__GATSBY_IPFS_PATH_PREFIX__",
