@@ -4,7 +4,19 @@ import { Link } from "gatsby";
 import { WalletContext } from "../../contexts";
 
 import * as S from "./styled";
-import { formatCoin } from "../../utils/cosmic-casino";
+import { formatCoin, shortAddress } from "../../utils/cosmic-casino";
+
+const WalletRenderer = ({ wallet }) => {
+  if (!wallet) {
+    return <a>Connect Wallet</a>;
+  }
+
+  return (
+    <a>
+      Connected ({shortAddress(wallet.address)}) {formatCoin(wallet.balance, 2)}
+    </a>
+  );
+};
 
 const HeaderComponent = () => {
   const { wallet } = useContext(WalletContext);
@@ -28,12 +40,11 @@ const HeaderComponent = () => {
               <S.NavItem>
                 <Link to="/">Contacts</Link>
               </S.NavItem>
-              {wallet !== null && (
-                <S.NavItem>
-                  Address: {wallet.address} Balance:{" "}
-                  {formatCoin(wallet.balance)}
-                </S.NavItem>
-              )}
+              <S.NavItem>
+                <S.NavButton>
+                  <WalletRenderer wallet={wallet} />
+                </S.NavButton>
+              </S.NavItem>
             </S.Nav>
           </Col>
         </Row>
