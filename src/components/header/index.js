@@ -5,22 +5,32 @@ import { WalletContext } from "../../contexts";
 
 import * as S from "./styled";
 import { formatCoin, shortAddress } from "../../utils/cosmic-casino";
+import { setupWallet } from "../../providers/wallet";
 
-const WalletRenderer = ({ wallet }) => {
+const WalletButton = () => {
+  const { wallet, setWallet } = useContext(WalletContext);
+
   if (!wallet) {
-    return <a>Connect Wallet</a>;
+    return (
+      <a
+        href="#"
+        onClick={() => {
+          setupWallet(setWallet);
+        }}
+      >
+        Connect Wallet
+      </a>
+    );
   }
 
   return (
-    <a>
+    <a href="#">
       Connected ({shortAddress(wallet.address)}) {formatCoin(wallet.balance, 2)}
     </a>
   );
 };
 
 const HeaderComponent = () => {
-  const { wallet } = useContext(WalletContext);
-
   return (
     <S.Header>
       <Grid>
@@ -42,7 +52,7 @@ const HeaderComponent = () => {
               </S.NavItem>
               <S.NavItem>
                 <S.NavButton>
-                  <WalletRenderer wallet={wallet} />
+                  <WalletButton />
                 </S.NavButton>
               </S.NavItem>
             </S.Nav>

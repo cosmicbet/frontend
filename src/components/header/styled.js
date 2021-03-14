@@ -36,6 +36,5 @@ export const NavItem = styled.div`
 export const NavButton = styled.div`
   background-color: #80808070;
   border-radius: ${rem(5)};
-  font-weight: bold;
   cursor: pointer;
 `;
