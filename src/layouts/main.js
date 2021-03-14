@@ -3,6 +3,8 @@ import { ThemeProvider } from "styled-components";
 import Helmet from "react-helmet";
 
 import MetadataProvider from "../providers/metadata";
+import WalletProvider from "../providers/wallet";
+
 import GlobalStyle from "./globalStyles";
 import theme from "./theme";
 import FooterComponent from "../components/footer";
@@ -16,7 +18,9 @@ export default function MainLayout({ children }) {
       <S.App id="app">
         <HeaderComponent />
         <S.Main>{children}</S.Main>
-        <FooterComponent />
+        <MetadataProvider>
+          <FooterComponent />
+        </MetadataProvider>
       </S.App>
     );
   };
@@ -32,7 +36,7 @@ export default function MainLayout({ children }) {
       </Helmet>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <MetadataProvider>{renderApp()}</MetadataProvider>
+        <WalletProvider>{renderApp()}</WalletProvider>
       </ThemeProvider>
     </>
   );

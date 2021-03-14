@@ -1,17 +1,45 @@
 import React, { useState } from "react";
 import * as S from "./styled";
 import { Button } from "../../layouts/styled";
+import { useContext } from "react";
+import { WalletContext } from "../../contexts";
+import { chainConfig } from "../../utils/keplr";
 
-const BuyFormComponent = ({ onClick, currentBalance }) => {
+const BuyFormComponent = ({ onClick }) => {
   const ticketPrice = 10;
+  const uTicketPrice = ticketPrice * Math.pow(10, chainConfig.coinDecimals);
   const [ticketNumber, setTicketNumber] = useState(1);
   const [error, setError] = useState("");
+  const { wallet } = useContext(WalletContext);
+
+  const checkBalance = (ticketNumber, wallet) => {
+    if (!wallet) {
+      return false;
+    }
+
+    if (wallet.balance.length <= 0) {
+      return false;
+    }
+    const balance = wallet.balance[0].amount;
+    const requiredAmount = ticketNumber * uTicketPrice;
+
+    console.log("BAL", balance, requiredAmount);
+    return balance >= requiredAmount;
+  };
+
+  const buy = () => {
+    if (checkBalance(ticketNumber, wallet)) {
+      onClick(ticketNumber);
+    } else {
+      alert("Balance too low");
+    }
+  };
 
   const addTicket = () => {
     setError("");
-    // TODO: Check balance
+
     setTicketNumber((ticket) => {
-      if (currentBalance <= ticket * ticketPrice) {
+      if (!checkBalance(ticket, wallet)) {
         setError("Your balance too low");
         return ticket;
       }
@@ -39,11 +67,7 @@ const BuyFormComponent = ({ onClick, currentBalance }) => {
         </Button>
         {error && <S.ErrorText>{error}</S.ErrorText>}
       </S.AmountContainer>
-      <Button
-        onClick={() => onClick(ticketNumber)}
-        $color="gradient"
-        disabled={!ticketNumber}
-      >
+      <Button onClick={() => buy()} $color="gradient" disabled={!ticketNumber}>
         Buy for {ticketNumber * ticketPrice} FCHS
       </Button>
     </S.Container>

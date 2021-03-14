@@ -2,11 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Grid } from "react-styled-flexboxgrid";
 
 import { checkExtensionAndBrowser, suggestChain } from "../utils/keplr";
-import {
-  buyTickets,
-  formatPrize,
-  setupLotteryQueryService,
-} from "../utils/lottery";
+import { buyTickets, setupLotteryQueryService } from "../utils/lottery";
 import { useSourceSiteMetadata } from "../hooks";
 
 import LotteryComponent from "../components/lottery";
@@ -15,6 +11,7 @@ import BlockBackground from "../components/blockBackground";
 
 import MainLayout from "../layouts/main";
 import { Divider } from "../layouts/styled";
+import { formatCoin } from "../utils/cosmic-casino";
 
 const tableHeaders = {
   winner: "Winner",
@@ -43,7 +40,7 @@ const LotteryPage = () => {
           const data = response.draws.map((item) => {
             return {
               winner: item?.winningTicket?.owner || NOT_AVAILABLE,
-              jackpot: formatPrize(item?.draw?.prize),
+              jackpot: formatCoin(item?.draw?.prize),
               endTime: item?.draw?.endTime.toLocaleString() || NOT_AVAILABLE,
             };
           });
