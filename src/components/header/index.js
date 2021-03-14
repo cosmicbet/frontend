@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Grid, Col, Row } from "react-styled-flexboxgrid";
 import { Link } from "gatsby";
+import { WalletContext } from "../../contexts";
 
 import * as S from "./styled";
+import { formatCoin } from "../../utils/cosmic-casino";
 
 const HeaderComponent = () => {
+  const { wallet } = useContext(WalletContext);
+
   return (
     <S.Header>
       <Grid>
@@ -24,6 +28,12 @@ const HeaderComponent = () => {
               <S.NavItem>
                 <Link to="/">Contacts</Link>
               </S.NavItem>
+              {wallet !== null && (
+                <S.NavItem>
+                  Address: {wallet.address} Balance:{" "}
+                  {formatCoin(wallet.balance)}
+                </S.NavItem>
+              )}
             </S.Nav>
           </Col>
         </Row>

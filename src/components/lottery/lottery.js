@@ -5,8 +5,9 @@ import BuyFormComponent from "./buyform";
 import BlockHeroComponent from "./blockHero";
 
 import { Divider } from "../../layouts/styled";
-import { formatPrize, setupLotteryQueryService } from "../../utils/lottery";
+import { setupLotteryQueryService } from "../../utils/lottery";
 import { useInterval } from "../../hooks";
+import { formatCoin } from "../../utils/cosmic-casino";
 
 const LotteryComponent = ({ onBuyClickHandler, githubLedgerHref }) => {
   //TODO get balance
@@ -52,7 +53,7 @@ const LotteryComponent = ({ onBuyClickHandler, githubLedgerHref }) => {
         balance={balance}
         nextExtraction={nextExtraction}
         participants={participants}
-        prize={formatPrize(prize)}
+        prize={formatCoin(prize)}
         ticketsSold={ticketsSold}
       />
     </>

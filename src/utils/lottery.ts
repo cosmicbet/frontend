@@ -41,18 +41,3 @@ export const buyTickets = async (quantity) => {
   const msg = buildMsgBuyTicket(quantity, accounts[0].address);
   return await signer.signAndBroadcast(accounts[0].address, [msg], fee);
 };
-
-/* Utils */
-export const formatPrize = (prize: [Coin]) => {
-  if (prize.length < 1) {
-    return "0";
-  }
-
-  return prize.map((e) => {
-    return (
-      (parseInt(e.amount) / Math.pow(10, chainConfig.coinDecimals)).toFixed(4) +
-      " " +
-      chainConfig.coinDenom
-    );
-  });
-};
