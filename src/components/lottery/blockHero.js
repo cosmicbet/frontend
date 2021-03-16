@@ -1,4 +1,5 @@
 import React from "react";
+import { chainConfig } from "../../utils/keplr";
 import * as S from "./styled";
 
 const BlockHeroComponent = ({ githubLedgerHref, nextExtraction }) => {
@@ -8,8 +9,8 @@ const BlockHeroComponent = ({ githubLedgerHref, nextExtraction }) => {
       <S.Countdown date={nextExtraction} />
       <S.HintText>till the next round</S.HintText>
       <S.Description>
-        Buy a ticket for 10 FCHS, wait for the draw. One lucky winner takes all
-        the jackpot!{" "}
+        Buy a ticket for 10 {chainConfig.coinDenom}, wait for the draw. One
+        lucky winner takes all the jackpot!{" "}
         <a href={githubLedgerHref} rel="noreferrer" target="_blank">
           Learn more
         </a>
