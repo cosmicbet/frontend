@@ -68,7 +68,7 @@ const BuyFormComponent = ({ onClick }) => {
         {error && <S.ErrorText>{error}</S.ErrorText>}
       </S.AmountContainer>
       <Button onClick={() => buy()} $color="gradient" disabled={!ticketNumber}>
-        Buy for {ticketNumber * ticketPrice} FCHS
+        Buy for {ticketNumber * ticketPrice} {chainConfig.coinDenom}
       </Button>
     </S.Container>
   );

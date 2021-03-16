@@ -9,8 +9,8 @@ export const chainConfig = {
   rpc: "https://rpc.cosmic.bet",
   lcd: "https://lcd.cosmic.bet",
   coinDecimals: 6,
-  coinDenom: "FCHS",
-  coinMinimalDenom: "ufchs",
+  coinDenom: "CHIP",
+  coinMinimalDenom: "uchip",
 };
 
 export const checkExtensionAndBrowser = () => {
