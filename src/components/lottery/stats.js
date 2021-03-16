@@ -9,10 +9,17 @@ const StatsComponent = ({
 }) => {
   return (
     <S.Container>
-      <S.Row>Next extraction: {nextExtraction.toLocaleString()}</S.Row>
-      <S.Row>Total tickets sold: {ticketsSold}</S.Row>
-      <S.Row>Participants: {participants}</S.Row>
-      <S.Row>Prize: {prize}</S.Row>
+      <S.Row>
+        <span>Next extraction:</span>
+        <S.AccentText>{nextExtraction.toLocaleString()}</S.AccentText>
+      </S.Row>
+      <S.Row>
+        <span>Total tickets sold:</span>
+        <S.AccentText>{ticketsSold}</S.AccentText>
+      </S.Row>
+      <S.Row>
+        <span>Participants:</span> <S.AccentText>{participants}</S.AccentText>
+      </S.Row>
     </S.Container>
   );
 };

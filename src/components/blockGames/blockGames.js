@@ -4,7 +4,7 @@ import { Row, Col } from "react-styled-flexboxgrid";
 
 import GameCardComponent from "./card";
 
-import { Button } from "../../layouts/styled";
+import Button from "../button";
 import { Container } from "./styled";
 
 const BlockGamesComponent = ({ items }) => {
@@ -20,7 +20,7 @@ const BlockGamesComponent = ({ items }) => {
                 type={item.type}
                 image={item.image}
               >
-                <Button as={Link} to={item.path}>
+                <Button as={Link} to={item.path} color="white">
                   {item.linkText}
                 </Button>
               </GameCardComponent>

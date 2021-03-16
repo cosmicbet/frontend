@@ -30,9 +30,9 @@ const WalletButton = () => {
   );
 };
 
-const HeaderComponent = () => {
+const HeaderComponent = ({ black }) => {
   return (
-    <S.Header>
+    <S.Header $black={black}>
       <Grid>
         <Row between="xs" middle="xs">
           <Col>

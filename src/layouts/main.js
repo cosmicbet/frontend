@@ -5,22 +5,24 @@ import Helmet from "react-helmet";
 import MetadataProvider from "../providers/metadata";
 import WalletProvider from "../providers/wallet";
 
-import GlobalStyle from "./globalStyles";
+import GlobalStyle, { Flex } from "./globalStyles";
 import theme from "./theme";
 import FooterComponent from "../components/footer";
 import HeaderComponent from "../components/header";
 
 import * as S from "./styled";
 
-export default function MainLayout({ children }) {
+export default function MainLayout({ children, blackHeader }) {
   const renderApp = () => {
     return (
       <S.App id="app">
-        <HeaderComponent />
-        <S.Main>{children}</S.Main>
-        <MetadataProvider>
-          <FooterComponent />
-        </MetadataProvider>
+        <HeaderComponent black={blackHeader} />
+        <Flex>
+          <S.Main>{children}</S.Main>
+          <MetadataProvider>
+            <FooterComponent />
+          </MetadataProvider>
+        </Flex>
       </S.App>
     );
   };

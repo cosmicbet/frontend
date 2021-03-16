@@ -7,11 +7,11 @@ import { useSourceSiteMetadata } from "../hooks";
 
 import LotteryComponent from "../components/lottery";
 import TableComponent from "../components/table";
-import BlockBackground from "../components/blockBackground";
 
 import MainLayout from "../layouts/main";
-import { Divider } from "../layouts/styled";
 import { formatCoin } from "../utils/cosmic-casino";
+
+import * as S from "../layouts/styled";
 
 const tableHeaders = {
   winner: "Winner",
@@ -76,17 +76,17 @@ const LotteryPage = () => {
   };
 
   return (
-    <MainLayout>
-      <BlockBackground />
-      <Grid>
-        <LotteryComponent
-          onBuyClickHandler={buy}
-          githubLedgerHref={githubLedger}
-        />
-        <Divider />
-        <h3>Latest Draws</h3>
-        <TableComponent columns={tableHeaders} data={pastDraws} />
-      </Grid>
+    <MainLayout blackHeader>
+      <S.Content $topIndent>
+        <Grid>
+          <LotteryComponent
+            onBuyClickHandler={buy}
+            githubLedgerHref={githubLedger}
+          />
+          <h3>Latest Draws</h3>
+          <TableComponent columns={tableHeaders} data={pastDraws} />
+        </Grid>
+      </S.Content>
     </MainLayout>
   );
 };

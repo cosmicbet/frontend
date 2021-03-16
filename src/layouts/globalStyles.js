@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { normalize, rem } from "polished";
 
 const GlobalStyles = createGlobalStyle`
@@ -14,10 +14,7 @@ const GlobalStyles = createGlobalStyle`
     letter-spacing: normal;
     font-size: ${(props) => rem(props.theme.fontSize.base)};
     font-family: ${(props) => props.theme.font.base};
-    color: ${(props) => props.theme.colors.odd};
-    background-color: ${(props) => props.theme.colors.primary};
-    /* background: linear-gradient(0, #140e38, #000000); */
-    background: linear-gradient(235deg, #772aff, #010615, #2196f3);
+    color: ${(props) => props.theme.colors.dark};
     direction: ltr;
     overscroll-behavior: none;
     -moz-osx-font-smoothing: grayscale;
@@ -33,6 +30,16 @@ const GlobalStyles = createGlobalStyle`
     letter-spacing: 0.26em;
     margin-top: 0;
     line-height: 1.3;
+  }
+
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: ${rem(14)};
+    line-height: 1.3;
+    font-family: ${(props) => props.theme.font.headings};
+    font-weight: ${(props) => props.theme.fontWeight.bold};
+    font-size: ${(props) => rem(props.theme.fontSize.h2)};
   }
 
   h3 {
@@ -66,6 +73,14 @@ const GlobalStyles = createGlobalStyle`
   * {
     box-sizing: border-box;
   }
+`;
+
+export const Flex = styled.div`
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default GlobalStyles;

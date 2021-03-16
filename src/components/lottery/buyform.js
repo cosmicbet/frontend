@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as S from "./styled";
-import { Button } from "../../layouts/styled";
+import Button from "../button";
 import { useContext } from "react";
 import { WalletContext } from "../../contexts";
 import { chainConfig } from "../../utils/keplr";

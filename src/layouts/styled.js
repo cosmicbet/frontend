@@ -1,14 +1,5 @@
-import styled, { keyframes, css } from "styled-components";
+import styled, { css } from "styled-components";
 import { rem, rgba } from "polished";
-
-const neonBlock = keyframes`
-  0% {
-    filter: hue-rotate(0deg);
-  }
-  100% {
-    filter: hue-rotate(360deg);
-  }
-`;
 
 export const App = styled.div`
   display: flex;
@@ -22,72 +13,25 @@ export const App = styled.div`
 
 export const Main = styled.main`
   flex: 1 0 auto;
-  padding-bottom: ${rem(100)};
+  width: 100%;
+`;
+
+export const Content = styled.div`
+  padding: ${rem(40)} 0;
+
+  ${(props) =>
+    props.$topIndent &&
+    css`
+      padding-top: ${rem(140)};
+    `}
 `;
 
 export const Section = styled.section`
-  margin-bottom: ${rem(60)};
-`;
-
-export const Button = styled.button`
-  display: inline-block;
-  position: relative;
-  z-index: 2;
-  border-radius: 30px;
-  line-height: 1;
-  padding: ${rem(12)} ${rem(24)};
-  font-family: ${(props) => props.theme.font.base};
-  font-size: ${(props) => rem(props.theme.fontSize.h4)};
-  font-weight: ${(props) => props.theme.fontWeight.bold};
-  background-color: ${(props) => props.theme.colors.secondary};
-  text-transform: uppercase;
-  overflow: hidden;
-  will-change: transform;
-  color: #212121;
-  text-align: center;
-  border: 0;
-  cursor: pointer;
-  appearance: none;
-  outline: none !important;
-  transition: all ${(props) => props.theme.transition.base};
-
-  &:hover {
-    transform: scale(1.05);
-  }
-  &:active {
-    transform: scale(0.95);
-  }
-
-  ${(props) =>
-    props.$color === "gradient" &&
-    css`
-      background-color: transparent;
-      color: #fff;
-
-      &:after {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        background: linear-gradient(45deg, #ff005e, #fbff00);
-        animation: ${neonBlock} 30s linear infinite;
-        opacity: 0.7;
-      }
-    `}
-
-  ${(props) =>
-    props.$icon &&
-    css`
-      padding: ${rem(12)};
-      min-width: ${rem(42)};
-    `}
+  padding: ${rem(40)} 0;
 `;
 
 export const Divider = styled.hr`
   border: 0;
   margin: ${rem(20)} 0;
-  border-top: 1px solid ${rgba("#fff", 0.1)};
+  border-top: 1px solid ${(props) => rgba(props.theme.colors.primary, 0.1)};
 `;
