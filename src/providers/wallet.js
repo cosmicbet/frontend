@@ -21,6 +21,7 @@ export const setupWallet = async (setWallet) => {
     setWallet({
       address: address,
       balance: bal,
+      accounts: accounts,
       signer: offlineSigner,
     });
   } else {

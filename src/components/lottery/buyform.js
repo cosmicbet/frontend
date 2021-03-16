@@ -23,13 +23,12 @@ const BuyFormComponent = ({ onClick }) => {
     const balance = wallet.balance[0].amount;
     const requiredAmount = ticketNumber * uTicketPrice;
 
-    console.log("BAL", balance, requiredAmount);
     return balance >= requiredAmount;
   };
 
   const buy = () => {
     if (checkBalance(ticketNumber, wallet)) {
-      onClick(ticketNumber);
+      onClick(ticketNumber, wallet);
     } else {
       alert("Balance too low");
     }

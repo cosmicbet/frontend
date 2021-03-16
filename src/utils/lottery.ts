@@ -1,10 +1,8 @@
 import { createRpc, QueryClient } from "@cosmjs/stargate";
 import { MsgBuyTickets } from "../codec/cosmicbet/wta/v1beta1/msgs";
 import { QueryClientImpl as LotteryQuery } from "../codec/cosmicbet/wta/v1beta1/query";
-import { chainConfig, getSigner } from "./keplr";
+import { chainConfig, initStargateClient } from "./keplr";
 import { adaptor34, Client as TendermintClient } from "@cosmjs/tendermint-rpc";
-import { Coin } from "@cosmjs/stargate/build/codec/cosmos/base/v1beta1/coin";
-import { parseCoins } from "@cosmjs/launchpad";
 
 /* Query Client */
 export const setupLotteryQueryService = async () => {
@@ -30,8 +28,9 @@ export const buildMsgBuyTicket = (quantity, buyer) => {
   return msgAny;
 };
 
-export const buyTickets = async (quantity) => {
-  const [accounts, signer] = await getSigner();
+export const buyTickets = async (quantity, wallet) => {
+  const accounts = wallet.accounts;
+  const client = await initStargateClient(wallet.signer);
 
   const fee = {
     amount: "",
@@ -39,5 +38,5 @@ export const buyTickets = async (quantity) => {
   };
 
   const msg = buildMsgBuyTicket(quantity, accounts[0].address);
-  return await signer.signAndBroadcast(accounts[0].address, [msg], fee);
+  return await client.signAndBroadcast(accounts[0].address, [msg], fee);
 };

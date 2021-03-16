@@ -132,7 +132,7 @@ export const suggestChain = async () => {
   });
 };
 
-export const getSigner = async (accounts, offlineSigner) => {
+export const initStargateClient = async (offlineSigner) => {
   // Initialize the cosmic casino api with the offline signer that is injected by Keplr extension.
   const registry = new Registry();
   registry.register("/cosmicbet.wta.v1beta1.MsgBuyTickets", MsgBuyTickets);
@@ -144,7 +144,7 @@ export const getSigner = async (accounts, offlineSigner) => {
     options
   );
 
-  return [accounts, cosmJS];
+  return cosmJS;
 };
 
 export const connectAccount = async () => {

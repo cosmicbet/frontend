@@ -54,7 +54,7 @@ const LotteryPage = () => {
   }, []);
 
   // Load Keplr
-  const buy = async (ticketNumber) => {
+  const buy = async (ticketNumber, wallet) => {
     if (!checkExtensionAndBrowser()) {
       alert("Please install Keplr extension and use Google Chrome");
       return;
@@ -63,7 +63,7 @@ const LotteryPage = () => {
       // suggest chain
       await suggestChain();
 
-      const result = await buyTickets(ticketNumber);
+      const result = await buyTickets(ticketNumber, wallet);
 
       if (result.transactionHash !== undefined) {
         alert("OK! Tx hash: " + result.transactionHash);
