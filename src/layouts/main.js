@@ -12,11 +12,17 @@ import locales from "../locale";
 import FooterComponent from "../components/footer";
 import HeaderComponent from "../components/header";
 import * as S from "./styled";
-
-const defaultLanguage = "en";
+import { LANGUAGE } from "../constants/localStorage";
+import { getLanguage } from "../utils/getLanguage";
 
 export default function MainLayout({ children, blackHeader }) {
-  const [lang, setLang] = useState(defaultLanguage);
+  const [lang, setLang] = useState(getLanguage());
+
+  const languageChangeHandler = (lang) => {
+    setLang(lang);
+    localStorage.setItem(LANGUAGE, lang);
+  };
+
   const localeOptions = Object.keys(locales);
   const renderApp = () => (
     <S.App id="app">
@@ -24,7 +30,7 @@ export default function MainLayout({ children, blackHeader }) {
         black={blackHeader}
         localeOptions={localeOptions}
         selectedLanguage={lang}
-        languageChangeHandler={setLang}
+        languageChangeHandler={languageChangeHandler}
       />
       <Flex>
         <S.Main>{children}</S.Main>

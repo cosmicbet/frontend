@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import useOutsideClick from "../../hooks/useOutsideClick";
 import * as S from "./styled";
 
 const DropdownComponent = ({
@@ -6,6 +7,8 @@ const DropdownComponent = ({
   selectedOption,
   optionChangeHandler,
 }) => {
+  const dropdownRef = useRef(null);
+  useOutsideClick(dropdownRef, () => setIsOpen(false));
   const [isOpen, setIsOpen] = useState(false);
   const toggleHandler = () => {
     setIsOpen(!isOpen);
@@ -22,7 +25,7 @@ const DropdownComponent = ({
         {selectedOption}
       </S.DropdownHeader>
       {isOpen && (
-        <S.DropdownListContainer>
+        <S.DropdownListContainer ref={dropdownRef}>
           <S.DropdownList>
             {options.map((option, index) => (
               <S.DropdownItem onClick={onOptionClicked(option)} key={index}>
