@@ -1,11 +1,14 @@
 import React, { useContext } from "react";
 import { Grid, Col, Row } from "react-styled-flexboxgrid";
 import { Link } from "gatsby";
-import { WalletContext } from "../../contexts";
+import { FormattedMessage } from "react-intl";
 
-import * as S from "./styled";
-import { formatCoin, shortAddress } from "../../utils/cosmic-casino";
+import { WalletContext } from "../../contexts";
 import { setupWallet } from "../../providers/wallet";
+import { formatCoin, shortAddress } from "../../utils/cosmic-casino";
+
+import DropdownComponent from "../dropdown";
+import * as S from "./styled";
 
 const WalletButton = () => {
   const { wallet, setWallet } = useContext(WalletContext);
@@ -30,7 +33,12 @@ const WalletButton = () => {
   );
 };
 
-const HeaderComponent = ({ black }) => {
+const HeaderComponent = ({
+  black,
+  localeOptions,
+  selectedLanguage,
+  languageChangeHandler,
+}) => {
   return (
     <S.Header $black={black}>
       <Grid>
@@ -42,13 +50,25 @@ const HeaderComponent = ({ black }) => {
           <Col>
             <S.Nav>
               <S.NavItem>
-                <Link to="/">Games</Link>
+                <Link to="/">
+                  <FormattedMessage id="GAMES" />
+                </Link>
               </S.NavItem>
               <S.NavItem>
                 <Link to="/">FAQ</Link>
               </S.NavItem>
               <S.NavItem>
-                <Link to="/">Contacts</Link>
+                <Link to="/">
+                  <FormattedMessage id="CONTACTS" />
+                </Link>
+              </S.NavItem>
+              <S.NavItem>
+                <DropdownComponent
+                  options={localeOptions}
+                  isOpen={true}
+                  selectedOption={selectedLanguage}
+                  optionChangeHandler={languageChangeHandler}
+                />
               </S.NavItem>
               <S.NavItem>
                 <S.NavButton>
