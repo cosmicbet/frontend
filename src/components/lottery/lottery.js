@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Row, Col } from "react-styled-flexboxgrid";
 
 import StatsComponent from "./stats";
 import BuyFormComponent from "./buyform";
@@ -8,6 +9,8 @@ import { Divider } from "../../layouts/styled";
 import { setupLotteryQueryService } from "../../utils/lottery";
 import { useInterval } from "../../hooks";
 import { formatCoin } from "../../utils/cosmic-casino";
+import { chainConfig } from "../../utils/keplr";
+import * as S from "./styled";
 
 const LotteryComponent = ({ onBuyClickHandler, githubLedgerHref }) => {
   const [ticketsSold, setTicketsSold] = useState(0);
@@ -39,21 +42,39 @@ const LotteryComponent = ({ onBuyClickHandler, githubLedgerHref }) => {
   }, 10000);
 
   return (
-    <>
+    <S.Wrapper>
       <BlockHeroComponent
         githubLedgerHref={githubLedgerHref}
         nextExtraction={nextExtraction}
       />
       <Divider />
-      <BuyFormComponent onClick={onBuyClickHandler} />
-      <Divider />
-      <StatsComponent
-        nextExtraction={nextExtraction}
-        participants={participants}
-        prize={formatCoin(prize)}
-        ticketsSold={ticketsSold}
-      />
-    </>
+      <S.Group>
+        <Row>
+          <Col xs={12} md={6}>
+            <S.Card>
+              <S.Countdown date={nextExtraction} />
+              <S.HintText>till the next round</S.HintText>
+              <S.AccentTitle>{formatCoin(prize)}</S.AccentTitle>
+              <S.HintText>prize pot</S.HintText>
+            </S.Card>
+
+            <S.Card>
+              <StatsComponent
+                nextExtraction={nextExtraction}
+                participants={participants}
+                ticketsSold={ticketsSold}
+              />
+            </S.Card>
+          </Col>
+
+          <Col xs={12} md={6}>
+            <S.Card>
+              <BuyFormComponent onClick={onBuyClickHandler} />
+            </S.Card>
+          </Col>
+        </Row>
+      </S.Group>
+    </S.Wrapper>
   );
 };
 

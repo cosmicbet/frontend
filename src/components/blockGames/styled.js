@@ -14,6 +14,7 @@ export const Card = styled.div`
   position: relative;
   overflow: hidden;
   background-color: #212121;
+  color: ${(props) => props.theme.colors.white};
 
   &::after,
   &::before {
@@ -44,6 +45,10 @@ export const Card = styled.div`
       &:before,
       &:after {
         background: linear-gradient(145deg, #772aff, #714393, #2196f3);
+      }
+
+      h4 {
+        font-size: ${(props) => rem(props.theme.fontSize.h3)};
       }
     `}
 `;

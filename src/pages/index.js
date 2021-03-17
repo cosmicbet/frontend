@@ -4,30 +4,30 @@ import { Grid } from "react-styled-flexboxgrid";
 import MainLayout from "../layouts/main";
 import BlockGamesComponent from "../components/blockGames";
 import BlockHeroComponent from "../components/blockHero";
-import BlockBackground from "../components/blockBackground";
 
 import { games } from "../constants/games";
 import { offers } from "../constants/offers";
 
 import * as S from "../layouts/styled";
-import MainBackground from "../images/bg.jpg";
 
 const IndexPage = () => {
   return (
     <MainLayout>
-      <BlockBackground backgroundImage={MainBackground} />
-      <Grid>
-        <S.Section>
-          <BlockHeroComponent />
-          <h3>Explore our games</h3>
-          <BlockGamesComponent items={games} />
-        </S.Section>
+      <BlockHeroComponent />
 
-        <S.Section>
-          <h3>Offers</h3>
-          <BlockGamesComponent items={offers} />
-        </S.Section>
-      </Grid>
+      <S.Content id="content">
+        <Grid>
+          <S.Section>
+            <h3>Explore our games</h3>
+            <BlockGamesComponent items={games} />
+          </S.Section>
+
+          <S.Section>
+            <h3>Offers</h3>
+            <BlockGamesComponent items={offers} />
+          </S.Section>
+        </Grid>
+      </S.Content>
     </MainLayout>
   );
 };

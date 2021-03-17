@@ -1,37 +1,26 @@
 import styled from "styled-components";
-import {rem} from "polished"
+import { rem, rgba } from "polished";
 
 export const Table = styled.table`
   text-align: left;
   overflow: hidden;
   width: 100%;
   margin: 0 auto;
-  display: table;
-  padding: 0 0 8em 0;
-  
-  thead {
-    overflow: hidden;
-  }
+  margin-bottom: ${rem(40)};
+  border-collapse: collapse;
+  border-bottom: 1px solid ${(props) => rgba(props.theme.colors.primary, 0.1)};
 
   th {
     font-weight: bold;
     text-align: left;
-    background-color: ${(props) => props.theme.colors.white};
+    background-color: ${(props) => rgba(props.theme.colors.primary, 0.1)};
     color: ${(props) => props.theme.colors.dark};
     padding: ${rem(6)} ${rem(16)};
-    
-    &:first-child {
-        border-radius: ${rem(30)} 0 0 ${rem(30)};
-    }
-    
-    &:last-child {
-        border-radius: 0 ${rem(30)} ${rem(30)} 0;
-    }
   }
 
   td {
     font-weight: normal;
-    padding: ${rem(10)} ${rem(16)}
+    padding: ${rem(10)} ${rem(16)};
   }
 
   td,

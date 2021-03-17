@@ -1,10 +1,19 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { rem } from "polished";
 
 export const Header = styled.header`
   display: flex;
   width: 100%;
   padding: ${rem(30)} 0;
+  position: absolute;
+  z-index: 10;
+  color: ${(props) => props.theme.colors.white};
+  background-color: ${(props) =>
+    props.$black ? props.theme.colors.primary : "transparent"};
+
+  ~ main {
+    padding-top: ${rem(90)};
+  }
 `;
 
 export const Logo = styled.div`

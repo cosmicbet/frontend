@@ -13,9 +13,10 @@ const FooterComponent = () => {
   return (
     <S.Footer>
       <Grid>
+        <S.Logo>CØSMIC CASINØ</S.Logo>
         <Divider />
-        Cosmic Casino | <a href={github}>GitHub</a> |{" "}
-        <a href={telegram}>Telegram</a> | <a href={discord}>Discord</a>
+        <a href={github}>GitHub</a> &middot; <a href={telegram}>Telegram</a>{" "}
+        &middot; <a href={discord}>Discord</a>
         <S.Disclaimer>
           Disclaimer. All betting in any forms involves risk. Be aware and
           accept this risk before betting. Never bet with money you cannot
