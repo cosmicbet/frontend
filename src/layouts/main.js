@@ -1,31 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import { ThemeProvider } from "styled-components";
 import Helmet from "react-helmet";
 
 import MetadataProvider from "../providers/metadata";
 import WalletProvider from "../providers/wallet";
+import IntlProvider from "../providers/intl";
 
 import GlobalStyle, { Flex } from "./globalStyles";
 import theme from "./theme";
+import locales from "../locale";
 import FooterComponent from "../components/footer";
 import HeaderComponent from "../components/header";
-
 import * as S from "./styled";
+import { LANGUAGE } from "../constants/localStorage";
+import { getLanguage } from "../utils/getLanguage";
 
 export default function MainLayout({ children, blackHeader }) {
-  const renderApp = () => {
-    return (
-      <S.App id="app">
-        <HeaderComponent black={blackHeader} />
-        <Flex>
-          <S.Main>{children}</S.Main>
-          <MetadataProvider>
-            <FooterComponent />
-          </MetadataProvider>
-        </Flex>
-      </S.App>
-    );
+  const [lang, setLang] = useState(getLanguage());
+
+  const languageChangeHandler = (lang) => {
+    setLang(lang);
+    localStorage.setItem(LANGUAGE, lang);
   };
+
+  const localeOptions = Object.keys(locales);
+  const renderApp = () => (
+    <S.App id="app">
+      <HeaderComponent
+        black={blackHeader}
+        localeOptions={localeOptions}
+        selectedLanguage={lang}
+        languageChangeHandler={languageChangeHandler}
+      />
+      <Flex>
+        <S.Main>{children}</S.Main>
+        <MetadataProvider>
+          <FooterComponent />
+        </MetadataProvider>
+      </Flex>
+    </S.App>
+  );
 
   return (
     <>
@@ -36,10 +50,12 @@ export default function MainLayout({ children, blackHeader }) {
           rel="stylesheet"
         />
       </Helmet>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <WalletProvider>{renderApp()}</WalletProvider>
-      </ThemeProvider>
+      <IntlProvider currentLocale={lang}>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <WalletProvider>{renderApp()}</WalletProvider>
+        </ThemeProvider>
+      </IntlProvider>
     </>
   );
 }
