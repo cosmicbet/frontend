@@ -1,5 +1,6 @@
 import React from "react";
 import { Table, Overflow } from "./styled";
+import { FormattedMessage } from "react-intl";
 
 const TableComponent = ({ columns, data }) => {
   const objectValuesToArr = (obj) =>
@@ -20,7 +21,9 @@ const TableComponent = ({ columns, data }) => {
         <thead>
           <tr>
             {objectValuesToArr(columns).map((item, index) => (
-              <th key={index}>{item}</th>
+              <th key={index}>
+                <FormattedMessage id={item} />
+              </th>
             ))}
           </tr>
         </thead>

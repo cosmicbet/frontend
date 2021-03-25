@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 import MetadataProvider from "../providers/metadata";
 
@@ -41,10 +42,8 @@ const IndexPage = () => {
                     <Col xs={12} sm={10}>
                       <Row between="xs">
                         <Col xs={12} md={5}>
-                          <S.Title as="h2">
-                            Explore
-                            <br />
-                            our games
+                          <S.Title as="h2" style={{ maxWidth: "25rem" }}>
+                            <FormattedMessage id="EXPLORE_OUR_GAMES" />
                           </S.Title>
                         </Col>
                         <Col xs={12} md={6}>

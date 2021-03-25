@@ -20,14 +20,15 @@ const WalletButton = () => {
           setupWallet(setWallet);
         }}
       >
-        Connect Wallet
+        <FormattedMessage id="CONNECT_WALLET" />
       </a>
     );
   }
 
   return (
     <a>
-      Connected ({shortAddress(wallet.address)}) {formatCoin(wallet.balance, 2)}
+      <FormattedMessage id="WALLET_CONNECTED" /> ({shortAddress(wallet.address)}
+      ) {formatCoin(wallet.balance, 2)}
     </a>
   );
 };

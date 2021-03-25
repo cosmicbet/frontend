@@ -1,9 +1,11 @@
 import React from "react";
-import ScrollIcon from "../../images/scroll-icn.svg";
+import { FormattedMessage } from "react-intl";
 
 import * as S from "./styled";
 import { Grid, Row, Col } from "../../layouts/grid";
 import { Title } from "../../layouts/styled";
+
+import ScrollIcon from "../../images/scroll-icn.svg";
 
 const BlockHeroComponent = () => {
   return (
@@ -13,9 +15,7 @@ const BlockHeroComponent = () => {
           <Col xs={12} md={6}>
             <Title>Cosmic Casino</Title>
             <S.Description>
-              The first Cosmos Zone Blockchain that aims at providing a fair and
-              transparent place where users are able to gamble whatever tokens
-              they possess.
+              <FormattedMessage id="HOME_HERO_DISCLAIMER" />
             </S.Description>
 
             <S.Icon>

@@ -1,4 +1,6 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
+
 import { chainConfig } from "../../utils/keplr";
 import * as S from "./styled";
 
@@ -9,10 +11,15 @@ const BlockHeroComponent = ({ githubLedgerHref }) => {
     <>
       <S.Title>Cosmic Casino: Lottery</S.Title>
       <S.Description>
-        Buy a ticket for 10 {chainConfig.coinDenom}, wait for the draw. <br />
-        One lucky winner takes all the jackpot! <br />
+        <FormattedMessage
+          id="LOTTERY_DESCRIPTION"
+          values={{ amount: 10, currency: chainConfig.coinDenom }}
+        />{" "}
+        <br />
         <StyledLink href={githubLedgerHref} rel="noreferrer" target="_blank">
-          <span> Learn more</span>
+          <span>
+            <FormattedMessage id="LEARN_MORE" />
+          </span>
         </StyledLink>
       </S.Description>
     </>

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "gatsby";
+import { FormattedMessage } from "react-intl";
 
 import { MetadataContext } from "../../contexts";
 
@@ -23,9 +24,11 @@ const FooterComponent = () => {
               <a href={discord}>Discord</a>
             </S.Links>
             <S.Disclaimer>
-              Disclaimer. All betting in any forms involves risk. Be aware and
-              accept this risk before betting. Never bet with money you cannot
-              afford to lose. <Link to="/disclaimer">Read More</Link>.
+              <FormattedMessage id="FOOTER_DISCLAIMER" />
+              <Link to="/disclaimer">
+                <FormattedMessage id="READ_MORE" />
+              </Link>
+              .
             </S.Disclaimer>
             <S.Disclaimer>© 2021</S.Disclaimer>
           </Col>

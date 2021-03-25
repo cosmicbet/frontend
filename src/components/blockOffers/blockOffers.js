@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
+import { FormattedMessage } from "react-intl";
 
 import GameCardComponent from "./card";
 
@@ -13,7 +14,7 @@ const BlockGamesComponent = ({ items }) => {
         return (
           <GameCardComponent description={item.description} key={index}>
             <Button as={Link} to={item.path} color="white">
-              {item.linkText}
+              <FormattedMessage id={item.linkText} />
             </Button>
           </GameCardComponent>
         );

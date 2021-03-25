@@ -39,8 +39,10 @@ export const Row = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  text-align: left;
   width: 100%;
-  max-width: ${rem(340)};
+  max-width: ${rem(380)};
+  margin-bottom: ${rem(10)};
   margin-left: auto;
   margin-right: auto;
 `;

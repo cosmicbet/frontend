@@ -1,8 +1,8 @@
 export const offers = [
   {
     title: "Airdrop",
-    description: "Are you an ATOM or TERRA Hodler? Claim your airdrop now!",
+    description: "OFFERS_AIRDROP_DESCRIPTION",
     path: "/airdrop",
-    linkText: "Claim",
+    linkText: "OFFERS_CARD_BUTTON_CLAIM",
   },
 ];

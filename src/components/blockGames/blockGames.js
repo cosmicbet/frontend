@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "gatsby";
 import { Row, Col } from "react-styled-flexboxgrid";
 import gradient from "random-gradient";
+import { FormattedMessage } from "react-intl";
+
 import GameCardComponent from "./card";
 
 import { Container, StyledCol, StyledRow } from "./styled";
@@ -23,7 +25,9 @@ const BlockGamesComponent = ({ items }) => {
                 bgGradient={{ background: gradient(`grad-${index}`) }}
               >
                 <StyledLink as={Link} to={item.path}>
-                  <span>{item.linkText}</span>
+                  <span>
+                    <FormattedMessage id={item.linkText} />
+                  </span>
                 </StyledLink>
               </GameCardComponent>
             </StyledCol>
