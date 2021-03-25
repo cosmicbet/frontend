@@ -24,6 +24,7 @@
     "@chainapsis/cosmosjs": "0.0.3-alpha.3",
     "@cosmjs/launchpad": "^0.23.2",
     "@cosmjs/stargate": "^0.24.0-alpha.25",
+    "@fullpage/react-fullpage": "^0.1.19",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
     "@pinata/sdk": "^1.1.11",

@@ -59,4 +59,8 @@ export const NavButton = styled.div`
       color: ${(props) => props.theme.colors.tertiary};
     }
   }
+
+  @media all and (max-width: 580px) {
+    display: none;
+  }
 `;

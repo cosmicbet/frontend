@@ -11,6 +11,7 @@ import Details from "../components/details";
 
 import { games } from "../constants/games";
 import { offers } from "../constants/offers";
+import ReactFullpage from "@fullpage/react-fullpage";
 
 import * as S from "../layouts/styled";
 import { Grid, Row, Col } from "../layouts/grid";
@@ -20,39 +21,50 @@ const IndexPage = () => {
     <MainLayout>
       <Details />
 
-      <S.Content id="lead">
-        <BlockHeroComponent />
-        <MetadataProvider>
-          <FooterComponent />
-        </MetadataProvider>
-      </S.Content>
+      <ReactFullpage
+        licenseKey={"B8A46C55-45634BDF-A3DCB062-59445BA6"}
+        verticalCentered={false}
+        autoScrolling={false}
+        render={({ state, fullpageApi }) => {
+          return (
+            <ReactFullpage.Wrapper>
+              <S.Content id="lead" className="section">
+                <BlockHeroComponent />
+                <MetadataProvider>
+                  <FooterComponent />
+                </MetadataProvider>
+              </S.Content>
 
-      <S.Content id="games">
-        <Grid fluid>
-          <Row center="xs">
-            <Col xs={12} sm={10}>
-              <Row between="xs">
-                <Col xs={12} md={5}>
-                  <S.Title as="h2">
-                    Explore
-                    <br />
-                    our games
-                  </S.Title>
-                </Col>
-                <Col xs={12} md={6}>
-                  <S.Section>
-                    <BlockOffersComponent items={offers} />
-                  </S.Section>
+              <S.Content id="games" className="section fp-auto-height">
+                <Grid fluid>
+                  <Row center="xs">
+                    <Col xs={12} sm={10}>
+                      <Row between="xs">
+                        <Col xs={12} md={5}>
+                          <S.Title as="h2">
+                            Explore
+                            <br />
+                            our games
+                          </S.Title>
+                        </Col>
+                        <Col xs={12} md={6}>
+                          <S.Section>
+                            <BlockOffersComponent items={offers} />
+                          </S.Section>
 
-                  <S.Section>
-                    <BlockGamesComponent items={games} />
-                  </S.Section>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-        </Grid>
-      </S.Content>
+                          <S.Section>
+                            <BlockGamesComponent items={games} />
+                          </S.Section>
+                        </Col>
+                      </Row>
+                    </Col>
+                  </Row>
+                </Grid>
+              </S.Content>
+            </ReactFullpage.Wrapper>
+          );
+        }}
+      />
     </MainLayout>
   );
 };

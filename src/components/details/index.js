@@ -1,7 +1,11 @@
 import React from "react";
 import { rem } from "polished";
 
-import planets from "../../images/planets.png";
+import center from "../../images/planets-part-1.png";
+import orbit from "../../images/planets-part-2.png";
+import planets from "../../images/planets-part-3.png";
+import planets1 from "../../images/planets-part-4.png";
+import planets2 from "../../images/planets-part-5.png";
 
 import * as S from "./styled";
 
@@ -23,6 +27,7 @@ const Details = ({ variant }) => {
       {pluses.map((item, i) => (
         <S.Plus
           key={i}
+          $delay={i * 10}
           $top={item.top}
           $right={item.right}
           $bottom={item.bottom}
@@ -32,8 +37,11 @@ const Details = ({ variant }) => {
       ))}
 
       <S.System>
-        <img src={planets} alt="???" width="1000px" height="1000px" />
-        {/* <S.SystemCenter /> */}
+        <S.SystemOrbit $image={orbit} />
+        <S.SystemPlanets $image={planets} />
+        <S.SystemPlanetsTwo $image={planets1} />
+        <S.SystemPlanetsThree $image={planets2} />
+        <S.SystemCenter $image={center} />
       </S.System>
     </S.Wrapper>
   );
