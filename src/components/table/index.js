@@ -1,5 +1,5 @@
 import React from "react";
-import { Table } from "./styled";
+import { Table, Overflow } from "./styled";
 
 const TableComponent = ({ columns, data }) => {
   const objectValuesToArr = (obj) =>
@@ -15,16 +15,18 @@ const TableComponent = ({ columns, data }) => {
   );
 
   return (
-    <Table>
-      <thead>
-        <tr>
-          {objectValuesToArr(columns).map((item, index) => (
-            <th key={index}>{item}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>{data.map((item, index) => renderRow(item, index))}</tbody>
-    </Table>
+    <Overflow>
+      <Table>
+        <thead>
+          <tr>
+            {objectValuesToArr(columns).map((item, index) => (
+              <th key={index}>{item}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>{data.map((item, index) => renderRow(item, index))}</tbody>
+      </Table>
+    </Overflow>
   );
 };
 

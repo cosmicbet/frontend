@@ -1,5 +1,5 @@
 import styled, { keyframes, css } from "styled-components";
-import { rem, rgba } from "polished";
+import { rem } from "polished";
 
 const neonBlock = keyframes`
   0% {
@@ -12,19 +12,21 @@ const neonBlock = keyframes`
 
 export const Button = styled.button`
   display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   z-index: 2;
   border-radius: ${rem(50)};
   line-height: 1;
-  padding: ${rem(12)} ${rem(24)};
-  font-family: ${(props) => props.theme.font.base};
+  padding: ${rem(10)} ${rem(24)};
+  font-family: ${(props) => props.theme.font.headings};
   font-size: ${(props) => rem(props.theme.fontSize.h4)};
   font-weight: ${(props) => props.theme.fontWeight.bold};
-  background-color: ${(props) => props.theme.colors.secondary};
-  text-transform: uppercase;
+  background-color: ${(props) => props.theme.colors.white};
+  color: ${(props) => props.theme.colors.tertiary};
   overflow: hidden;
   will-change: transform;
-  color: #212121;
   text-align: center;
   border: 0;
   cursor: pointer;
@@ -33,7 +35,7 @@ export const Button = styled.button`
   transition: all ${(props) => props.theme.transition.base};
 
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
   }
   &:active {
     transform: scale(0.95);

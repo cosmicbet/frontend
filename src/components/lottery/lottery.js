@@ -9,7 +9,6 @@ import { Divider } from "../../layouts/styled";
 import { setupLotteryQueryService } from "../../utils/lottery";
 import { useInterval } from "../../hooks";
 import { formatCoin } from "../../utils/cosmic-casino";
-import { chainConfig } from "../../utils/keplr";
 import * as S from "./styled";
 
 const LotteryComponent = ({ onBuyClickHandler, githubLedgerHref }) => {

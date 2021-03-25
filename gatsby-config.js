@@ -38,6 +38,19 @@ module.exports = {
       __key: "images",
     },
     {
+      resolve: "gatsby-omni-font-loader",
+      options: {
+        mode: "async",
+        enableListener: true,
+        custom: [
+          {
+            name: ["Kyiv", "Rotor", "Rotor Flex", "Rotor Overlay"],
+            file: "/fonts/fonts.css",
+          },
+        ],
+      },
+    },
+    {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "pages",

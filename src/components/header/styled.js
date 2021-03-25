@@ -1,19 +1,12 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { rem } from "polished";
 
 export const Header = styled.header`
-  display: flex;
   width: 100%;
-  padding: ${rem(30)} 0;
-  position: absolute;
-  z-index: 10;
+  padding: ${rem(21)} 0;
+  position: fixed;
+  z-index: 9;
   color: ${(props) => props.theme.colors.white};
-  background-color: ${(props) =>
-    props.$black ? props.theme.colors.primary : "transparent"};
-
-  ~ main {
-    padding-top: ${rem(90)};
-  }
 `;
 
 export const Logo = styled.div`
@@ -25,25 +18,45 @@ export const Logo = styled.div`
 
 export const Nav = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const NavItem = styled.div`
+  position: relative;
+
   & + & {
     margin-left: ${rem(12)};
+    margin-left: 1vw;
   }
+`;
 
-  a {
-    padding: ${rem(10)};
-    font-weight: ${(props) => props.theme.fontWeight.medium};
+export const NavLink = styled.a`
+  padding: ${rem(10)};
+  font-weight: ${(props) => props.theme.fontWeight.base};
+  color: ${(props) => props.theme.colors.primary};
 
-    &:hover {
-      color: ${(props) => props.theme.colors.secondary};
-    }
+  &:hover {
+    color: ${(props) => props.theme.colors.white};
   }
 `;
 
 export const NavButton = styled.div`
-  background-color: #80808070;
-  border-radius: ${rem(5)};
-  cursor: pointer;
+  display: inline-block;
+
+  a {
+    background-color: ${(props) => props.theme.colors.primary};
+    color: ${(props) => props.theme.colors.tertiary};
+    border-radius: ${rem(5)};
+    line-height: 1;
+    display: block;
+    padding: ${rem(4)} ${rem(10)} ${rem(5)};
+    font-weight: bold;
+    cursor: pointer;
+
+    &:hover {
+      background-color: ${(props) => props.theme.colors.white};
+      color: ${(props) => props.theme.colors.tertiary};
+    }
+  }
 `;

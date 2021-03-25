@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { Grid, Col, Row } from "react-styled-flexboxgrid";
 import { Link } from "gatsby";
 import { FormattedMessage } from "react-intl";
 
@@ -9,6 +8,7 @@ import { formatCoin, shortAddress } from "../../utils/cosmic-casino";
 
 import DropdownComponent from "../dropdown";
 import * as S from "./styled";
+import { Grid, Row, Col } from "../../layouts/grid";
 
 const WalletButton = () => {
   const { wallet, setWallet } = useContext(WalletContext);
@@ -16,7 +16,6 @@ const WalletButton = () => {
   if (!wallet) {
     return (
       <a
-        href="#"
         onClick={() => {
           setupWallet(setWallet);
         }}
@@ -27,55 +26,62 @@ const WalletButton = () => {
   }
 
   return (
-    <a href="#">
+    <a>
       Connected ({shortAddress(wallet.address)}) {formatCoin(wallet.balance, 2)}
     </a>
   );
 };
 
 const HeaderComponent = ({
-  black,
+  transform,
   localeOptions,
   selectedLanguage,
   languageChangeHandler,
 }) => {
   return (
-    <S.Header $black={black}>
-      <Grid>
-        <Row between="xs" middle="xs">
-          <Col>
-            {/* TODO: need a real logo */}
-            <S.Logo>CASINØ</S.Logo>
-          </Col>
-          <Col>
+    <S.Header $transform={transform}>
+      <Grid fluid>
+        <Row>
+          <Col xs={12} md={6}>
             <S.Nav>
+              {transform && (
+                <S.NavItem>
+                  <S.NavLink as={Link} to="/">
+                    <FormattedMessage id="HOME" />
+                  </S.NavLink>
+                </S.NavItem>
+              )}
+
               <S.NavItem>
-                <Link to="/">
+                <S.NavLink as={Link} to="/#games">
                   <FormattedMessage id="GAMES" />
-                </Link>
+                </S.NavLink>
               </S.NavItem>
               <S.NavItem>
-                <Link to="/">FAQ</Link>
+                <S.NavLink as={Link} to="/disclaimer">
+                  FAQ
+                </S.NavLink>
               </S.NavItem>
               <S.NavItem>
-                <Link to="/">
+                <S.NavLink as={Link} to="/">
                   <FormattedMessage id="CONTACTS" />
-                </Link>
+                </S.NavLink>
               </S.NavItem>
               <S.NavItem>
                 <DropdownComponent
                   options={localeOptions}
                   isOpen={true}
+                  component={S.NavLink}
                   selectedOption={selectedLanguage}
                   optionChangeHandler={languageChangeHandler}
                 />
               </S.NavItem>
-              <S.NavItem>
-                <S.NavButton>
-                  <WalletButton />
-                </S.NavButton>
-              </S.NavItem>
             </S.Nav>
+          </Col>
+          <Col xs="auto" style={{ textAlign: "right" }}>
+            <S.NavButton>
+              <WalletButton />
+            </S.NavButton>
           </Col>
         </Row>
       </Grid>

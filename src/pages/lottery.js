@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Grid } from "react-styled-flexboxgrid";
+import { Grid } from "../layouts/grid";
 
 import { checkExtensionAndBrowser, suggestChain } from "../utils/keplr";
 import { buyTickets, setupLotteryQueryService } from "../utils/lottery";
@@ -76,7 +76,7 @@ const LotteryPage = () => {
   };
 
   return (
-    <MainLayout blackHeader>
+    <MainLayout innerPage>
       <S.Content $topIndent>
         <Grid>
           <LotteryComponent

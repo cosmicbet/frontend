@@ -4,7 +4,5 @@ export const offers = [
     description: "Are you an ATOM or TERRA Hodler? Claim your airdrop now!",
     path: "/airdrop",
     linkText: "Claim",
-    type: "accent",
-    col: 6,
   },
 ];
