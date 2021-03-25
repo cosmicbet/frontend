@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { ThemeProvider } from "styled-components";
+import Helmet from "react-helmet";
 
 import WalletProvider from "../providers/wallet";
 import IntlProvider from "../providers/intl";
 
 import GlobalStyle from "./globalStyles";
+import GlobalFont from "./globalFont";
+
 import theme from "./theme";
 import locales from "../locale";
 import HeaderComponent from "../components/header";
@@ -34,11 +37,16 @@ export default function MainLayout({ children, innerPage }) {
   );
 
   return (
-    <IntlProvider currentLocale={lang}>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <WalletProvider>{renderApp()}</WalletProvider>
-      </ThemeProvider>
-    </IntlProvider>
+    <>
+      <Helmet>
+        <style>{GlobalFont}</style>
+      </Helmet>
+      <IntlProvider currentLocale={lang}>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <WalletProvider>{renderApp()}</WalletProvider>
+        </ThemeProvider>
+      </IntlProvider>
+    </>
   );
 }
