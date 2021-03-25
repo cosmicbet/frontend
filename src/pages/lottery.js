@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Grid } from "../layouts/grid";
+import { Grid, Row, Col } from "../layouts/grid";
 
 import { checkExtensionAndBrowser, suggestChain } from "../utils/keplr";
 import { buyTickets, setupLotteryQueryService } from "../utils/lottery";
@@ -79,12 +79,16 @@ const LotteryPage = () => {
     <MainLayout innerPage>
       <S.Content $topIndent>
         <Grid>
-          <LotteryComponent
-            onBuyClickHandler={buy}
-            githubLedgerHref={githubLedger}
-          />
-          <h3>Latest Draws</h3>
-          <TableComponent columns={tableHeaders} data={pastDraws} />
+          <Row center="xs">
+            <Col xs={12} md={8}>
+              <LotteryComponent
+                onBuyClickHandler={buy}
+                githubLedgerHref={githubLedger}
+              />
+              <h3>Latest Draws</h3>
+              <TableComponent columns={tableHeaders} data={pastDraws} />
+            </Col>
+          </Row>
         </Grid>
       </S.Content>
     </MainLayout>
