@@ -49,9 +49,9 @@ const LotteryComponent = ({ onBuyClickHandler, githubLedgerHref }) => {
       />
       <Divider />
       <S.Group>
-        <Row>
-          <Col xs={12} md={6}>
-            <S.Card>
+        <Row style={{ margin: 0 }}>
+          <S.Card as={Col} xs={12} md={4}>
+            <S.CardInner>
               <S.Countdown date={nextExtraction} />
               <S.HintText>
                 <FormattedMessage id="NEXT_ROUND" />
@@ -60,24 +60,27 @@ const LotteryComponent = ({ onBuyClickHandler, githubLedgerHref }) => {
               <S.HintText>
                 <FormattedMessage id="PRIZE_POT" />
               </S.HintText>
-            </S.Card>
+            </S.CardInner>
+          </S.Card>
 
-            <S.Card>
+          <S.Card as={Col} xs={12} md={4}>
+            <S.CardInner>
               <StatsComponent
                 nextExtraction={nextExtraction}
                 participants={participants}
                 ticketsSold={ticketsSold}
               />
-            </S.Card>
-          </Col>
+            </S.CardInner>
+          </S.Card>
 
-          <Col xs={12} md={6}>
-            <S.Card>
+          <S.Card as={Col} xs={12} md={4}>
+            <S.CardInner>
               <BuyFormComponent onClick={onBuyClickHandler} />
-            </S.Card>
-          </Col>
+            </S.CardInner>
+          </S.Card>
         </Row>
       </S.Group>
+      <Divider />
     </S.Wrapper>
   );
 };

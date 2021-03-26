@@ -1,5 +1,7 @@
 import styled, { css } from "styled-components";
-import { rem, rgba } from "polished";
+import { rem } from "polished";
+
+import dots from "../images/dots.svg";
 
 export const App = styled.div`
   display: flex;
@@ -50,10 +52,11 @@ export const Content = styled.div`
 
 export const Section = styled.section``;
 
-export const Divider = styled.hr`
-  border: 0;
+export const Divider = styled.div`
+  background: url(${dots}) no-repeat center / contain;
+  width: ${rem(162)};
+  height: ${rem(74)};
   margin: ${rem(20)} 0;
-  border-top: 1px solid ${(props) => rgba(props.theme.colors.primary, 0.1)};
 `;
 
 export const Title = styled.h1`

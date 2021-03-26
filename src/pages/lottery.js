@@ -79,9 +79,9 @@ const LotteryPage = () => {
   return (
     <MainLayout innerPage>
       <S.Content $topIndent>
-        <Grid>
+        <Grid fluid>
           <Row center="xs">
-            <Col xs={12} md={8}>
+            <Col xs={12} md={10}>
               <LotteryComponent
                 onBuyClickHandler={buy}
                 githubLedgerHref={githubLedger}
