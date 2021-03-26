@@ -24,7 +24,7 @@ const FooterComponent = () => {
               <a href={discord}>Discord</a>
             </S.Links>
             <S.Disclaimer>
-              <FormattedMessage id="FOOTER_DISCLAIMER" />
+              <FormattedMessage id="FOOTER_DISCLAIMER" />{" "}
               <Link to="/disclaimer">
                 <FormattedMessage id="READ_MORE" />
               </Link>

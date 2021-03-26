@@ -24,9 +24,9 @@ export const Footer = styled.div`
 `;
 
 export const Disclaimer = styled.p`
-  font-size: ${rem(12)};
+  font-size: ${rem(8)};
   color: ${rgba("#fff", 0.4)};
-  max-width: ${rem(600)};
+  max-width: ${rem(400)};
   margin-left: auto;
   margin-right: auto;
 
@@ -44,8 +44,9 @@ export const Logo = styled.div`
 
 export const Links = styled.div`
   margin-bottom: ${rem(14)};
+  font-size: ${rem(12)};
 
   a {
-    padding: ${rem(3)} ${rem(12)};
+    padding: ${rem(3)} ${rem(6)};
   }
 `;

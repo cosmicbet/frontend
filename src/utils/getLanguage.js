@@ -9,5 +9,5 @@ export const getLanguage = () => {
       ? (language = localStorage.getItem(LANGUAGE))
       : (language = defaultLanguage);
   }
-  return language;
+  return language || defaultLanguage;
 };
