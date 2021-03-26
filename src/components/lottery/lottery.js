@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Row, Col } from "react-styled-flexboxgrid";
+import { FormattedMessage } from "react-intl";
 
 import StatsComponent from "./stats";
 import BuyFormComponent from "./buyform";
@@ -9,7 +10,6 @@ import { Divider } from "../../layouts/styled";
 import { setupLotteryQueryService } from "../../utils/lottery";
 import { useInterval } from "../../hooks";
 import { formatCoin } from "../../utils/cosmic-casino";
-import { chainConfig } from "../../utils/keplr";
 import * as S from "./styled";
 
 const LotteryComponent = ({ onBuyClickHandler, githubLedgerHref }) => {
@@ -53,9 +53,13 @@ const LotteryComponent = ({ onBuyClickHandler, githubLedgerHref }) => {
           <Col xs={12} md={6}>
             <S.Card>
               <S.Countdown date={nextExtraction} />
-              <S.HintText>till the next round</S.HintText>
+              <S.HintText>
+                <FormattedMessage id="NEXT_ROUND" />
+              </S.HintText>
               <S.AccentTitle>{formatCoin(prize)}</S.AccentTitle>
-              <S.HintText>prize pot</S.HintText>
+              <S.HintText>
+                <FormattedMessage id="PRIZE_POT" />
+              </S.HintText>
             </S.Card>
 
             <S.Card>

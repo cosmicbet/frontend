@@ -19,15 +19,16 @@ export default {
     },
   },
   font: {
-    base: "'DM Sans', sans-serif",
-    headings: "'Montserrat', sans-serif",
+    base: "'Kyiv', sans-serif",
+    headings: "'Rotor Overlay', sans-serif",
+    headingsVariables: "'Rotor Flex', sans-serif",
   },
   fontSize: {
     base: 16,
     h1: 54,
     h2: 38,
     h3: 22,
-    h4: 18,
+    h4: 19,
     h5: 16,
   },
   fontWeight: {
@@ -39,9 +40,9 @@ export default {
     black: 900,
   },
   colors: {
-    primary: "#19154C",
+    primary: "#ffde00",
     secondary: "#eaa065",
-    tertiary: "#3F5FBF",
+    tertiary: "#0C0C1D",
     dark: "#161426",
     accent: "#fdebd1",
     gray: "",

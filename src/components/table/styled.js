@@ -8,12 +8,12 @@ export const Table = styled.table`
   margin: 0 auto;
   margin-bottom: ${rem(40)};
   border-collapse: collapse;
-  border-bottom: 1px solid ${(props) => rgba(props.theme.colors.primary, 0.1)};
+  border-bottom: 1px solid ${(props) => rgba(props.theme.colors.white, 1)};
 
   th {
     font-weight: bold;
     text-align: left;
-    background-color: ${(props) => rgba(props.theme.colors.primary, 0.1)};
+    background-color: ${(props) => rgba(props.theme.colors.white, 1)};
     color: ${(props) => props.theme.colors.dark};
     padding: ${rem(6)} ${rem(16)};
   }
@@ -27,4 +27,9 @@ export const Table = styled.table`
   th {
     font-size: 1em;
   }
+`;
+
+export const Overflow = styled.div`
+  overflow: auto;
+  width: 100%;
 `;

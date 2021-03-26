@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Grid } from "react-styled-flexboxgrid";
+import { Grid, Row, Col } from "../layouts/grid";
+import { FormattedMessage } from "react-intl";
 
 import { checkExtensionAndBrowser, suggestChain } from "../utils/keplr";
 import { buyTickets, setupLotteryQueryService } from "../utils/lottery";
@@ -14,9 +15,9 @@ import { formatCoin } from "../utils/cosmic-casino";
 import * as S from "../layouts/styled";
 
 const tableHeaders = {
-  winner: "Winner",
-  jackpot: "Jackpot",
-  endTime: "End time",
+  winner: "LATEST_DRAWS_WINNERS",
+  jackpot: "LATEST_DRAWS_JACKPOT",
+  endTime: "LATEST_DRAWS_TIME",
 };
 
 const NOT_AVAILABLE = "N/A";
@@ -76,15 +77,21 @@ const LotteryPage = () => {
   };
 
   return (
-    <MainLayout blackHeader>
+    <MainLayout innerPage>
       <S.Content $topIndent>
         <Grid>
-          <LotteryComponent
-            onBuyClickHandler={buy}
-            githubLedgerHref={githubLedger}
-          />
-          <h3>Latest Draws</h3>
-          <TableComponent columns={tableHeaders} data={pastDraws} />
+          <Row center="xs">
+            <Col xs={12} md={8}>
+              <LotteryComponent
+                onBuyClickHandler={buy}
+                githubLedgerHref={githubLedger}
+              />
+              <h3>
+                <FormattedMessage id="LATEST_DRAWS" />
+              </h3>
+              <TableComponent columns={tableHeaders} data={pastDraws} />
+            </Col>
+          </Row>
         </Grid>
       </S.Content>
     </MainLayout>

@@ -1,17 +1,26 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
+
 import { chainConfig } from "../../utils/keplr";
 import * as S from "./styled";
+
+import { StyledLink } from "../../layouts/styled";
 
 const BlockHeroComponent = ({ githubLedgerHref }) => {
   return (
     <>
       <S.Title>Cosmic Casino: Lottery</S.Title>
       <S.Description>
-        Buy a ticket for 10 {chainConfig.coinDenom}, wait for the draw. One
-        lucky winner takes all the jackpot!{" "}
-        <a href={githubLedgerHref} rel="noreferrer" target="_blank">
-          Learn more
-        </a>
+        <FormattedMessage
+          id="LOTTERY_DESCRIPTION"
+          values={{ amount: 10, currency: chainConfig.coinDenom }}
+        />{" "}
+        <br />
+        <StyledLink href={githubLedgerHref} rel="noreferrer" target="_blank">
+          <span>
+            <FormattedMessage id="LEARN_MORE" />
+          </span>
+        </StyledLink>
       </S.Description>
     </>
   );

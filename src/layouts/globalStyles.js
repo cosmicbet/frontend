@@ -4,6 +4,16 @@ import { normalize, rem } from "polished";
 const GlobalStyles = createGlobalStyle`
   ${normalize()};
 
+  html {
+    @media all and (min-width: 2040px) {
+        font-size: 24px
+    }
+
+    @media all and (max-width: 747px) {
+        font-size: 14px
+    }
+  }
+
   body {
     position: relative;
     min-height: 100vh;
@@ -14,7 +24,8 @@ const GlobalStyles = createGlobalStyle`
     letter-spacing: normal;
     font-size: ${(props) => rem(props.theme.fontSize.base)};
     font-family: ${(props) => props.theme.font.base};
-    color: ${(props) => props.theme.colors.dark};
+    color: ${(props) => props.theme.colors.white};
+    background-color: ${(props) => props.theme.colors.tertiary};
     direction: ltr;
     overscroll-behavior: none;
     -moz-osx-font-smoothing: grayscale;
@@ -23,21 +34,18 @@ const GlobalStyles = createGlobalStyle`
 
 
   h1 {
-    font-family: ${(props) => props.theme.font.headings};
+    font-family: ${(props) => props.theme.font.headingsVariables};
     font-size: ${(props) => rem(props.theme.fontSize.h1)};
-    font-weight: ${(props) => props.theme.fontWeight.black};
-    text-transform: uppercase;
-    letter-spacing: 0.26em;
     margin-top: 0;
     line-height: 1.3;
+    font-variation-settings: "DPTH" 0, "OFST" -50;
   }
-
 
   h2 {
     margin-top: 0;
     margin-bottom: ${rem(14)};
     line-height: 1.3;
-    font-family: ${(props) => props.theme.font.headings};
+    font-family: ${(props) => props.theme.font.headingsVariables};
     font-weight: ${(props) => props.theme.fontWeight.bold};
     font-size: ${(props) => rem(props.theme.fontSize.h2)};
   }
@@ -46,7 +54,6 @@ const GlobalStyles = createGlobalStyle`
     margin-top: 0;
     margin-bottom: ${rem(14)};
     line-height: 1.3;
-    text-transform: uppercase;
     font-family: ${(props) => props.theme.font.headings};
     font-weight: ${(props) => props.theme.fontWeight.bold};
     font-size: ${(props) => rem(props.theme.fontSize.h3)};
@@ -54,9 +61,9 @@ const GlobalStyles = createGlobalStyle`
 
   h4 {
     margin-top: 0;
-    margin-bottom: ${rem(10)};
+    margin-bottom: ${rem(6)};
     line-height: 1.3;
-    font-family: ${(props) => props.theme.font.headings};
+    font-family: ${(props) => props.theme.font.headingsVariables};
     font-size: ${(props) => rem(props.theme.fontSize.h4)};
   }
   
@@ -64,6 +71,7 @@ const GlobalStyles = createGlobalStyle`
     color: inherit;
     text-decoration: none;
     transition: all ${(props) => props.theme.transition.base};
+    outline: none !important
   }
 
   p {

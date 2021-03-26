@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { rem, rgba } from "polished";
+import { rem } from "polished";
 import { Row as StyledRow, Col } from "react-styled-flexboxgrid";
 import Countdown from "react-countdown";
 
@@ -25,7 +25,6 @@ export const Container = styled.div`
 export const Card = styled.div`
   padding: ${rem(40)} ${rem(24)};
   margin-bottom: ${rem(24)};
-  background-color: ${rgba(25, 21, 76, 0.05)};
 
   h3 {
     max-width: 350px;
@@ -40,8 +39,10 @@ export const Row = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  text-align: left;
   width: 100%;
-  max-width: 340px;
+  max-width: ${rem(380)};
+  margin-bottom: ${rem(10)};
   margin-left: auto;
   margin-right: auto;
 `;
@@ -61,19 +62,19 @@ const StyledCountdown = styled(Countdown)`
   text-align: center;
   font-size: ${(props) => rem(props.theme.fontSize.h1)};
   font-weight: ${(props) => props.theme.fontWeight.bold};
-  color: ${(props) => props.theme.colors.warning};
+  color: ${(props) => props.theme.colors.primary};
 `;
 
 export const AccentTitle = styled.div`
   text-align: center;
   font-size: ${(props) => rem(props.theme.fontSize.h1)};
   font-weight: ${(props) => props.theme.fontWeight.bold};
-  color: ${(props) => props.theme.colors.warning};
+  color: ${(props) => props.theme.colors.primary};
 `;
 
 export const AccentText = styled.span`
   font-weight: ${(props) => props.theme.fontWeight.bold};
-  color: ${(props) => props.theme.colors.warning};
+  color: ${(props) => props.theme.colors.primary};
 `;
 
 export const Title = styled.h1`
@@ -84,13 +85,9 @@ export const Title = styled.h1`
 `;
 
 export const Description = styled.p`
-  max-width: 600px;
+  max-width: ${rem(600)};
   margin: ${rem(40)} auto;
   text-align: center;
-
-  a {
-    color: ${(props) => props.theme.colors.secondary};
-  }
 `;
 
 export const HintText = styled.p`

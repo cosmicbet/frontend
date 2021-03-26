@@ -1,0 +1,52 @@
+@font-face {
+  font-family: "Rotor Overlay";
+  src: url("./rotor-bold-overlay.woff2") format("woff2"),
+    url("./rotor-bold-overlay.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Rotor";
+  src: url("./rotor-bold.woff2") format("woff2"),
+    url("./rotor-bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Rotor";
+  src: url("./rotor-regular.woff2") format("woff2"),
+    url("./rotor-regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Rotor Flex";
+  src: url("./rotor-VF.woff2") format("woff2 supports variations"),
+    url("./rotor-VF.woff2") format("woff2-variations");
+  font-weight: 100 1000;
+  font-stretch: 25% 151%;
+}
+
+@font-face {
+  font-family: "Kyiv";
+  src: url("./KyivTypeSans-Regular.woff2") format("woff2"),
+    url("./KyivTypeSans-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Rotor";
+  src: url("./KyivTypeSans-Bold.woff2") format("woff2"),
+    url("./KyivTypeSans-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}

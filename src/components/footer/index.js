@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { Link } from "gatsby";
-import { Grid } from "react-styled-flexboxgrid";
+import { FormattedMessage } from "react-intl";
+
+import { MetadataContext } from "../../contexts";
 
 import * as S from "./styled";
-import { MetadataContext } from "../../contexts";
-import { Divider } from "../../layouts/styled";
+import { Grid, Row, Col } from "../../layouts/grid";
 
 const FooterComponent = () => {
   const {
@@ -12,18 +13,26 @@ const FooterComponent = () => {
   } = useContext(MetadataContext);
   return (
     <S.Footer>
-      <Grid>
-        <S.Logo>CØSMIC CASINØ</S.Logo>
-        <Divider />
-        <a href={github}>GitHub</a> &middot; <a href={telegram}>Telegram</a>{" "}
-        &middot; <a href={discord}>Discord</a>
-        <S.Disclaimer>
-          Disclaimer. All betting in any forms involves risk. Be aware and
-          accept this risk before betting. Never bet with money you cannot
-          afford to lose. <Link to="/disclaimer">Read More</Link>{" "}
-        </S.Disclaimer>
-        Background vector created by{" "}
-        <a href="https://www.freepik.com/upklyak">upklyak</a>
+      <Grid fluid>
+        <Row>
+          <Col xs={12} md={6}>
+            <S.Links>
+              <a href={github}>GitHub</a>
+              <span>&middot;</span>
+              <a href={telegram}>Telegram</a>
+              <span> &middot;</span>
+              <a href={discord}>Discord</a>
+            </S.Links>
+            <S.Disclaimer>
+              <FormattedMessage id="FOOTER_DISCLAIMER" />
+              <Link to="/disclaimer">
+                <FormattedMessage id="READ_MORE" />
+              </Link>
+              .
+            </S.Disclaimer>
+            <S.Disclaimer>© 2021</S.Disclaimer>
+          </Col>
+        </Row>
       </Grid>
     </S.Footer>
   );

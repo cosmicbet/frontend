@@ -6,6 +6,7 @@ const DropdownComponent = ({
   options,
   selectedOption,
   optionChangeHandler,
+  component,
 }) => {
   const dropdownRef = useRef(null);
   useOutsideClick(dropdownRef, () => setIsOpen(false));
@@ -21,7 +22,7 @@ const DropdownComponent = ({
 
   return (
     <>
-      <S.DropdownHeader onClick={toggleHandler}>
+      <S.DropdownHeader as={component} onClick={toggleHandler}>
         {selectedOption}
       </S.DropdownHeader>
       {isOpen && (

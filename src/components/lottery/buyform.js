@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { FormattedMessage } from "react-intl";
+
 import * as S from "./styled";
 import Button from "../button";
 import { useContext } from "react";
@@ -39,7 +41,7 @@ const BuyFormComponent = ({ onClick }) => {
 
     setTicketNumber((ticket) => {
       if (!checkBalance(ticket, wallet)) {
-        setError("Your balance too low");
+        setError("LOW_BALANCE_ERROR");
         return ticket;
       }
       return ++ticket;
@@ -55,7 +57,9 @@ const BuyFormComponent = ({ onClick }) => {
 
   return (
     <S.Container>
-      <h3>How many tickets would you like to buy?</h3>
+      <h3>
+        <FormattedMessage id="HOW_MANY_TICKETS" />
+      </h3>
       <S.AmountContainer>
         <Button onClick={removeTicket} $icon>
           -
@@ -64,10 +68,20 @@ const BuyFormComponent = ({ onClick }) => {
         <Button onClick={addTicket} $icon>
           +
         </Button>
-        {error && <S.ErrorText>{error}</S.ErrorText>}
+        {error && (
+          <S.ErrorText>
+            <FormattedMessage id={error} />
+          </S.ErrorText>
+        )}
       </S.AmountContainer>
       <Button onClick={() => buy()} $color="gradient" disabled={!ticketNumber}>
-        Buy for {ticketNumber * ticketPrice} {chainConfig.coinDenom}
+        <FormattedMessage
+          id="BUY_TICKETS_BUTTON"
+          values={{
+            amount: ticketNumber * ticketPrice,
+            currency: chainConfig.coinDenom,
+          }}
+        />
       </Button>
     </S.Container>
   );
