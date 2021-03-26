@@ -4,6 +4,7 @@ import Helmet from "react-helmet";
 
 import WalletProvider from "../providers/wallet";
 import IntlProvider from "../providers/intl";
+import ModalProvider from "../providers/modal";
 
 import GlobalStyle from "./globalStyles";
 import GlobalFont from "./globalFont";
@@ -44,7 +45,9 @@ export default function MainLayout({ children, innerPage }) {
       <IntlProvider currentLocale={lang}>
         <ThemeProvider theme={theme}>
           <GlobalStyle />
-          <WalletProvider>{renderApp()}</WalletProvider>
+          <ModalProvider appElementSelector="#app">
+            <WalletProvider>{renderApp()}</WalletProvider>
+          </ModalProvider>
         </ThemeProvider>
       </IntlProvider>
     </>

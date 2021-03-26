@@ -51,6 +51,7 @@
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "react-intl": "^5.13.4",
+    "react-modal": "^3.12.1",
     "react-styled-flexboxgrid": "^3.2.1"
   },
   "devDependencies": {

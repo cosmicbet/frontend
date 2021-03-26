@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
-import { WalletContext } from "../contexts";
+import { ModalContext, WalletContext } from "../contexts";
 import { getBalance } from "../utils/cosmic-casino";
 import {
   chainConfig,
@@ -8,7 +8,7 @@ import {
   connectAccount,
 } from "../utils/keplr";
 
-export const setupWallet = async (setWallet) => {
+export const setupWallet = async (setWallet, openInfoModal) => {
   if (checkExtensionAndBrowser()) {
     const [accounts, offlineSigner] = await connectAccount();
 
@@ -26,23 +26,24 @@ export const setupWallet = async (setWallet) => {
     });
   } else {
     // TODO: Open modal "please install keplr, or continue without wallet"
-    alert("Please install keplr or continue without wallet");
+    openInfoModal("Please install keplr or continue without wallet", "info");
+    // alert("Please install keplr or continue without wallet");
   }
 };
 
 const WalletProvider = ({ children }) => {
   const [wallet, setWallet] = useState(null);
-
+  const { openInfoModal } = useContext(ModalContext);
   useEffect(() => {
     // hack, keplr is not appended to window fast enough sometimes..
-    setTimeout(() => setupWallet(setWallet), 500);
+    setTimeout(() => setupWallet(setWallet, openInfoModal), 500);
 
     // Reload wallet every time user change account
     window.addEventListener("keplr_keystorechange", () => {
       console.log(
         "Key store in Keplr is changed. You may need to refetch the account info."
       );
-      setupWallet(setWallet);
+      setupWallet(setWallet, openInfoModal);
     });
 
     return () => {
