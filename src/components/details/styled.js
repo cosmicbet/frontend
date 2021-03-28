@@ -2,13 +2,13 @@ import styled, { keyframes } from "styled-components";
 import { rem } from "polished";
 
 const spin = keyframes`
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% { transform: rotate(0deg) translate3d(0,0,0); }
+  100% { transform: rotate(360deg) translate3d(0,0,0); }
 `;
 
 const spinRotate = keyframes`
-  0% { transform: rotate(90deg); }
-  100% { transform: rotate(270deg); }
+  0% { transform: rotate(90deg) translate3d(0,0,0); }
+  100% { transform: rotate(270deg) translate3d(0,0,0); }
 `;
 
 export const Wrapper = styled.div`

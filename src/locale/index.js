@@ -12,7 +12,7 @@ export default {
     EXPLORE_OUR_GAMES: "Explore our games",
     GAME_CARD_BUTTON_TEXT: "Try now",
     OFFERS_CARD_BUTTON_CLAIM: "Claim",
-    PRIZE_POT: "prize pot",
+    PRIZE_POT: "Prize pot",
     STATS_NEXT_EXTRACTION: "Next extraction:",
     STATS_TOTAL_SOLD: "Total tickets sold:",
     STATS_PARTICIPANTS: "Participants:",
@@ -21,7 +21,7 @@ export default {
     LATEST_DRAWS_JACKPOT: "Jackpot",
     LATEST_DRAWS_TIME: "End time",
     HOW_MANY_TICKETS: "How many tickets would you like to buy?",
-    NEXT_ROUND: "till the next round",
+    NEXT_ROUND: "Till the next round",
     BUY_TICKETS_BUTTON: "Buy for {amount} {currency}",
     LOW_BALANCE_ERROR: "Your balance too low",
     OFFERS_AIRDROP_DESCRIPTION:
