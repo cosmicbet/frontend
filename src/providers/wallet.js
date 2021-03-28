@@ -26,7 +26,7 @@ export const setupWallet = async (setWallet) => {
     });
   } else {
     // TODO: Open modal "please install keplr, or continue without wallet"
-    alert("Please install keplr or continue without wallet");
+    // alert("Please install keplr or continue without wallet");
   }
 };
 

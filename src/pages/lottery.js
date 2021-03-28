@@ -57,7 +57,7 @@ const LotteryPage = () => {
   // Load Keplr
   const buy = async (ticketNumber, wallet) => {
     if (!checkExtensionAndBrowser()) {
-      alert("Please install Keplr extension and use Google Chrome");
+      // alert("Please install Keplr extension and use Google Chrome");
       return;
     }
     try {
