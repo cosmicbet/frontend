@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 import * as S from "./styled";
 
@@ -17,8 +18,8 @@ const GameCardComponent = ({
       </S.Image>
 
       <S.Inner>
-        <h4>{title}</h4>
-        <p>{description}</p>
+        <h4><FormattedMessage id={title} /></h4>
+        <p><FormattedMessage id={description} /></p>
 
         <S.Content>{children}</S.Content>
       </S.Inner>
