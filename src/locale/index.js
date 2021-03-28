@@ -32,6 +32,14 @@ export default {
       "Disclaimer. All betting in any forms involves risk. Be aware and accept this risk before betting. Never bet with money you cannot afford to lose.",
     HOME_HERO_DISCLAIMER:
       "The first Cosmos Zone Blockchain Casino that aims at providing a fair and transparent place where users are able to gamble whatever tokens they possess.",
+    TO_THE_MOON_LOTTERY_TITLE:
+      "ToTheMoon Lottery",
+    TO_THE_MOON_LOTTERY_DESC:
+      "Winner takes all style lottery",
+    NEPTUNE_LOTTERY_TITLE:
+      "Neptune Lottery",
+    NEPTUNE_LOTTERY_DESC:
+      "Winner takes all style lottery",
   },
   ru: {
     TEST: "тест",
@@ -66,5 +74,55 @@ export default {
       "Заявление об ограничении ответственности. Все ставки в любой форме сопряжены с риском. Помните и примите этот риск, прежде чем делать ставки. Никогда не делайте ставки на деньги, которые вы не можете позволить себе проиграть.",
     HOME_HERO_DISCLAIMER:
       "Первое казино в Cosmos Zone Blockchain, цель которого - создать справедливое и прозрачное пространство, где пользователи смогут играть любыми имеющимися у них токенами.",
+    TO_THE_MOON_LOTTERY_TITLE:
+      "ToTheMoon Lottery",
+    TO_THE_MOON_LOTTERY_DESC:
+    "Winner takes all style lottery",
+    NEPTUNE_LOTTERY_TITLE:
+      "Neptune Lottery",
+    NEPTUNE_LOTTERY_DESC:
+      "Winner takes all style lottery",
+  },
+  it: {
+    TEST: "test",
+    HOME: "Home",
+    GAMES: "Giochi",
+    CONTACTS: "Contatti",
+    EXPLORE_BUTTON: "ESPLORA",
+    READ_MORE: "Leggi di più",
+    LEARN_MORE: "Scopri di più",
+    CONNECT_WALLET: "Collega il Wallet",
+    WALLET_CONNECTED: "Connesso",
+    EXPLORE_OUR_GAMES: "Scopri i nostri giochi",
+    GAME_CARD_BUTTON_TEXT: "Provalo ora",
+    OFFERS_CARD_BUTTON_CLAIM: "Riscatta",
+    PRIZE_POT: "Montepremi",
+    STATS_NEXT_EXTRACTION: "Prossima estrazione:",
+    STATS_TOTAL_SOLD: "Totale biglietti venduti:",
+    STATS_PARTICIPANTS: "Partecipanti:",
+    LATEST_DRAWS: "Ultime estrazioni",
+    LATEST_DRAWS_WINNERS: "Vincitore",
+    LATEST_DRAWS_JACKPOT: "Jackpot",
+    LATEST_DRAWS_TIME: "Data estrazione",
+    HOW_MANY_TICKETS: "Quanti biglietti vuoi acquistare?",
+    NEXT_ROUND: "Alla prossima estrazione",
+    BUY_TICKETS_BUTTON: "Compra {amount} {currency}",
+    LOW_BALANCE_ERROR: "Fondi insufficienti",
+    OFFERS_AIRDROP_DESCRIPTION:
+      "Sei un Hodler di ATOM o TERRA? Riscatta il tuo airdrop ora!",
+    LOTTERY_DESCRIPTION:
+      "Compra un biglietto per {amount} {currency} e aspetta la prossima estrazione. Il vincitore porta a casa tutto il jackpot!",
+    FOOTER_DISCLAIMER:
+      "Disclaimer. Tutte le scommesse, in qualsiasi forma, comportano dei rischi. Sii consapevole e accetta questo rischio prima di giocare. Non giocare mai con soldi che non puoi permetterti di perdere.",
+    HOME_HERO_DISCLAIMER:
+      "La prima Blockchain Casino basata su Cosmos SDK che punta a fornire una piattaforma equa e trasparente dove gli utenti siano in grado di giocare qualsiasi token in loro possesso.",
+    TO_THE_MOON_LOTTERY_TITLE:
+      "ToTheMoon Lottery",
+    TO_THE_MOON_LOTTERY_DESC:
+      "Chi vince prende tutto",
+    NEPTUNE_LOTTERY_TITLE:
+      "Neptune Lottery",
+    NEPTUNE_LOTTERY_DESC:
+      "Chi vince prende tutto",
   },
 };
