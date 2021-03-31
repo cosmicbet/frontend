@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { rem, rgba } from "polished";
-import { Row as StyledRow, Col } from "react-styled-flexboxgrid";
+import { Row as StyledRow, Col as StyledCol } from "react-styled-flexboxgrid";
 import Countdown from "react-countdown";
 
 export const Wrapper = styled.div`
@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
     margin-right: ${rem(-12)};
   }
 
-  ${Col} {
+  ${StyledCol} {
     padding-left: ${rem(12)};
     padding-right: ${rem(12)};
   }
@@ -35,7 +35,7 @@ export const Card = styled.div`
 `;
 
 export const CardInner = styled.div`
-  padding: ${rem(40)};
+  padding: ${rem(20)} ${rem(40)};
 `;
 
 export const Group = styled.div``;
@@ -50,7 +50,10 @@ export const Row = styled.div`
   margin-bottom: ${rem(10)};
   margin-left: auto;
   margin-right: auto;
+  flex-wrap: wrap;
 `;
+
+export const Col = styled.div``;
 
 export const Amount = styled.h4`
   display: inline-block;
@@ -58,6 +61,7 @@ export const Amount = styled.h4`
   padding-left: ${rem(10)};
   padding-right: ${rem(10)};
   margin-bottom: 0;
+  text-align: center;
 `;
 
 const StyledCountdown = styled(Countdown)`
@@ -78,6 +82,12 @@ export const AccentText = styled.span`
   color: ${(props) => props.theme.colors.primary};
 `;
 
+export const ValuesText = styled.span`
+  font-size: ${rem(28)};
+  color: ${(props) => props.theme.colors.white};
+  font-weight: ${(props) => props.theme.fontWeight.bold};
+`;
+
 export const Title = styled.h1`
   max-width: ${rem(900)};
   margin-left: auto;
@@ -92,11 +102,13 @@ export const Description = styled.div`
 
 export const HintText = styled.p`
   opacity: 0.4;
+  font-weight: 800;
   font-size: ${rem(16)};
+  font-family: ${(props) => props.theme.font.headingsVariables};
 `;
 
 export const AmountContainer = styled.div`
-  margin: ${rem(30)} 0;
+  margin: 0 0 ${rem(16)} 0;
 `;
 
 export const ErrorText = styled.div`
