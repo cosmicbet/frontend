@@ -57,9 +57,9 @@ const BuyFormComponent = ({ onClick }) => {
 
   return (
     <S.Container>
-      <h3>
+      <S.HintText>
         <FormattedMessage id="HOW_MANY_TICKETS" />
-      </h3>
+      </S.HintText>
       <S.AmountContainer>
         <Button onClick={removeTicket} $icon>
           -

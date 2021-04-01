@@ -8,19 +8,20 @@ export const Table = styled.table`
   margin: 0 auto;
   margin-bottom: ${rem(40)};
   border-collapse: collapse;
-  border-bottom: 1px solid ${(props) => rgba(props.theme.colors.white, 1)};
 
   th {
-    font-weight: bold;
     text-align: left;
-    background-color: ${(props) => rgba(props.theme.colors.white, 1)};
-    color: ${(props) => props.theme.colors.dark};
-    padding: ${rem(6)} ${rem(16)};
+    opacity: 0.4;
+    font-size: ${rem(16)};
+    letter-spacing: 0;
+    line-height: 24px;
+    padding: ${rem(6)} 0 ${rem(16)};
   }
 
   td {
     font-weight: normal;
-    padding: ${rem(10)} ${rem(16)};
+    padding: ${rem(10)} 0;
+    border-bottom: 1px solid ${(props) => rgba(props.theme.colors.white, 0.04)};
   }
 
   td,
