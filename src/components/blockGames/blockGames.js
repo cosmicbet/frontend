@@ -15,7 +15,14 @@ const BlockGamesComponent = ({ items }) => {
       <StyledRow as={Row}>
         {items.map((item, index) => {
           return (
-            <StyledCol as={Col} xs={12} md={item.col || 6} key={index}>
+            <StyledCol
+              as={Col}
+              xs={12}
+              sm={6}
+              md={4}
+              lg={item.col || 3}
+              key={index}
+            >
               <GameCardComponent
                 key={index}
                 title={item.title}

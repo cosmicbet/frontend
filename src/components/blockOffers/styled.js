@@ -17,4 +17,5 @@ export const Card = styled.div`
 
 export const Title = styled.div`
   padding-right: ${rem(40)};
+  max-width: ${rem(380)};
 `;

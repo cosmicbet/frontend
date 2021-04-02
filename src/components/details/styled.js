@@ -65,7 +65,7 @@ export const System = styled.div`
   left: 40%;
   top: -10%;
   bottom: -20%;
-  transition: all 3s ease;
+  transition: all 0.8s ease;
   will-change: transform, left, right, bottom;
   transform: translate3d(0, 0, 0) rotate(0);
 
@@ -76,10 +76,12 @@ export const System = styled.div`
   }
 
   .fp-viewing-1 & {
-    left: -50%;
+    /* left: -50%;
     top: 25%;
     bottom: -45%;
-    transform: translate3d(0, 0, 0) rotate(180deg);
+    transform: translate3d(0, 0, 0) rotate(180deg); */
+
+    opacity: 0.2;
   }
 `;
 

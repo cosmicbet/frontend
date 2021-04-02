@@ -67,6 +67,22 @@ export const Button = styled.button`
       background-color: ${(props) => props.theme.colors.white};
     `}
 
+
+  ${(props) =>
+    props.$color === "secondary" &&
+    css`
+      background-color: #007cff;
+      color: ${(props) => props.theme.colors.white};
+    `}
+
+
+  ${(props) =>
+    props.$block &&
+    css`
+      width: 100%;
+    `}
+
+
   ${(props) =>
     props.$icon &&
     css`
@@ -79,5 +95,13 @@ export const Button = styled.button`
     css`
       padding: ${rem(20)} ${rem(40)};
       font-size: ${(props) => rem(props.theme.fontSize.h3)};
+    `}
+
+  ${(props) =>
+    props.$size === "md" &&
+    css`
+      font-size: ${rem(16)};
+      line-height: 1;
+      padding: ${rem(14)} ${rem(30)};
     `}
 `;

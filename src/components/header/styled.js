@@ -4,22 +4,15 @@ import { rem } from "polished";
 export const Header = styled.header`
   width: 100%;
   padding: ${rem(21)} 0;
-  position: fixed;
+  position: absolute;
+  overflow: hidden;
   z-index: 9;
   color: ${(props) => props.theme.colors.white};
-`;
-
-export const Logo = styled.div`
-  letter-spacing: 0.26em;
-  font-family: ${(props) => props.theme.font.headings};
-  font-size: ${(props) => rem(props.theme.fontSize.h4)};
-  font-weight: ${(props) => props.theme.fontWeight.semibold};
 `;
 
 export const Nav = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
 `;
 
 export const NavItem = styled.div`
@@ -35,6 +28,7 @@ export const NavLink = styled.a`
   padding: ${rem(10)};
   font-weight: ${(props) => props.theme.fontWeight.base};
   color: ${(props) => props.theme.colors.primary};
+  display: inline-block;
 
   &:hover {
     color: ${(props) => props.theme.colors.white};
@@ -62,5 +56,21 @@ export const NavButton = styled.div`
 
   @media all and (max-width: 580px) {
     display: none;
+  }
+`;
+
+export const Logo = styled.div`
+  font-size: 0;
+
+  a {
+    display: block;
+
+    img {
+      transition: 0.3s ease;
+    }
+
+    &:hover img {
+      transform: rotateY(180deg);
+    }
   }
 `;
