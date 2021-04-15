@@ -68,13 +68,19 @@ const BuyFormComponent = ({ onClick }) => {
         <Button onClick={addTicket} $icon>
           +
         </Button>
-        {error && (
-          <S.ErrorText>
-            <FormattedMessage id={error} />
-          </S.ErrorText>
-        )}
       </S.AmountContainer>
-      <Button onClick={() => buy()} $color="gradient" disabled={!ticketNumber}>
+      {error && (
+        <S.ErrorText>
+          <FormattedMessage id={error} />
+        </S.ErrorText>
+      )}
+      <Button
+        onClick={() => buy()}
+        $color="secondary"
+        $size="md"
+        $block
+        disabled={!ticketNumber}
+      >
         <FormattedMessage
           id="BUY_TICKETS_BUTTON"
           values={{

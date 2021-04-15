@@ -50,7 +50,9 @@ export const Content = styled.div`
     `}
 `;
 
-export const Section = styled.section``;
+export const Section = styled.section`
+  margin-bottom: ${rem(40)};
+`;
 
 export const Divider = styled.div`
   background: url(${dots}) no-repeat center / contain;

@@ -19,7 +19,6 @@ export const Wrapper = styled.div`
   top: 0;
   z-index: -1;
   pointer-events: none;
-  transform: translate3d() (0, 0, 0);
 `;
 
 export const Plus = styled.span`
@@ -65,9 +64,10 @@ export const System = styled.div`
   left: 40%;
   top: -10%;
   bottom: -20%;
-  transition: all 3s ease;
+  transition: all 0.8s ease;
   will-change: transform, left, right, bottom;
   transform: translate3d(0, 0, 0) rotate(0);
+  animation: 300s ${spin} infinite linear;
 
   img {
     width: 100%;
@@ -79,7 +79,7 @@ export const System = styled.div`
     left: -50%;
     top: 25%;
     bottom: -45%;
-    transform: translate3d(0, 0, 0) rotate(180deg);
+    transform: translate3d(0, 0, 0) rotate(180deg); 
   }
 `;
 
@@ -92,7 +92,6 @@ export const SystemCenter = styled.div`
   left: 50%;
   top: 50%;
   object-fit: contain;
-  animation: 300s ${spin} infinite linear;
   background: url(${(props) => props.$image}) no-repeat center / contain;
 
   @media all and (max-width: 767px) {
@@ -120,16 +119,13 @@ export const SystemPlanets = styled.div`
   width: 100%;
   height: 100%;
   object-fit: contain;
-  animation: 60s ${spin} infinite linear;
   background: url(${(props) => props.$image}) no-repeat center / contain;
 `;
 
 export const SystemPlanetsTwo = styled(SystemPlanets)`
-  animation: 100s ${spin} infinite linear;
   background: url(${(props) => props.$image}) no-repeat center / contain;
 `;
 
 export const SystemPlanetsThree = styled(SystemPlanets)`
-  animation: 140s ${spin} infinite linear;
   background: url(${(props) => props.$image}) no-repeat center / contain;
 `;

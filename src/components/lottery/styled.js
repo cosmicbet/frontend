@@ -84,6 +84,7 @@ export const AccentText = styled.span`
 
 export const ValuesText = styled.span`
   font-size: ${rem(28)};
+  display: block;
   color: ${(props) => props.theme.colors.white};
   font-weight: ${(props) => props.theme.fontWeight.bold};
 `;
@@ -108,11 +109,27 @@ export const HintText = styled.p`
 `;
 
 export const AmountContainer = styled.div`
+  width: 100%;
+  padding: ${rem(12)};
   margin: 0 0 ${rem(16)} 0;
+  background-color: rgba(255, 255, 255, 0.08);
+  border-radius: 100px;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+
+  button {
+    width: ${rem(20)};
+    min-width: ${rem(20)};
+    max-width: ${rem(20)};
+    height: ${rem(20)};
+    padding: ${rem(2)};
+    font-size: ${rem(14)};
+  }
 `;
 
 export const ErrorText = styled.div`
-  margin-top: ${rem(20)};
+  margin-bottom: ${rem(20)};
   color: ${(props) => props.theme.colors.danger};
 `;
 

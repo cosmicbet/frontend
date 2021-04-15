@@ -16,7 +16,7 @@ const pluses = [
   { left: "50%", top: rem(24) },
   { left: "50%", top: "50%" },
   { left: "50%", bottom: rem(24) },
-  { right: rem(24), top: rem(24), opacity: 0 },
+  { right: rem(24), top: rem(24) },
   { right: rem(24), top: "50%" },
   { right: rem(24), bottom: rem(24) },
 ];

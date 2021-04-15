@@ -38,26 +38,30 @@ const IndexPage = () => {
 
               <S.Content id="games" className="section fp-auto-height">
                 <Grid fluid>
-                  <Row center="xs">
-                    <Col xs={12} sm={10}>
-                      <Row between="xs">
-                        <Col xs={12} md={5}>
-                          <S.Title as="h2" style={{ maxWidth: "25rem" }}>
-                            <FormattedMessage id="EXPLORE_OUR_GAMES" />
-                          </S.Title>
-                        </Col>
-                        <Col xs={12} md={6}>
-                          <S.Section>
+                  <S.Section>
+                    <Row center="xs">
+                      <Col xs={12} sm={10}>
+                        <Row between="xs">
+                          <Col xs={12} md={6}>
+                            <S.Title as="h2" style={{ maxWidth: "25rem" }}>
+                              <FormattedMessage id="EXPLORE_OUR_GAMES" />
+                            </S.Title>
+                          </Col>
+                          <Col xs={12} md={5}>
                             <BlockOffersComponent items={offers} />
-                          </S.Section>
+                          </Col>
+                        </Row>
+                      </Col>
+                    </Row>
+                  </S.Section>
 
-                          <S.Section>
-                            <BlockGamesComponent items={games} />
-                          </S.Section>
-                        </Col>
-                      </Row>
-                    </Col>
-                  </Row>
+                  <S.Section>
+                    <Row center="xs">
+                      <Col xs={12} sm={10}>
+                        <BlockGamesComponent items={games} />
+                      </Col>
+                    </Row>
+                  </S.Section>
                 </Grid>
               </S.Content>
             </ReactFullpage.Wrapper>
