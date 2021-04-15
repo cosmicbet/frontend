@@ -1,13 +1,23 @@
 import styled from "styled-components";
 import { rem } from "polished";
+import { Row, Col } from "../../layouts/grid";
 
 export const Header = styled.header`
   width: 100%;
   padding: ${rem(21)} 0;
   position: absolute;
-  overflow: hidden;
   z-index: 9;
   color: ${(props) => props.theme.colors.white};
+
+  ${Row} {
+    margin-left: -1rem;
+    margin-right: -1rem;
+  }
+
+  ${Col} {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 `;
 
 export const Nav = styled.div`
